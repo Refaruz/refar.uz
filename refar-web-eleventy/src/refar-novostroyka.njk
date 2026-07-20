@@ -1,0 +1,135 @@
+---
+layout: base.njk
+title: "Новостройки Ташкента · REFAR"
+activeNav: "novostroyka"
+permalink: "/refar-novostroyka.html"
+---
+{% raw %}
+<style>
+:root{--brand:#1B2A4A;--brand-70:#122038;--brand-5:#EEF1F6;--brand-10:#DCE2EC;--brand-20:#C2CBDD;--g90:#0F172A;--g80:#1E293B;--g70:#334155;--g60:#475569;--g50:#64748B;--g40:#94A3B8;--g30:#CBD5E1;--g20:#E2E8F0;--g10:#F1F5F9;--g5:#F8FAFC;--succ:#16A34A;--succ-10:#DCFCE7;--warn-60:#D97706;--warn-10:#FEF3C7;--red:#E24B4A;--red-10:#FEE2E2;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#fff;color:var(--g90);font-size:14px;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+.wrap{max-width:1440px;margin:0 auto;}
+.hdr{background:#fff;border-bottom:1px solid var(--g10);position:sticky;top:0;z-index:100;}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:16px 80px;}
+.hdr-left{display:flex;gap:40px;align-items:center;}
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .mark{width:32px;height:32px;background:var(--brand);border-radius:8px;}
+.logo .name{font-weight:800;font-size:20px;}
+.nav{display:flex;gap:28px;}
+.nav a{font-weight:500;font-size:14px;color:var(--g60);}
+.nav a:hover,.nav a.on{color:var(--brand);}
+.hdr-right{display:flex;gap:16px;align-items:center;}
+.hbtn{font-weight:600;font-size:13px;padding:10px 16px;border-radius:8px;cursor:pointer;}
+.hbtn.ghost{background:var(--g5);border:1px solid var(--g20);}
+.hbtn.primary{background:var(--brand);color:#fff;}
+.content{padding:24px 80px 0;}
+.crumbs{display:flex;gap:8px;font-size:13px;color:var(--g50);margin-bottom:20px;}
+.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;}
+.hero h1{font-size:36px;font-weight:800;color:var(--g90);}
+.hero p{font-size:15px;color:var(--g60);margin-top:12px;max-width:560px;}
+.stats{display:flex;gap:32px;}
+.stat b{font-size:26px;font-weight:800;color:var(--brand);display:block;}
+.stat span{font-size:12px;color:var(--g50);}
+.filters{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;align-items:center;background:var(--g5);border:1px solid var(--g20);border-radius:14px;padding:16px;}
+.fp{display:flex;flex-direction:column;gap:2px;padding:4px 16px;border-right:1px solid var(--g20);}
+.fp:last-of-type{border-right:none;}
+.fp .l{font-size:11px;color:var(--g40);}
+.fp .v{font-size:14px;font-weight:600;color:var(--g80);}
+.compare{margin-left:auto;background:var(--brand);color:#fff;border:none;border-radius:10px;padding:12px 20px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;}
+.zk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px;}
+.zk{background:#fff;border:1px solid var(--g20);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .15s;}
+.zk:hover{box-shadow:0 12px 30px rgba(0,0,0,.1);transform:translateY(-3px);}
+.zk-photo{height:200px;position:relative;}
+.zk-tags{position:absolute;top:14px;left:14px;display:flex;gap:8px;}
+.zk-tag{font-size:11px;font-weight:600;padding:5px 10px;border-radius:20px;}
+.zk-media{position:absolute;bottom:14px;left:14px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;padding:4px 10px;border-radius:20px;}
+.zk-body{padding:20px;}
+.zk-name{font-size:19px;font-weight:700;color:var(--g90);}
+.zk-dev{font-size:13px;color:var(--g50);margin-top:6px;}
+.zk-dev b{color:var(--g70);font-weight:600;}
+.zk-loc{font-size:13px;color:var(--g60);margin-top:10px;display:flex;gap:6px;align-items:center;}
+.zk-meta{display:flex;gap:16px;margin-top:8px;font-size:13px;color:var(--g50);}
+.zk-price-row{display:flex;align-items:flex-end;justify-content:space-between;margin-top:16px;padding-top:16px;border-top:1px solid var(--g10);}
+.zk-price b{font-size:22px;font-weight:800;color:var(--g90);}
+.zk-price span{font-size:12px;color:var(--g50);display:block;}
+.zk-permet{background:var(--g5);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600;color:var(--g70);}
+.zk-install{display:flex;align-items:center;gap:8px;margin-top:14px;background:var(--succ-10);border-radius:8px;padding:10px 12px;}
+.zk-install .b{background:var(--succ);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;}
+.zk-install span{font-size:12px;color:#166534;}
+.zk-btn{width:100%;margin-top:14px;background:var(--brand);color:#fff;border:none;border-radius:10px;padding:12px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;}
+.more{text-align:center;margin:40px 0;}
+.more button{background:#fff;border:1px solid var(--brand);color:var(--brand);border-radius:10px;padding:14px 40px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;}
+.ft{background:#fff;border-top:1px solid var(--g10);padding:48px 80px 32px;margin-top:40px;}
+.ft-cols{display:flex;justify-content:space-between;}
+.ft-col{display:flex;flex-direction:column;gap:12px;}
+.ft-col .t{font-weight:700;font-size:13px;color:var(--g80);}
+.ft-col a{font-size:12px;color:var(--g60);}
+.ft-col a:hover{color:var(--brand);}
+.ft-line{height:1px;background:var(--g10);margin:32px 0 20px;}
+.ft-cp{font-size:12px;color:var(--g50);}
+@media(max-width:1100px){.hdr-in,.content,.ft{padding-left:32px;padding-right:32px;}.nav{display:none;}.zk-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:700px){.zk-grid{grid-template-columns:1fr;}.hero h1{font-size:28px;}.stats{flex-wrap:wrap;gap:20px;}.ft-cols{flex-wrap:wrap;gap:24px;}}
+
+/* ===== REFAR BRAND ===== */
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.ft-logo{display:flex;gap:10px;align-items:center;}
+.ft-logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.ft-logo .logo-mark svg{width:100%;height:100%;display:block;}
+.ft-logo .logo-name{font-weight:800;font-size:22px;color:#1B2A4A;letter-spacing:.5px;}
+a.hbtn.primary,a.hlink.primary,.hbtn.primary,.hlink.primary{background:#E24B4A!important;color:#fff!important;border-color:#E24B4A!important;text-decoration:none;display:inline-flex;align-items:center;}
+a.hbtn.primary:hover,.hbtn.primary:hover,.hlink.primary:hover{background:#C63D3C!important;}
+a.hbtn,a.hlink{text-decoration:none;}
+</style>
+<div class="content">
+  <div class="crumbs"><a href="index.html">Главная</a><span>→</span><a href="refar-novostroyka.html">Новостройки</a><span>→</span><a href="#">Ташкент</a></div>
+  <div class="hero">
+    <div><h1>Новостройки Ташкента</h1><p>142 жилых комплекса от проверенных застройщиков. Прямые продажи без посредников.</p></div>
+    <div class="stats">
+      <div class="stat"><b>142</b><span>Жилых комплекса</span></div>
+      <div class="stat"><b>38</b><span>Застройщиков</span></div>
+      <div class="stat"><b>от $480/м²</b><span>Минимальная цена</span></div>
+      <div class="stat"><b>12-36 мес.</b><span>Рассрочка от застройщика</span></div>
+    </div>
+  </div>
+
+  <div class="filters">
+    <div class="fp"><span class="l">Район</span><span class="v">Все ▾</span></div>
+    <div class="fp"><span class="l">Цена</span><span class="v">до 25 млн $ ▾</span></div>
+    <div class="fp"><span class="l">Срок сдачи</span><span class="v">2026–2027 ▾</span></div>
+    <div class="fp"><span class="l">Готовность</span><span class="v">Все ▾</span></div>
+    <div class="fp"><span class="l">Площадь</span><span class="v">30–120 м² ▾</span></div>
+    <button class="compare">Сравнить ЖК (3)</button>
+  </div>
+
+  <div class="zk-grid" id="zkgrid"></div>
+  <div class="more"><button>Показать ещё 136 ЖК</button></div>
+</div>
+</div>
+<script>
+var zks=[
+  {ph:'linear-gradient(135deg,#dbe4fb,#a5b8f0)',tags:[['Q4 2026','background:#DCE2EC;color:#122038'],['Хит продаж','background:#FEF3C7;color:#D97706'],['-15%','background:#FEE2E2;color:#E24B4A']],name:'ЖК «Tashkent City Mall»',dev:'Akfa Group',loc:'Мирабадский р-н',apt:'248 квартир',price:'от 12 млн $',permet:'$680/м²'},
+  {ph:'linear-gradient(135deg,#dcfce7,#86efac)',tags:[['Сдан','background:#DCFCE7;color:#16A34A']],name:'ЖК «Yangi Tashkent»',dev:'Murad Buildings',loc:'Юнусабадский р-н',apt:'342 квартиры',price:'от 8.5 млн $',permet:'$520/м²'},
+  {ph:'linear-gradient(135deg,#fef3c7,#fcd34d)',tags:[['Q2 2027','background:#DCE2EC;color:#122038'],['Рассрочка 36 мес.','background:#DCFCE7;color:#16A34A']],name:'ЖК «Mirabad Plaza»',dev:'Orient Group',loc:'Мирабадский р-н',apt:'186 квартир',price:'от 18 млн $',permet:'$580/м²'},
+  {ph:'linear-gradient(135deg,#f3e8ff,#d8b4fe)',tags:[['Q3 2026','background:#DCE2EC;color:#122038']],name:'ЖК «Boulevard Residence»',dev:'Akfa Group',loc:'Шайхантахурский р-н',apt:'156 квартир',price:'от 14 млн $',permet:'$720/м²'},
+  {ph:'linear-gradient(135deg,#dbeafe,#93c5fd)',tags:[['Сдан','background:#DCFCE7;color:#16A34A']],name:'ЖК «Sergeli Park»',dev:'Murad Buildings',loc:'Сергелийский р-н',apt:'428 квартир',price:'от 6.8 млн $',permet:'$420/м²'},
+  {ph:'linear-gradient(135deg,#fce7f3,#f9a8d4)',tags:[['Q4 2026','background:#DCE2EC;color:#122038'],['Новый','background:#FEF3C7;color:#D97706']],name:'ЖК «Chilanzar Towers»',dev:'Orient Group',loc:'Чиланзарский р-н',apt:'214 квартир',price:'от 9.2 млн $',permet:'$550/м²'}
+];
+document.getElementById("zkgrid").innerHTML=zks.map(function(z){
+  return '<div class="zk" onclick="location.href=&#39;refar-zk-page.html&#39;"><div class="zk-photo" style="background:'+z.ph+'">'+
+    '<div class="zk-tags">'+z.tags.map(function(t){return '<span class="zk-tag" style="'+t[1]+'">'+t[0]+'</span>';}).join("")+'</div>'+
+    '<span class="zk-media">📷 24 фото · видео</span></div>'+
+    '<div class="zk-body"><div class="zk-name">'+z.name+'</div>'+
+    '<div class="zk-dev">Застройщик: <b>'+z.dev+'</b></div>'+
+    '<div class="zk-loc">📍 '+z.loc+'</div>'+
+    '<div class="zk-meta"><span>'+z.apt+'</span></div>'+
+    '<div class="zk-price-row"><div class="zk-price"><b>'+z.price+'</b><span>стоимость квартир</span></div><span class="zk-permet">'+z.permet+'</span></div>'+
+    '<div class="zk-install"><span class="b">Рассрочка</span><span>от 1.2 млн $/мес</span></div>'+
+    '<button class="zk-btn">Подробнее о ЖК</button></div></div>';
+}).join("");
+</script>
+{% endraw %}

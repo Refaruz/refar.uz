@@ -1,0 +1,98 @@
+---
+layout: base.njk
+title: "Цены на жильё в Ташкенте · REFAR"
+activeNav: "novosti"
+permalink: "/refar-novost.html"
+---
+{% raw %}
+<style>:root{--brand:#1B2A4A;--brand-70:#122038;--brand-5:#EEF1F6;--brand-10:#DCE2EC;--brand-20:#C2CBDD;--g90:#0F172A;--g80:#1E293B;--g70:#334155;--g60:#475569;--g50:#64748B;--g40:#94A3B8;--g30:#CBD5E1;--g20:#E2E8F0;--g10:#F1F5F9;--g5:#F8FAFC;--succ:#16A34A;--succ-10:#DCFCE7;--warn-60:#D97706;--warn-10:#FEF3C7;--red:#E24B4A;--red-10:#FEE2E2;--purple-10:#F3E8FF;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--g5);color:var(--g90);font-size:14px;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+.wrap{max-width:1440px;margin:0 auto;}
+.hdr{background:#fff;border-bottom:1px solid var(--g10);position:sticky;top:0;z-index:100;}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:16px 80px;}
+.hdr-left{display:flex;gap:40px;align-items:center;}
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .mark{width:32px;height:32px;background:var(--brand);border-radius:8px;}
+.logo .name{font-weight:800;font-size:20px;}
+.nav{display:flex;gap:28px;}
+.nav a{font-weight:500;font-size:14px;color:var(--g60);}
+.nav a:hover,.nav a.on{color:var(--brand);}
+.hdr-right{display:flex;gap:16px;align-items:center;}
+.lang{font-weight:600;font-size:13px;color:var(--g80);}
+.hbtn{font-weight:600;font-size:13px;padding:10px 16px;border-radius:8px;cursor:pointer;}
+.hbtn.ghost{background:var(--g5);border:1px solid var(--g20);}
+.hbtn.primary{background:var(--brand);color:#fff;}
+.ft{background:#fff;border-top:1px solid var(--g10);padding:48px 80px 32px;margin-top:48px;}
+.ft-cols{display:flex;justify-content:space-between;max-width:1280px;margin:0 auto;}
+.ft-col{display:flex;flex-direction:column;gap:12px;}
+.ft-col .t{font-weight:700;font-size:13px;color:var(--g80);}
+.ft-col a{font-size:12px;color:var(--g60);}
+.ft-col a:hover{color:var(--brand);}
+.ft-line{height:1px;background:var(--g10);margin:32px auto 20px;max-width:1280px;}
+.ft-cp{font-size:12px;color:var(--g50);max-width:1280px;margin:0 auto;}
+.content{padding:32px 80px;max-width:820px;margin:0 auto;}
+.crumbs{display:flex;gap:8px;font-size:13px;color:var(--g50);margin-bottom:24px;}
+.art-cat{display:inline-block;background:var(--brand-5);color:var(--brand-70);font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;}
+.art-meta{font-size:13px;color:var(--g50);margin:16px 0;}
+.art-title{font-size:38px;font-weight:800;line-height:1.2;}
+.art-author{display:flex;gap:14px;align-items:center;margin:24px 0;padding:16px 0;border-top:1px solid var(--g10);border-bottom:1px solid var(--g10);}
+.aa-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--brand),#3A5488);}
+.aa-name{font-size:15px;font-weight:600;}.aa-role{font-size:13px;color:var(--g50);}
+.art-actions{margin-left:auto;display:flex;gap:10px;}
+.art-actions span{border:1px solid var(--g20);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--g60);cursor:pointer;}
+.art-hero{height:360px;border-radius:16px;background:linear-gradient(135deg,#dbe4fb,#a5b8f0);margin-bottom:32px;}
+.art-body p{font-size:17px;line-height:1.75;color:var(--g70);margin-bottom:24px;}
+.art-body h2{font-size:26px;font-weight:700;margin:36px 0 20px;}
+.art-callout{background:var(--brand-5);border:1px solid var(--brand-20);border-radius:16px;padding:24px;margin:28px 0;}
+.art-callout .ct{font-size:16px;font-weight:700;margin-bottom:16px;}
+.ac-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--brand-10);}
+.ac-row:last-child{border-bottom:none;}
+.ac-row .r{flex:1;font-size:15px;color:var(--g70);}
+.ac-row .v{font-size:16px;font-weight:800;color:var(--succ);}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:32px;}
+.tag{background:var(--g10);border-radius:20px;padding:6px 14px;font-size:13px;color:var(--g60);}
+.related{margin-top:48px;}
+.related h3{font-size:22px;font-weight:700;margin-bottom:20px;}
+.rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.rel{background:#fff;border:1px solid var(--g20);border-radius:12px;overflow:hidden;cursor:pointer;}
+.rel-img{height:120px;}
+.rel-body{padding:14px;}
+.rel-body h4{font-size:14px;font-weight:700;line-height:1.35;}
+.rel-body .m{font-size:12px;color:var(--g50);margin-top:8px;}
+@media(max-width:900px){.hdr-in,.content,.ft{padding-left:24px;padding-right:24px;}.nav{display:none;}.art-title{font-size:26px;}.rel-grid{grid-template-columns:1fr;}.ft-cols{flex-wrap:wrap;gap:24px;}}
+/* ===== REFAR BRAND ===== */
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.ft-logo{display:flex;gap:10px;align-items:center;}
+.ft-logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.ft-logo .logo-mark svg{width:100%;height:100%;display:block;}
+.ft-logo .logo-name{font-weight:800;font-size:22px;color:#1B2A4A;letter-spacing:.5px;}
+a.hbtn.primary,a.hlink.primary,.hbtn.primary,.hlink.primary{background:#E24B4A!important;color:#fff!important;border-color:#E24B4A!important;text-decoration:none;display:inline-flex;align-items:center;}
+a.hbtn.primary:hover,.hbtn.primary:hover,.hlink.primary:hover{background:#C63D3C!important;}
+a.hbtn,a.hlink{text-decoration:none;}
+</style>
+<div class="content">
+<div class="crumbs"><a href="index.html">Главная</a><span>→</span><a href="refar-novosti.html">Новости</a><span>→</span><span>Цены на жильё</span></div>
+<span class="art-cat">Аналитика</span>
+<div class="art-meta">27 мая 2026 · 8 мин чтения · 1 248 просмотров</div>
+<h1 class="art-title">Цены на жильё в Ташкенте выросли на 12.4% за год: что будет дальше</h1>
+<div class="art-author"><div class="aa-av"></div><div><div class="aa-name">Бекзод Назаров</div><div class="aa-role">Главный аналитик REFAR</div></div>
+<div class="art-actions"><span>♡ Сохранить</span><span>⤴ Поделиться</span><span>🖨</span></div></div>
+<div class="art-hero"></div>
+<div class="art-body">
+<p>По итогам мая 2026 года средняя цена квадратного метра в столице Узбекистана достигла рекордных $720, что на 12.4% выше показателя мая 2025-го. Главные драйверы роста — высокий спрос на новостройки в премиум-сегменте и приток иностранных инвесторов.</p>
+<h2>Какие районы дорожают быстрее всего</h2>
+<p>Лидерами роста стали Мирабадский и Юнусабадский районы — здесь цены прибавили 18% и 16% соответственно. Эксперты связывают это с активным запуском новых ЖК и открытием станции метро «Минг Урик».</p>
+<div class="art-callout"><div class="ct">★ Топ-5 районов по росту цен в 2026</div><div class="ac-row"><span class="r">Мирабадский р-н</span><span class="v">+18.2%</span></div><div class="ac-row"><span class="r">Юнусабадский р-н</span><span class="v">+16.4%</span></div><div class="ac-row"><span class="r">Мирзо Улугбекский р-н</span><span class="v">+14.1%</span></div><div class="ac-row"><span class="r">Шайхантахурский р-н</span><span class="v">+11.8%</span></div><div class="ac-row"><span class="r">Чиланзарский р-н</span><span class="v">+9.2%</span></div></div>
+<h2>Прогноз на конец 2026</h2>
+<p>По нашим оценкам, рост продолжится умеренными темпами — около 1.2% в месяц. Главные факторы поддержки: запуск 5 новых ЖК летом 2026, программа ипотеки от 13% и стабильный приток покупателей из соседних стран.</p>
+<div class="tags"><span class="tag">#аналитика</span><span class="tag">#ташкент</span><span class="tag">#цены</span><span class="tag">#новостройки</span><span class="tag">#ипотека</span><span class="tag">#2026</span></div>
+</div>
+<div class="related"><h3>Похожие статьи</h3><div class="rel-grid"><div class="rel" onclick="location.href='refar-novost.html'" style="cursor:pointer"><div class="rel-img" style="background:linear-gradient(135deg,#dbe4fb,#a5b8f0)"></div><div class="rel-body"><h4>Топ-10 ЖК Ташкента в 2026</h4><div class="m">28 мая · 12 мин</div></div></div><div class="rel" onclick="location.href='refar-novost.html'" style="cursor:pointer"><div class="rel-img" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0)"></div><div class="rel-body"><h4>Стоит ли покупать на этапе котлована</h4><div class="m">26 мая · 7 мин</div></div></div><div class="rel" onclick="location.href='refar-novost.html'" style="cursor:pointer"><div class="rel-img" style="background:linear-gradient(135deg,#fef3c7,#fde68a)"></div><div class="rel-body"><h4>Ипотека или рассрочка: что выгоднее</h4><div class="m">24 мая · 6 мин</div></div></div></div></div>
+</div>
+</div>
+{% endraw %}

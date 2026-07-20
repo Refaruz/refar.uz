@@ -1,0 +1,90 @@
+---
+layout: base.njk
+title: "О компании · REFAR"
+activeNav: ""
+permalink: "/refar-o-kompanii.html"
+---
+{% raw %}
+<style>:root{--brand:#1B2A4A;--brand-70:#122038;--brand-5:#EEF1F6;--brand-10:#DCE2EC;--brand-20:#C2CBDD;--g90:#0F172A;--g80:#1E293B;--g70:#334155;--g60:#475569;--g50:#64748B;--g40:#94A3B8;--g30:#CBD5E1;--g20:#E2E8F0;--g10:#F1F5F9;--g5:#F8FAFC;--succ:#16A34A;--succ-10:#DCFCE7;--warn-60:#D97706;--warn-10:#FEF3C7;--red:#E24B4A;--red-10:#FEE2E2;--purple-10:#F3E8FF;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--g5);color:var(--g90);font-size:14px;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+.wrap{max-width:1440px;margin:0 auto;}
+.hdr{background:#fff;border-bottom:1px solid var(--g10);position:sticky;top:0;z-index:100;}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:16px 80px;}
+.hdr-left{display:flex;gap:40px;align-items:center;}
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .mark{width:32px;height:32px;background:var(--brand);border-radius:8px;}
+.logo .name{font-weight:800;font-size:20px;}
+.nav{display:flex;gap:28px;}
+.nav a{font-weight:500;font-size:14px;color:var(--g60);}
+.nav a:hover,.nav a.on{color:var(--brand);}
+.hdr-right{display:flex;gap:16px;align-items:center;}
+.lang{font-weight:600;font-size:13px;color:var(--g80);}
+.hbtn{font-weight:600;font-size:13px;padding:10px 16px;border-radius:8px;cursor:pointer;}
+.hbtn.ghost{background:var(--g5);border:1px solid var(--g20);}
+.hbtn.primary{background:var(--brand);color:#fff;}
+.ft{background:#fff;border-top:1px solid var(--g10);padding:48px 80px 32px;margin-top:48px;}
+.ft-cols{display:flex;justify-content:space-between;max-width:1280px;margin:0 auto;}
+.ft-col{display:flex;flex-direction:column;gap:12px;}
+.ft-col .t{font-weight:700;font-size:13px;color:var(--g80);}
+.ft-col a{font-size:12px;color:var(--g60);}
+.ft-col a:hover{color:var(--brand);}
+.ft-line{height:1px;background:var(--g10);margin:32px auto 20px;max-width:1280px;}
+.ft-cp{font-size:12px;color:var(--g50);max-width:1280px;margin:0 auto;}
+.hero{background:linear-gradient(135deg,#EDF0F6,#fff);padding:56px 80px;text-align:center;}
+.hero .tag{display:inline-block;background:var(--brand-5);color:var(--brand-70);font-size:13px;font-weight:600;padding:6px 14px;border-radius:20px;margin-bottom:16px;}
+.hero h1{font-size:40px;font-weight:800;max-width:800px;margin:0 auto;}
+.hero p{font-size:16px;color:var(--g60);margin-top:16px;max-width:700px;margin-left:auto;margin-right:auto;}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding:0 80px;margin-top:-30px;}
+.stat{background:#fff;border:1px solid var(--g20);border-radius:16px;padding:24px;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.04);}
+.stat b{font-size:28px;font-weight:800;color:var(--brand);display:block;}
+.stat span{font-size:13px;color:var(--g50);margin-top:6px;display:block;}
+.content{padding:56px 80px 0;}
+.section h2{font-size:28px;font-weight:700;text-align:center;}
+.section .sub{font-size:15px;color:var(--g60);text-align:center;margin-top:10px;margin-bottom:32px;}
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.value{background:#fff;border:1px solid var(--g20);border-radius:16px;padding:28px;}
+.value .ic{width:48px;height:48px;background:var(--brand-5);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;}
+.value b{font-size:18px;font-weight:700;display:block;margin-bottom:8px;}
+.value p{font-size:14px;color:var(--g60);line-height:1.6;}
+.timeline{margin-top:72px;}
+.tl-items{max-width:800px;margin:0 auto;}
+.tl-item{display:flex;gap:24px;padding-bottom:32px;position:relative;}
+.tl-item:not(:last-child)::before{content:"";position:absolute;left:39px;top:40px;bottom:0;width:2px;background:var(--g20);}
+.tl-year{width:80px;flex-shrink:0;font-size:22px;font-weight:800;color:var(--brand);}
+.tl-dot{width:16px;height:16px;border-radius:50%;background:var(--brand);flex-shrink:0;margin-top:6px;}
+.tl-text{font-size:15px;color:var(--g70);padding-top:2px;}
+@media(max-width:1000px){.stats{grid-template-columns:repeat(2,1fr);}.values{grid-template-columns:1fr;}}
+@media(max-width:900px){.hdr-in,.hero,.stats,.content,.ft{padding-left:24px;padding-right:24px;}.nav{display:none;}.hero h1{font-size:28px;}.ft-cols{flex-wrap:wrap;gap:24px;}}
+/* ===== REFAR BRAND ===== */
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.ft-logo{display:flex;gap:10px;align-items:center;}
+.ft-logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.ft-logo .logo-mark svg{width:100%;height:100%;display:block;}
+.ft-logo .logo-name{font-weight:800;font-size:22px;color:#1B2A4A;letter-spacing:.5px;}
+a.hbtn.primary,a.hlink.primary,.hbtn.primary,.hlink.primary{background:#E24B4A!important;color:#fff!important;border-color:#E24B4A!important;text-decoration:none;display:inline-flex;align-items:center;}
+a.hbtn.primary:hover,.hbtn.primary:hover,.hlink.primary:hover{background:#C63D3C!important;}
+a.hbtn,a.hlink{text-decoration:none;}
+</style>
+<section class="hero"><span class="tag">С 2018 года · 5 регионов · 50 000+ пользователей</span>
+<h1>Мы делаем покупку недвижимости понятной и безопасной</h1>
+<p>REFAR — крупнейшая proptech-платформа Узбекистана. Объединяем покупателей, продавцов, риэлторов и застройщиков на одной проверенной площадке.</p></section>
+<div class="stats">
+<div class="stat"><b>12 000+</b><span>Объектов в каталоге</span></div>
+<div class="stat"><b>842</b><span>Проверенных риэлторов</span></div>
+<div class="stat"><b>124</b><span>Агентства недвижимости</span></div>
+<div class="stat"><b>38</b><span>Застройщиков</span></div>
+<div class="stat"><b>50 000+</b><span>Пользователей в месяц</span></div>
+</div>
+<div class="content">
+<div class="section"><h2>Наша миссия</h2><div class="sub">Сделать рынок недвижимости Узбекистана прозрачным и доступным</div>
+<div class="values"><div class="value"><div class="ic">🔍</div><b>Прозрачность</b><p>Все объекты проверены модераторами. Документы открыты. История цен видна.</p></div><div class="value"><div class="ic">⚡</div><b>Технологии</b><p>AI помогает находить идеальные варианты. Виртуальные туры. Онлайн-оценка.</p></div><div class="value"><div class="ic">🛟</div><b>Поддержка 24/7</b><p>Команда помощи на русском и узбекском. Telegram, телефон, чат.</p></div></div></div>
+<div class="timeline"><h2 style="text-align:center;font-size:28px;font-weight:700;margin-bottom:40px;">История компании</h2>
+<div class="tl-items"><div class="tl-item"><div class="tl-year">2018</div><div class="tl-dot"></div><div class="tl-text">Запуск REFAR в Ташкенте. Команда из 5 человек.</div></div><div class="tl-item"><div class="tl-year">2020</div><div class="tl-dot"></div><div class="tl-text">Открытие офисов в Самарканде и Бухаре. 10 000 объектов в каталоге.</div></div><div class="tl-item"><div class="tl-year">2022</div><div class="tl-dot"></div><div class="tl-text">Запуск AI-поиска и онлайн-оценки. Партнёрство с 5 крупными застройщиками.</div></div><div class="tl-item"><div class="tl-year">2024</div><div class="tl-dot"></div><div class="tl-text">Внедрение системы верификации риэлторов. Запуск кабинетов застройщиков.</div></div><div class="tl-item"><div class="tl-year">2026</div><div class="tl-dot"></div><div class="tl-text">Топ-1 platform недвижимости в Узбекистане. Расширение в Намангане и Андижане.</div></div></div></div>
+</div>
+</div>
+{% endraw %}

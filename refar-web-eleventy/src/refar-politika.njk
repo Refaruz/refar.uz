@@ -1,0 +1,112 @@
+---
+layout: base.njk
+title: "Политика конфиденциальности · REFAR"
+activeNav: ""
+permalink: "/refar-politika.html"
+---
+{% raw %}
+<style>:root{--brand:#1B2A4A;--brand-70:#122038;--brand-5:#EEF1F6;--brand-10:#DCE2EC;--brand-20:#C2CBDD;--g90:#0F172A;--g80:#1E293B;--g70:#334155;--g60:#475569;--g50:#64748B;--g40:#94A3B8;--g30:#CBD5E1;--g20:#E2E8F0;--g10:#F1F5F9;--g5:#F8FAFC;--succ:#16A34A;--succ-10:#DCFCE7;--warn-60:#D97706;--warn-10:#FEF3C7;--red:#E24B4A;--red-10:#FEE2E2;--purple-10:#F3E8FF;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--g5);color:var(--g90);font-size:14px;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+.wrap{max-width:1440px;margin:0 auto;}
+.hdr{background:#fff;border-bottom:1px solid var(--g10);position:sticky;top:0;z-index:100;}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:16px 80px;}
+.hdr-left{display:flex;gap:40px;align-items:center;}
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .mark{width:32px;height:32px;background:var(--brand);border-radius:8px;}
+.logo .name{font-weight:800;font-size:20px;}
+.nav{display:flex;gap:28px;}
+.nav a{font-weight:500;font-size:14px;color:var(--g60);}
+.nav a:hover,.nav a.on{color:var(--brand);}
+.hdr-right{display:flex;gap:16px;align-items:center;}
+.lang{font-weight:600;font-size:13px;color:var(--g80);}
+.hbtn{font-weight:600;font-size:13px;padding:10px 16px;border-radius:8px;cursor:pointer;}
+.hbtn.ghost{background:var(--g5);border:1px solid var(--g20);}
+.hbtn.primary{background:var(--brand);color:#fff;}
+.ft{background:#fff;border-top:1px solid var(--g10);padding:48px 80px 32px;margin-top:48px;}
+.ft-cols{display:flex;justify-content:space-between;max-width:1280px;margin:0 auto;}
+.ft-col{display:flex;flex-direction:column;gap:12px;}
+.ft-col .t{font-weight:700;font-size:13px;color:var(--g80);}
+.ft-col a{font-size:12px;color:var(--g60);}
+.ft-col a:hover{color:var(--brand);}
+.ft-line{height:1px;background:var(--g10);margin:32px auto 20px;max-width:1280px;}
+.ft-cp{font-size:12px;color:var(--g50);max-width:1280px;margin:0 auto;}
+.content{padding:32px 80px;}
+.crumbs{display:flex;gap:8px;font-size:13px;color:var(--g50);margin-bottom:24px;}
+.pol-head h1{font-size:34px;font-weight:800;}
+.pol-head .upd{font-size:13px;color:var(--g50);margin-top:8px;}
+.pol-head .upd b{color:var(--g70);}
+.pol-wrap{display:flex;gap:32px;margin-top:32px;align-items:flex-start;}
+.pol-toc{width:280px;flex-shrink:0;background:#fff;border:1px solid var(--g20);border-radius:16px;padding:24px;position:sticky;top:100px;}
+.pol-toc .t{font-size:14px;font-weight:700;margin-bottom:16px;}
+.pol-toc a{display:block;font-size:13px;color:var(--g60);padding:7px 0;border-left:2px solid transparent;padding-left:12px;margin-left:-12px;}
+.pol-toc a:hover,.pol-toc a.on{color:var(--brand);border-left-color:var(--brand);}
+.pol-body{flex:1;min-width:0;background:#fff;border:1px solid var(--g20);border-radius:16px;padding:36px;}
+.pol-sec{margin-bottom:36px;}
+.pol-sec:last-child{margin-bottom:0;}
+.pol-sec h2{font-size:22px;font-weight:700;margin-bottom:16px;color:var(--g90);}
+.pol-sec p{font-size:15px;line-height:1.75;color:var(--g60);margin-bottom:14px;}
+.pol-sec ul{list-style:none;margin:16px 0;}
+.pol-sec li{font-size:15px;line-height:1.7;color:var(--g60);padding:8px 0 8px 28px;position:relative;}
+.pol-sec li::before{content:"→";position:absolute;left:0;color:var(--brand);font-weight:700;}
+.pol-sec li b{color:var(--g80);}
+.pol-callout{background:var(--brand-5);border:1px solid var(--brand-20);border-radius:12px;padding:20px;margin:16px 0;font-size:15px;line-height:1.7;color:var(--g70);}
+.pol-contacts{background:var(--g5);border-radius:12px;padding:20px;margin-top:12px;}
+.pol-contacts div{font-size:14px;color:var(--g70);padding:5px 0;}
+.pol-contacts b{color:var(--g80);}
+@media(max-width:900px){.hdr-in,.content,.ft{padding-left:24px;padding-right:24px;}.nav{display:none;}.pol-wrap{flex-direction:column;}.pol-toc{width:100%;position:static;}.pol-head h1{font-size:26px;}.ft-cols{flex-wrap:wrap;gap:24px;}}
+/* ===== REFAR BRAND ===== */
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.ft-logo{display:flex;gap:10px;align-items:center;}
+.ft-logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.ft-logo .logo-mark svg{width:100%;height:100%;display:block;}
+.ft-logo .logo-name{font-weight:800;font-size:22px;color:#1B2A4A;letter-spacing:.5px;}
+a.hbtn.primary,a.hlink.primary,.hbtn.primary,.hlink.primary{background:#E24B4A!important;color:#fff!important;border-color:#E24B4A!important;text-decoration:none;display:inline-flex;align-items:center;}
+a.hbtn.primary:hover,.hbtn.primary:hover,.hlink.primary:hover{background:#C63D3C!important;}
+a.hbtn,a.hlink{text-decoration:none;}
+</style>
+<div class="content">
+<div class="crumbs"><a href="index.html">Главная</a><span>→</span><a href="#">Документы</a><span>→</span><span>Политика конфиденциальности</span></div>
+<div class="pol-head"><h1>Политика конфиденциальности</h1><div class="upd">Обновлено: <b>27 мая 2026</b> · Версия 2.4</div></div>
+<div class="pol-wrap">
+<aside class="pol-toc"><div class="t">Содержание</div><a href="#s1" class="on">Общие положения</a><a href="#s2">Какие данные мы собираем</a><a href="#s3">Как мы используем данные</a><a href="#s4">Передача третьим лицам</a><a href="#s5">Хранение и защита</a><a href="#s6">Ваши права</a><a href="#s7">Cookies и трекинг</a><a href="#s8">Изменения политики</a><a href="#s9">Контакты</a></aside>
+<div class="pol-body">
+<div class="pol-sec" id="s1"><h2>1. Общие положения</h2>
+<p>Настоящая Политика конфиденциальности (далее — «Политика») регулирует обработку персональных данных пользователей платформы REFAR в соответствии с Законом Республики Узбекистан «О персональных данных» №547-О от 02.07.2019 г.</p>
+<p>Используя сервисы REFAR, вы соглашаетесь с условиями обработки данных, описанными ниже. Если вы не согласны — пожалуйста, не используйте платформу.</p></div>
+<div class="pol-sec" id="s2"><h2>2. Какие данные мы собираем</h2>
+<p>REFAR обрабатывает следующие категории персональных данных:</p>
+<ul>
+<li><b>Контактные данные:</b> номер телефона, email, ФИО</li>
+<li><b>Данные авторизации:</b> пароли (хешируются), токены сессий</li>
+<li><b>Данные профиля:</b> язык, город, предпочтения по недвижимости</li>
+<li><b>Данные объявлений:</b> фотографии, описания, цены, адреса</li>
+<li><b>Данные о действиях:</b> история поиска, просмотры, избранное, сохранённые поиски</li>
+<li><b>Технические данные:</b> IP-адрес, тип устройства, браузер, геолокация (с разрешения)</li>
+</ul></div>
+<div class="pol-sec" id="s3"><h2>3. Как мы используем данные</h2>
+<p>Ваши данные используются для предоставления услуг платформы: показа релевантных объявлений, связи с риэлторами, аналитики рынка и улучшения сервиса.</p>
+<div class="pol-callout">Мы <b>НЕ передаём</b> ваши контактные данные третьим лицам без вашего явного согласия.</div></div>
+<div class="pol-sec" id="s4"><h2>4. Передача третьим лицам</h2>
+<p>REFAR не продаёт ваши данные. Мы можем передать их в следующих случаях:</p>
+<ul>
+<li>По требованию государственных органов Узбекистана</li>
+<li>При согласии пользователя для связи с риэлтором</li>
+<li>Технологическим партнёрам для обработки платежей (без раскрытия персональных данных)</li>
+</ul></div>
+<div class="pol-sec" id="s6"><h2>5. Ваши права</h2>
+<p>Вы можете запросить копию ваших данных, их корректировку или удаление в любой момент через настройки профиля или письмом на <b>privacy@refar.uz</b></p></div>
+<div class="pol-sec" id="s9"><h2>6. Контакты</h2>
+<p>По вопросам обработки данных:</p>
+<div class="pol-contacts">
+<div><b>Email:</b> privacy@refar.uz</div>
+<div><b>Телефон:</b> +998 71 200 50 50</div>
+<div><b>Адрес:</b> г. Ташкент, просп. Мустакиллик, 56, Мирабадский район</div>
+</div></div>
+</div></div></div>
+</div><script>document.querySelectorAll(".pol-toc a").forEach(function(a){a.addEventListener("click",function(e){var id=a.getAttribute("href");if(id&&document.querySelector(id)){e.preventDefault();document.querySelector(id).scrollIntoView({behavior:"smooth"});document.querySelectorAll(".pol-toc a").forEach(function(x){x.classList.remove("on");});a.classList.add("on");}});});</script>
+{% endraw %}

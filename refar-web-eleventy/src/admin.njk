@@ -1,0 +1,75 @@
+---
+layout: base.njk
+title: "Админ панел · REFAR"
+activeNav: ""
+permalink: "/admin.html"
+---
+{% raw %}
+<div class="page-wide">
+<h1 data-i18n="adm.title">Админ-панель</h1>
+<div id="noAccess" class="msg err" style="display:none" data-i18n="adm.no_access">Нет доступа. Только для админов.</div>
+<div id="panel" style="display:none">
+<div class="sub" style="margin-top:8px">REFAR · <span id="admWho"></span></div>
+<div class="stat-grid" id="stats"></div>
+<div class="tabs"><span class="tab on" data-tab="listings" data-i18n="adm.listings">Объявления</span><span class="tab" data-tab="users" data-i18n="adm.users">Пользователи</span></div>
+<div id="tabListings"></div>
+<div id="tabUsers" style="display:none"></div>
+</div></div>
+<script>
+var ALL=[];
+document.addEventListener('DOMContentLoaded', async function(){
+  var prof=await REFAR.profile();
+  if(!prof||prof.role!=='admin'){document.getElementById('noAccess').style.display='block';return;}
+  document.getElementById('panel').style.display='block';
+  var u=await REFAR.user(); document.getElementById('admWho').textContent=u.email;
+  document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});t.classList.add('on');
+    var tab=t.getAttribute('data-tab');
+    document.getElementById('tabListings').style.display=tab==='listings'?'block':'none';
+    document.getElementById('tabUsers').style.display=tab==='users'?'block':'none';
+    if(tab==='users')loadUsers();
+  });});
+  loadListings();
+});
+async function loadListings(){
+  var {data,error}=await window.sb.from('web_listings').select('*').order('created_at',{ascending:false});
+  if(error){document.getElementById('tabListings').innerHTML='<div class="msg err">'+error.message+'</div>';return;}
+  ALL=data||[];
+  // статистика
+  var st={pending:0,approved:0,rejected:0,sold:0};
+  ALL.forEach(function(l){st[l.status]=(st[l.status]||0)+1;});
+  document.getElementById('stats').innerHTML=
+    '<div class="stat-card"><b>'+ALL.length+'</b><span>'+window.REFAR_t('adm.total')+'</span></div>'+
+    '<div class="stat-card"><b style="color:#D97706">'+st.pending+'</b><span>'+window.REFAR_t('st.pending')+'</span></div>'+
+    '<div class="stat-card"><b style="color:#16A34A">'+st.approved+'</b><span>'+window.REFAR_t('st.approved')+'</span></div>'+
+    '<div class="stat-card"><b style="color:#E24B4A">'+st.rejected+'</b><span>'+window.REFAR_t('st.rejected')+'</span></div>';
+  var rows=ALL.map(function(l){
+    return '<tr><td>'+l.ref_code+'</td><td><b>'+esc(l.title)+'</b><br><span style="color:#94A3B8;font-size:12px">'+esc([l.region,l.district].filter(Boolean).join(', '))+'</span></td>'+
+      '<td>'+fmtPrice(l)+'</td><td><span class="badge '+l.status+'">'+window.REFAR_t('st.'+l.status)+'</span></td>'+
+      '<td>'+new Date(l.created_at).toLocaleDateString('ru-RU')+'</td>'+
+      '<td style="white-space:nowrap">'+
+        '<button class="mini-btn ok" onclick="setStatus('+l.id+',&quot;approved&quot;)">'+window.REFAR_t('adm.approve')+'</button>'+
+        '<button class="mini-btn no" onclick="setStatus('+l.id+',&quot;rejected&quot;)">'+window.REFAR_t('adm.reject')+'</button>'+
+        '<button class="mini-btn del" onclick="delL('+l.id+')">'+window.REFAR_t('adm.delete')+'</button>'+
+      '</td></tr>';
+  }).join('');
+  document.getElementById('tabListings').innerHTML='<table class="tbl"><thead><tr><th>ID</th><th>'+window.REFAR_t('add.f_title')+'</th><th>'+window.REFAR_t('add.f_price')+'</th><th>Статус</th><th>Дата</th><th></th></tr></thead><tbody>'+(rows||'<tr><td colspan="6" style="text-align:center;color:#94A3B8">—</td></tr>')+'</tbody></table>';
+}
+async function setStatus(id,st){
+  await window.sb.from('web_listings').update({status:st,updated_at:new Date().toISOString()}).eq('id',id);
+  loadListings();
+}
+async function delL(id){ if(!confirm('Удалить?'))return; await window.sb.from('web_listings').delete().eq('id',id); loadListings(); }
+async function loadUsers(){
+  var {data,error}=await window.sb.from('web_profiles').select('*').order('created_at',{ascending:false});
+  var box=document.getElementById('tabUsers');
+  if(error){box.innerHTML='<div class="msg err">'+error.message+'</div>';return;}
+  var rows=(data||[]).map(function(p){
+    return '<tr><td>'+esc(p.full_name||'—')+'</td><td>'+esc(p.phone||'—')+'</td><td><span class="badge '+(p.role==='admin'?'approved':'sold')+'">'+p.role+'</span></td><td>'+esc(p.lang)+'</td><td>'+new Date(p.created_at).toLocaleDateString('ru-RU')+'</td></tr>';
+  }).join('');
+  box.innerHTML='<table class="tbl"><thead><tr><th>'+window.REFAR_t('auth.name')+'</th><th>'+window.REFAR_t('auth.phone')+'</th><th>Роль</th><th>Язык</th><th>Дата</th></tr></thead><tbody>'+(rows||'')+'</tbody></table>';
+}
+function fmtPrice(l){var s=Number(l.price).toLocaleString('ru-RU');return (l.currency==='USD'?'$ ':'')+s+(l.currency==='UZS'?' сум':'');}
+function esc(s){return (s||'').replace(/</g,'&lt;');}
+</script>
+{% endraw %}

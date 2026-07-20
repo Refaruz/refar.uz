@@ -1,0 +1,77 @@
+---
+layout: base.njk
+title: "Сравнение объектов · REFAR"
+activeNav: ""
+permalink: "/refar-sravnenie.html"
+---
+{% raw %}
+<style>:root{--brand:#1B2A4A;--brand-70:#122038;--brand-5:#EEF1F6;--brand-10:#DCE2EC;--brand-20:#C2CBDD;--g90:#0F172A;--g80:#1E293B;--g70:#334155;--g60:#475569;--g50:#64748B;--g40:#94A3B8;--g30:#CBD5E1;--g20:#E2E8F0;--g10:#F1F5F9;--g5:#F8FAFC;--succ:#16A34A;--succ-10:#DCFCE7;--warn-60:#D97706;--warn-10:#FEF3C7;--red:#E24B4A;--red-10:#FEE2E2;--purple-10:#F3E8FF;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--g5);color:var(--g90);font-size:14px;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+.wrap{max-width:1440px;margin:0 auto;}
+.hdr{background:#fff;border-bottom:1px solid var(--g10);position:sticky;top:0;z-index:100;}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:16px 80px;}
+.hdr-left{display:flex;gap:40px;align-items:center;}
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .mark{width:32px;height:32px;background:var(--brand);border-radius:8px;}
+.logo .name{font-weight:800;font-size:20px;}
+.nav{display:flex;gap:28px;}
+.nav a{font-weight:500;font-size:14px;color:var(--g60);}
+.nav a:hover,.nav a.on{color:var(--brand);}
+.hdr-right{display:flex;gap:16px;align-items:center;}
+.lang{font-weight:600;font-size:13px;color:var(--g80);}
+.hbtn{font-weight:600;font-size:13px;padding:10px 16px;border-radius:8px;cursor:pointer;}
+.hbtn.ghost{background:var(--g5);border:1px solid var(--g20);}
+.hbtn.primary{background:var(--brand);color:#fff;}
+.ft{background:#fff;border-top:1px solid var(--g10);padding:48px 80px 32px;margin-top:48px;}
+.ft-cols{display:flex;justify-content:space-between;max-width:1280px;margin:0 auto;}
+.ft-col{display:flex;flex-direction:column;gap:12px;}
+.ft-col .t{font-weight:700;font-size:13px;color:var(--g80);}
+.ft-col a{font-size:12px;color:var(--g60);}
+.ft-col a:hover{color:var(--brand);}
+.ft-line{height:1px;background:var(--g10);margin:32px auto 20px;max-width:1280px;}
+.ft-cp{font-size:12px;color:var(--g50);max-width:1280px;margin:0 auto;}
+.content{padding:40px 80px;}
+.pt{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:24px;}
+.pt h1{font-size:34px;font-weight:800;}.pt p{font-size:15px;color:var(--g60);margin-top:8px;}
+.pt-btns{display:flex;gap:10px;}
+.pt-btns button{background:#fff;border:1px solid var(--g20);border-radius:10px;padding:12px 18px;font-family:inherit;font-weight:600;font-size:14px;color:var(--g70);cursor:pointer;}
+.ctable{background:#fff;border:1px solid var(--g20);border-radius:16px;overflow:hidden;overflow-x:auto;}
+.crow{display:grid;grid-template-columns:200px repeat(4,1fr);border-bottom:1px solid var(--g10);}
+.crow:last-child{border-bottom:none;}
+.crow.head .cparam{background:var(--g5);}
+.cparam{padding:16px 20px;font-size:14px;font-weight:600;color:var(--g70);background:var(--g5);display:flex;align-items:center;}
+.ccell{padding:16px 20px;font-size:14px;color:var(--g80);border-left:1px solid var(--g10);display:flex;align-items:center;}
+.chead-cell{padding:16px;border-left:1px solid var(--g10);}
+.chead-photo{height:100px;border-radius:10px;margin-bottom:12px;position:relative;}
+.chead-status{position:absolute;top:8px;left:8px;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;background:rgba(255,255,255,.95);}
+.chead-price{font-size:18px;font-weight:800;color:var(--g90);}
+.chead-addr{font-size:12px;color:var(--g60);margin-top:4px;}
+.chead-spec{font-size:12px;color:var(--g50);margin-top:4px;}
+.cadd{border-left:1px solid var(--g10);display:flex;align-items:center;justify-content:center;color:var(--g40);font-size:14px;cursor:pointer;flex-direction:column;gap:8px;}
+.cadd .plus{width:44px;height:44px;border:2px dashed var(--g30);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;}
+.cbest{color:var(--succ);font-weight:700;}
+@media(max-width:900px){.hdr-in,.content,.ft{padding-left:16px;padding-right:16px;}.nav{display:none;}.pt h1{font-size:26px;}.crow{grid-template-columns:140px repeat(4,minmax(120px,1fr));}.ctable{overflow-x:scroll;}.ft-cols{flex-wrap:wrap;gap:24px;}}
+/* ===== REFAR BRAND ===== */
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.ft-logo{display:flex;gap:10px;align-items:center;}
+.ft-logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.ft-logo .logo-mark svg{width:100%;height:100%;display:block;}
+.ft-logo .logo-name{font-weight:800;font-size:22px;color:#1B2A4A;letter-spacing:.5px;}
+a.hbtn.primary,a.hlink.primary,.hbtn.primary,.hlink.primary{background:#E24B4A!important;color:#fff!important;border-color:#E24B4A!important;text-decoration:none;display:inline-flex;align-items:center;}
+a.hbtn.primary:hover,.hbtn.primary:hover,.hlink.primary:hover{background:#C63D3C!important;}
+a.hbtn,a.hlink{text-decoration:none;}
+</style>
+<div class="content">
+<div class="pt"><div><h1>Сравнение объектов</h1><p>Сравниваете 3 объекта · Можно добавить ещё 2</p></div>
+<div class="pt-btns"><button>Показать только различия</button><button>Поделиться</button></div></div>
+<div class="ctable">
+<div class="crow head"><div class="cparam">Параметры</div><div class="chead-cell"><div class="chead-photo" style="background:linear-gradient(135deg,#dbe4fb,#c9d6f7)"><span class="chead-status" style="background:#DCFCE7;color:#16A34A">В продаже</span></div><div class="chead-price">12 500 000 $</div><div class="chead-addr">ул. Шахрисабз, 12</div><div class="chead-spec">3к · 95м² · 5/9</div></div><div class="chead-cell"><div class="chead-photo" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0)"><span class="chead-status" style="background:#DCFCE7;color:#16A34A">В продаже</span></div><div class="chead-price">9 800 000 $</div><div class="chead-addr">ул. Узбекистанская, 8</div><div class="chead-spec">2к · 71м² · 2/6</div></div><div class="chead-cell"><div class="chead-photo" style="background:linear-gradient(135deg,#f3e8ff,#e9d5ff)"><span class="chead-status" style="background:#DCE2EC;color:#122038">Новое</span></div><div class="chead-price">18 200 000 $</div><div class="chead-addr">ул. Чимкентская, 145А</div><div class="chead-spec">3к · 108м² · 11/16</div></div><div class="cadd"><div class="plus">+</div>Добавить объект</div></div>
+<div class="crow"><div class="cparam">Цена за м²</div><div class="ccell cbest">131 578 $</div><div class="ccell">138 028 $</div><div class="ccell">168 518 $</div><div class="ccell" style="color:var(--g30)">—</div></div><div class="crow"><div class="cparam">Район</div><div class="ccell">Мирабадский</div><div class="ccell">Чиланзарский</div><div class="ccell">Юнусабадский</div><div class="ccell" style="color:var(--g30)">—</div></div><div class="crow"><div class="cparam">Тип жилья</div><div class="ccell">Вторичное</div><div class="ccell">Вторичное</div><div class="ccell">Новостройка</div><div class="ccell" style="color:var(--g30)">—</div></div><div class="crow"><div class="cparam">Площадь</div><div class="ccell">95 м²</div><div class="ccell">71 м²</div><div class="ccell cbest">108 м²</div><div class="ccell" style="color:var(--g30)">—</div></div><div class="crow"><div class="cparam">Комнат</div><div class="ccell">3</div><div class="ccell">2</div><div class="ccell">3</div><div class="ccell" style="color:var(--g30)">—</div></div><div class="crow"><div class="cparam">Этаж</div><div class="ccell">5 из 9</div><div class="ccell">2 из 6</div><div class="ccell">11 из 16</div><div class="ccell" style="color:var(--g30)">—</div></div><div class="crow"><div class="cparam">Материал</div><div class="ccell">Кирпич</div><div class="ccell">Бетон</div><div class="ccell">Монолит</div><div class="ccell" style="color:var(--g30)">—</div></div><div class="crow"><div class="cparam">Год постройки</div><div class="ccell">2018</div><div class="ccell">1995</div><div class="ccell">Строится Q2 2027</div><div class="ccell" style="color:var(--g30)">—</div></div><div class="crow"><div class="cparam">Балкон</div><div class="ccell">Есть, остеклён</div><div class="ccell">Есть</div><div class="ccell">Нет</div><div class="ccell" style="color:var(--g30)">—</div></div><div class="crow"><div class="cparam">Парковка</div><div class="ccell">Подземная</div><div class="ccell">Двор</div><div class="ccell">Подземная</div><div class="ccell" style="color:var(--g30)">—</div></div><div class="crow"><div class="cparam">Метро</div><div class="ccell">5 мин ходьбы</div><div class="ccell">12 мин</div><div class="ccell cbest">3 мин ходьбы</div><div class="ccell" style="color:var(--g30)">—</div></div>
+</div></div>
+</div>
+{% endraw %}

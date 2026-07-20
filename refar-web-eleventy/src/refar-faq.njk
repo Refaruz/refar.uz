@@ -1,0 +1,74 @@
+---
+layout: base.njk
+title: "FAQ и Помощь · REFAR"
+activeNav: ""
+permalink: "/refar-faq.html"
+---
+{% raw %}
+<style>:root{--brand:#1B2A4A;--brand-70:#122038;--brand-5:#EEF1F6;--brand-10:#DCE2EC;--brand-20:#C2CBDD;--g90:#0F172A;--g80:#1E293B;--g70:#334155;--g60:#475569;--g50:#64748B;--g40:#94A3B8;--g30:#CBD5E1;--g20:#E2E8F0;--g10:#F1F5F9;--g5:#F8FAFC;--succ:#16A34A;--succ-10:#DCFCE7;--warn-60:#D97706;--warn-10:#FEF3C7;--red:#E24B4A;--red-10:#FEE2E2;--purple-10:#F3E8FF;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--g5);color:var(--g90);font-size:14px;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+.wrap{max-width:1440px;margin:0 auto;}
+.hdr{background:#fff;border-bottom:1px solid var(--g10);position:sticky;top:0;z-index:100;}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:16px 80px;}
+.hdr-left{display:flex;gap:40px;align-items:center;}
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .mark{width:32px;height:32px;background:var(--brand);border-radius:8px;}
+.logo .name{font-weight:800;font-size:20px;}
+.nav{display:flex;gap:28px;}
+.nav a{font-weight:500;font-size:14px;color:var(--g60);}
+.nav a:hover,.nav a.on{color:var(--brand);}
+.hdr-right{display:flex;gap:16px;align-items:center;}
+.lang{font-weight:600;font-size:13px;color:var(--g80);}
+.hbtn{font-weight:600;font-size:13px;padding:10px 16px;border-radius:8px;cursor:pointer;}
+.hbtn.ghost{background:var(--g5);border:1px solid var(--g20);}
+.hbtn.primary{background:var(--brand);color:#fff;}
+.ft{background:#fff;border-top:1px solid var(--g10);padding:48px 80px 32px;margin-top:48px;}
+.ft-cols{display:flex;justify-content:space-between;max-width:1280px;margin:0 auto;}
+.ft-col{display:flex;flex-direction:column;gap:12px;}
+.ft-col .t{font-weight:700;font-size:13px;color:var(--g80);}
+.ft-col a{font-size:12px;color:var(--g60);}
+.ft-col a:hover{color:var(--brand);}
+.ft-line{height:1px;background:var(--g10);margin:32px auto 20px;max-width:1280px;}
+.ft-cp{font-size:12px;color:var(--g50);max-width:1280px;margin:0 auto;}
+.hero{background:linear-gradient(135deg,#EDF0F6,#fff);padding:56px 80px;text-align:center;}
+.hero h1{font-size:36px;font-weight:800;}
+.hero .search{max-width:640px;margin:24px auto 0;background:#fff;border:2px solid var(--brand-20);border-radius:14px;padding:16px 20px;font-size:15px;color:var(--g40);display:flex;gap:10px;align-items:center;box-shadow:0 6px 20px rgba(27,42,74,.08);}
+.content{padding:40px 80px 0;max-width:900px;margin:0 auto;}
+.cats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;justify-content:center;}
+.cat{border:1px solid var(--g20);border-radius:20px;padding:9px 18px;font-size:14px;color:var(--g70);cursor:pointer;background:#fff;}
+.cat.on{background:var(--brand);color:#fff;border-color:var(--brand);}
+.faq-item{background:#fff;border:1px solid var(--g20);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+.faq-q{padding:20px 24px;font-size:16px;font-weight:600;color:var(--g90);cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-q .arw{color:var(--g40);transition:transform .2s;}
+.faq-item.open .faq-q .arw{transform:rotate(180deg);}
+.faq-a{padding:0 24px;max-height:0;overflow:hidden;transition:all .25s;font-size:14px;line-height:1.7;color:var(--g60);}
+.faq-item.open .faq-a{padding:0 24px 20px;max-height:400px;}
+.faq-helpful{display:flex;gap:12px;align-items:center;margin-top:16px;padding-top:16px;border-top:1px solid var(--g10);font-size:13px;color:var(--g50);}
+.faq-helpful button{border:1px solid var(--g20);background:#fff;border-radius:8px;padding:6px 16px;font-family:inherit;font-size:13px;font-weight:600;color:var(--g60);cursor:pointer;}
+.faq-cta{background:linear-gradient(135deg,#EDF0F6,#F2F1F7);border:1px solid var(--brand-20);border-radius:16px;padding:32px;text-align:center;margin-top:32px;}
+.faq-cta h3{font-size:22px;font-weight:700;}.faq-cta p{font-size:14px;color:var(--g60);margin-top:8px;}
+.faq-cta button{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:13px 28px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;margin-top:18px;}
+@media(max-width:900px){.hdr-in,.hero,.content,.ft{padding-left:24px;padding-right:24px;}.nav{display:none;}.hero h1{font-size:28px;}.ft-cols{flex-wrap:wrap;gap:24px;}}
+/* ===== REFAR BRAND ===== */
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.ft-logo{display:flex;gap:10px;align-items:center;}
+.ft-logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.ft-logo .logo-mark svg{width:100%;height:100%;display:block;}
+.ft-logo .logo-name{font-weight:800;font-size:22px;color:#1B2A4A;letter-spacing:.5px;}
+a.hbtn.primary,a.hlink.primary,.hbtn.primary,.hlink.primary{background:#E24B4A!important;color:#fff!important;border-color:#E24B4A!important;text-decoration:none;display:inline-flex;align-items:center;}
+a.hbtn.primary:hover,.hbtn.primary:hover,.hlink.primary:hover{background:#C63D3C!important;}
+a.hbtn,a.hlink{text-decoration:none;}
+</style>
+<section class="hero"><h1>Чем мы можем помочь?</h1>
+<div class="search">🔍 Введите вопрос — например, «как разместить объявление?»</div></section>
+<div class="content"><div class="cats"><span class="cat on">Покупателю</span><span class="cat">Продавцу</span><span class="cat">Арендатору</span><span class="cat">Риэлтору</span><span class="cat">Платежи</span><span class="cat">Безопасность</span></div><div class="faq-item open"><div class="faq-q">Как разместить объявление на REFAR?<span class="arw">▾</span></div><div class="faq-a">Зарегистрируйтесь как владелец или риэлтор, выберите тариф (Standard бесплатный), заполните данные об объекте, загрузите фото и опубликуйте. Проверка занимает до 24 часов.<div class="faq-helpful">Был ли ответ полезен? <button>Да</button><button>Нет</button></div></div></div><div class="faq-item"><div class="faq-q">Сколько стоит размещение объявления?<span class="arw">▾</span></div><div class="faq-a">Ответ на этот вопрос доступен в развёрнутом виде — нажмите, чтобы прочитать.</div></div><div class="faq-item"><div class="faq-q">Как REFAR проверяет объявления?<span class="arw">▾</span></div><div class="faq-a">Ответ на этот вопрос доступен в развёрнутом виде — нажмите, чтобы прочитать.</div></div><div class="faq-item"><div class="faq-q">Можно ли купить недвижимость в ипотеку через REFAR?<span class="arw">▾</span></div><div class="faq-a">Ответ на этот вопрос доступен в развёрнутом виде — нажмите, чтобы прочитать.</div></div><div class="faq-item"><div class="faq-q">Что делать, если объявление кажется мошенническим?<span class="arw">▾</span></div><div class="faq-a">Ответ на этот вопрос доступен в развёрнутом виде — нажмите, чтобы прочитать.</div></div><div class="faq-item"><div class="faq-q">Как работает онлайн-оценка недвижимости?<span class="arw">▾</span></div><div class="faq-a">Ответ на этот вопрос доступен в развёрнутом виде — нажмите, чтобы прочитать.</div></div><div class="faq-item"><div class="faq-q">Какие документы нужны для покупки квартиры в Узбекистане?<span class="arw">▾</span></div><div class="faq-a">Ответ на этот вопрос доступен в развёрнутом виде — нажмите, чтобы прочитать.</div></div><div class="faq-item"><div class="faq-q">Как связаться с продавцом или риэлтором?<span class="arw">▾</span></div><div class="faq-a">Ответ на этот вопрос доступен в развёрнутом виде — нажмите, чтобы прочитать.</div></div>
+<div class="faq-cta"><h3>Не нашли ответ?</h3><p>Напишите нам — команда поддержки ответит в течение 1 часа</p><button>Написать в поддержку</button></div>
+</div>
+</div><script>document.querySelectorAll(".faq-q").forEach(function(q){q.addEventListener("click",function(){q.parentNode.classList.toggle("open");});});
+document.querySelectorAll(".cat").forEach(function(c){c.addEventListener("click",function(){document.querySelectorAll(".cat").forEach(function(x){x.classList.remove("on");});c.classList.add("on");});});</script>
+{% endraw %}

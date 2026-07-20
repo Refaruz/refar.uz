@@ -1,0 +1,95 @@
+---
+layout: base.njk
+title: "Эълон қўшиш · REFAR"
+activeNav: ""
+permalink: "/add-listing.html"
+---
+{% raw %}
+<div class="page">
+<h1 data-i18n="add.title">Разместить объявление</h1>
+<div class="sub" data-i18n="add.sub">Заполните данные объекта — модерация до 24 часов.</div>
+<div id="authWarn" class="msg err" style="display:none"><span data-i18n="add.login_req">Войдите, чтобы разместить объявление.</span> <a href="login.html" style="color:#B42318;font-weight:700" data-i18n="btn.login">Войти</a></div>
+<div id="form" class="card" style="display:none">
+<div id="msg" class="msg"></div>
+<div class="field"><label data-i18n="add.f_title">Заголовок</label><input id="f_title" placeholder="3-комн. квартира, 95 м², Мирабад"></div>
+<div class="frow">
+<div class="field"><label data-i18n="add.f_deal">Тип сделки</label><select id="f_deal"><option value="sale" data-i18n="deal.sale">Продажа</option><option value="rent" data-i18n="deal.rent">Аренда</option><option value="daily" data-i18n="deal.daily">Посуточно</option></select></div>
+<div class="field"><label data-i18n="add.f_type">Тип недвижимости</label><select id="f_type"><option value="apartment" data-i18n="pt.apartment">Квартира</option><option value="house" data-i18n="pt.house">Дом</option><option value="commercial" data-i18n="pt.commercial">Коммерческая</option><option value="land" data-i18n="pt.land">Участок</option><option value="new" data-i18n="pt.new">Новостройка</option></select></div>
+</div>
+<div class="frow">
+<div class="field"><label data-i18n="add.f_region">Регион/город</label><input id="f_region" placeholder="Тошкент"></div>
+<div class="field"><label data-i18n="add.f_district">Район</label><input id="f_district" placeholder="Мирабад"></div>
+</div>
+<div class="field"><label data-i18n="add.f_address">Адрес</label><input id="f_address" placeholder="ул. Шахрисабз, 12"></div>
+<div class="frow">
+<div class="field"><label data-i18n="add.f_price">Цена</label><input id="f_price" type="number" placeholder="125000"></div>
+<div class="field"><label>Валюта</label><select id="f_currency"><option>USD</option><option>UZS</option></select></div>
+<div class="field"><label data-i18n="add.f_rooms">Комнаты</label><input id="f_rooms" type="number" placeholder="3"></div>
+<div class="field"><label data-i18n="add.f_area">Площадь, м²</label><input id="f_area" type="number" placeholder="95"></div>
+</div>
+<div class="frow">
+<div class="field"><label data-i18n="add.f_floor">Этаж</label><input id="f_floor" type="number" placeholder="5"></div>
+<div class="field"><label data-i18n="add.f_floor_total">Всего этажей</label><input id="f_floor_total" type="number" placeholder="9"></div>
+<div class="field"><label data-i18n="add.f_year">Год постройки</label><input id="f_year" type="number" placeholder="2018"></div>
+</div>
+<div class="field"><label data-i18n="add.f_desc">Описание</label><textarea id="f_desc" rows="4" placeholder="..."></textarea></div>
+<div class="field"><label data-i18n="add.f_photos">Фотографии</label><input id="f_photos" type="file" accept="image/*" multiple><div style="font-size:12px;color:#64748B;margin-top:6px" data-i18n="add.photos_hint">Выберите файлы фото (можно несколько)</div><div id="preview" style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"></div></div>
+<button class="btn btn-red" id="submitBtn" data-i18n="add.submit">Отправить объявление</button>
+</div></div>
+<script>
+var uploadedFiles=[];
+document.addEventListener('DOMContentLoaded', async function(){
+  var u=await REFAR.user();
+  if(!u){document.getElementById('authWarn').style.display='block';return;}
+  document.getElementById('form').style.display='block';
+});
+document.getElementById('f_photos').addEventListener('change',function(e){
+  uploadedFiles=Array.from(e.target.files);
+  var pv=document.getElementById('preview');pv.innerHTML='';
+  uploadedFiles.forEach(function(f){
+    var r=new FileReader();r.onload=function(ev){
+      var d=document.createElement('div');d.style.cssText='width:70px;height:70px;border-radius:8px;background:#eee center/cover;background-image:url('+ev.target.result+')';pv.appendChild(d);
+    };r.readAsDataURL(f);
+  });
+});
+document.getElementById('submitBtn').addEventListener('click', async function(){
+  var msg=document.getElementById('msg');msg.className='msg';
+  var title=document.getElementById('f_title').value.trim();
+  var price=parseFloat(document.getElementById('f_price').value)||0;
+  if(!title){msg.className='msg err';msg.textContent='Введите заголовок';return;}
+  var u=await REFAR.user(); if(!u){msg.className='msg err';msg.textContent='Требуется вход';return;}
+  this.disabled=true;this.textContent='...';
+  // расмларни Storage'га юклаш
+  var urls=[];
+  try{
+    for(var i=0;i<uploadedFiles.length;i++){
+      var f=uploadedFiles[i];
+      var path=u.id+'/'+Date.now()+'_'+i+'_'+f.name.replace(/[^a-zA-Z0-9.]/g,'');
+      var up=await window.sb.storage.from('listings').upload(path,f);
+      if(!up.error){var pu=window.sb.storage.from('listings').getPublicUrl(path);urls.push(pu.data.publicUrl);}
+    }
+  }catch(e){console.warn('upload',e);}
+  var row={
+    user_id:u.id,title:title,
+    deal_type:document.getElementById('f_deal').value,
+    prop_type:document.getElementById('f_type').value,
+    region:document.getElementById('f_region').value.trim(),
+    district:document.getElementById('f_district').value.trim(),
+    address:document.getElementById('f_address').value.trim(),
+    price:price,currency:document.getElementById('f_currency').value,
+    rooms:parseInt(document.getElementById('f_rooms').value)||null,
+    area:parseFloat(document.getElementById('f_area').value)||null,
+    floor:parseInt(document.getElementById('f_floor').value)||null,
+    floor_total:parseInt(document.getElementById('f_floor_total').value)||null,
+    year_built:parseInt(document.getElementById('f_year').value)||null,
+    description:document.getElementById('f_desc').value.trim(),
+    images:urls,status:'pending'
+  };
+  var {error}=await window.sb.from('web_listings').insert(row);
+  this.disabled=false;this.textContent=window.REFAR_t('add.submit');
+  if(error){msg.className='msg err';msg.textContent=error.message;return;}
+  msg.className='msg ok';msg.textContent=window.REFAR_t('add.ok');
+  setTimeout(function(){location.href='cabinet.html';},1400);
+});
+</script>
+{% endraw %}

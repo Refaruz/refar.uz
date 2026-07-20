@@ -1,0 +1,62 @@
+/* ============================================================
+   REFAR — UMUMIY (kanonik) stillar. YAGONA MANBA.
+   Header, footer, logo, nav, tugmalar, dizayn-tokenlari shu yerda.
+   O'zgartirish kerak bo'lsa — faqat shu faylni tahrirlang.
+   ============================================================ */
+
+:root{
+  --brand:#1B2A4A; --brand-70:#122038; --brand-5:#EEF1F6; --brand-10:#DCE2EC; --brand-20:#C2CBDD;
+  --red:#E24B4A;
+  --g90:#0F172A; --g80:#1E293B; --g70:#334155; --g60:#475569; --g50:#64748B; --g40:#94A3B8;
+  --g30:#CBD5E1; --g20:#E2E8F0; --g10:#F1F5F9; --g5:#F8FAFC; --white:#FFFFFF;
+  --succ:#16A34A; --succ-10:#DCFCE7; --warn-10:#FEF3C7; --warn-60:#D97706; --purple-10:#F3E8FF;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--g90);-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+
+/* ─── HEADER ─── */
+.hdr{background:#fff;border-bottom:1px solid var(--g10);position:sticky;top:0;z-index:100;}
+.hdr-in{display:flex;align-items:center;gap:32px;padding:20px 80px;max-width:1920px;margin:0 auto;}
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.nav{display:flex;gap:24px;}
+.nav a{font-weight:500;font-size:15px;color:var(--g60);transition:color .15s;}
+.nav a:hover,.nav a.on{color:var(--brand);}
+.hdr-right{display:flex;gap:14px;align-items:center;margin-left:auto;}
+.hbtn{font-weight:600;font-size:14px;padding:10px 18px;border-radius:8px;cursor:pointer;transition:all .15s;}
+.hbtn.ghost{background:var(--g5);border:1px solid var(--g20);color:var(--g80);}
+.hbtn.ghost:hover{background:var(--g10);}
+.hbtn.primary{background:var(--brand);color:#fff;}
+.hbtn.primary:hover{background:var(--brand-70);}
+
+/* ─── TIL ALMASHTIRGICH (app.js yaratadi) ─── */
+.refar-lang{display:flex;gap:2px;background:var(--g10);border-radius:8px;padding:3px;}
+.refar-lang .rl{padding:5px 9px;font-size:12px;font-weight:700;color:var(--g50);border-radius:6px;cursor:pointer;}
+.refar-lang .rl.on{background:#fff;color:var(--brand);box-shadow:0 1px 2px rgba(0,0,0,.1);}
+
+/* ─── FOOTER ─── */
+.ft{background:#fff;border-top:1px solid var(--g10);padding:48px 80px 32px;display:flex;flex-direction:column;gap:32px;}
+.ft-cols{display:flex;justify-content:space-between;}
+.ft-col{display:flex;flex-direction:column;gap:12px;}
+.ft-col .t{font-weight:700;font-size:13px;color:var(--g80);}
+.ft-col a{font-weight:400;font-size:12px;color:var(--g60);transition:color .15s;}
+.ft-col a:hover{color:var(--brand);}
+.ft-line{height:1px;background:var(--g10);}
+.ft-bottom{display:flex;align-items:center;justify-content:space-between;}
+.ft-bottom .cp{font-weight:400;font-size:12px;color:var(--g50);}
+.ft-soc{display:flex;gap:12px;}
+.ft-soc .s{width:28px;height:28px;background:var(--g10);border-radius:6px;cursor:pointer;transition:background .15s;}
+.ft-soc .s:hover{background:var(--brand-10);}
+
+/* ─── RESPONSIVE (umumiy) ─── */
+@media(max-width:900px){
+  .hdr-in{padding-left:24px;padding-right:24px;gap:18px;}
+  .ft{padding-left:24px;padding-right:24px;}
+  .ft-cols{flex-wrap:wrap;gap:24px;}
+  .ft-col{min-width:calc(50% - 12px);}
+  .nav{display:none;}
+}

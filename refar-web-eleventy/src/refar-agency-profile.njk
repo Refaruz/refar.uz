@@ -1,0 +1,90 @@
+---
+layout: base.njk
+title: "Профиль агентства · REFAR"
+activeNav: "rieltorlar"
+permalink: "/refar-agency-profile.html"
+---
+{% raw %}
+<style>:root{--brand:#1B2A4A;--brand-70:#122038;--brand-5:#EEF1F6;--brand-10:#DCE2EC;--brand-20:#C2CBDD;--g90:#0F172A;--g80:#1E293B;--g70:#334155;--g60:#475569;--g50:#64748B;--g40:#94A3B8;--g30:#CBD5E1;--g20:#E2E8F0;--g10:#F1F5F9;--g5:#F8FAFC;--succ:#16A34A;--succ-10:#DCFCE7;--warn-60:#D97706;--warn-10:#FEF3C7;--red:#E24B4A;--red-10:#FEE2E2;--purple-10:#F3E8FF;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--g5);color:var(--g90);font-size:14px;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+.wrap{max-width:1440px;margin:0 auto;}
+.hdr{background:#fff;border-bottom:1px solid var(--g10);position:sticky;top:0;z-index:100;}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:16px 80px;}
+.hdr-left{display:flex;gap:40px;align-items:center;}
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .mark{width:32px;height:32px;background:var(--brand);border-radius:8px;}
+.logo .name{font-weight:800;font-size:20px;}
+.nav{display:flex;gap:28px;}
+.nav a{font-weight:500;font-size:14px;color:var(--g60);}
+.nav a:hover,.nav a.on{color:var(--brand);}
+.hdr-right{display:flex;gap:16px;align-items:center;}
+.lang{font-weight:600;font-size:13px;color:var(--g80);}
+.hbtn{font-weight:600;font-size:13px;padding:10px 16px;border-radius:8px;cursor:pointer;}
+.hbtn.ghost{background:var(--g5);border:1px solid var(--g20);}
+.hbtn.primary{background:var(--brand);color:#fff;}
+.ft{background:#fff;border-top:1px solid var(--g10);padding:48px 80px 32px;margin-top:48px;}
+.ft-cols{display:flex;justify-content:space-between;max-width:1280px;margin:0 auto;}
+.ft-col{display:flex;flex-direction:column;gap:12px;}
+.ft-col .t{font-weight:700;font-size:13px;color:var(--g80);}
+.ft-col a{font-size:12px;color:var(--g60);}
+.ft-col a:hover{color:var(--brand);}
+.ft-line{height:1px;background:var(--g10);margin:32px auto 20px;max-width:1280px;}
+.ft-cp{font-size:12px;color:var(--g50);max-width:1280px;margin:0 auto;}
+.cover{height:200px;background:linear-gradient(135deg,var(--brand),var(--brand-70));position:relative;}
+.content{padding:0 80px;max-width:1200px;margin:0 auto;}
+.ahead{background:#fff;border:1px solid var(--g20);border-radius:20px;padding:28px;margin-top:-80px;position:relative;display:flex;gap:24px;flex-wrap:wrap;}
+.ahead-logo{width:100px;height:100px;border-radius:20px;background:linear-gradient(135deg,var(--brand),#3A5488);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;color:#fff;flex-shrink:0;}
+.ahead-info{flex:1;min-width:260px;}
+.ahead-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+.abadge{font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;}
+.ahead-info h1{font-size:26px;font-weight:800;}
+.ahead-info p{font-size:14px;color:var(--g60);margin-top:6px;}
+.ahead-stats{display:flex;gap:32px;margin-top:16px;flex-wrap:wrap;}
+.astat b{font-size:20px;font-weight:800;color:var(--g90);display:block;}
+.astat span{font-size:12px;color:var(--g50);}
+.ahead-btns{display:flex;flex-direction:column;gap:10px;}
+.ahead-btns .b1{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:12px 24px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap;}
+.ahead-btns .b2{background:#fff;border:1px solid var(--g20);border-radius:10px;padding:12px 24px;font-family:inherit;font-weight:600;font-size:14px;color:var(--g70);cursor:pointer;white-space:nowrap;}
+.atabs{display:flex;gap:0;border-bottom:1px solid var(--g10);margin-top:28px;overflow-x:auto;}
+.atab{padding:16px 20px;font-size:14px;font-weight:500;color:var(--g60);white-space:nowrap;border-bottom:2px solid transparent;cursor:pointer;}
+.atab.on{color:var(--brand);border-bottom-color:var(--brand);}
+.staff-title{font-size:22px;font-weight:700;margin:32px 0 20px;}
+.staff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-bottom:40px;}
+.staff{background:#fff;border:1px solid var(--g20);border-radius:16px;padding:20px;text-align:center;}
+.staff-av{width:72px;height:72px;border-radius:50%;margin:0 auto 14px;background:linear-gradient(135deg,var(--brand),#3A5488);}
+.staff b{font-size:15px;font-weight:700;display:block;}
+.staff .role{font-size:12px;color:var(--brand);margin-top:4px;}
+.staff .rt{font-size:13px;color:var(--warn-60);font-weight:600;margin-top:10px;}
+.staff .deals{font-size:12px;color:var(--g50);margin-top:4px;}
+.staff button{width:100%;margin-top:14px;background:var(--g5);border:1px solid var(--g20);border-radius:8px;padding:9px;font-family:inherit;font-weight:600;font-size:13px;color:var(--g70);cursor:pointer;}
+.staff button:hover{background:var(--brand);color:#fff;border-color:var(--brand);}
+@media(max-width:1100px){.staff-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:900px){.hdr-in,.content,.ft{padding-left:24px;padding-right:24px;}.nav{display:none;}.staff-grid{grid-template-columns:1fr;}.ft-cols{flex-wrap:wrap;gap:24px;}}
+/* ===== REFAR BRAND ===== */
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.ft-logo{display:flex;gap:10px;align-items:center;}
+.ft-logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.ft-logo .logo-mark svg{width:100%;height:100%;display:block;}
+.ft-logo .logo-name{font-weight:800;font-size:22px;color:#1B2A4A;letter-spacing:.5px;}
+a.hbtn.primary,a.hlink.primary,.hbtn.primary,.hlink.primary{background:#E24B4A!important;color:#fff!important;border-color:#E24B4A!important;text-decoration:none;display:inline-flex;align-items:center;}
+a.hbtn.primary:hover,.hbtn.primary:hover,.hlink.primary:hover{background:#C63D3C!important;}
+a.hbtn,a.hlink{text-decoration:none;}
+</style>
+<div class="cover"></div>
+<div class="content">
+<div class="ahead"><div class="ahead-logo">TR</div>
+<div class="ahead-info"><div class="ahead-badges"><span class="abadge" style="background:var(--warn-10);color:var(--warn-60)">TOP-3 в Ташкенте</span><span class="abadge" style="background:var(--succ-10);color:var(--succ)">✓ Проверенное агентство</span><span class="abadge" style="background:var(--g5);color:var(--g60)">Основано в 2018</span></div>
+<h1>Tashkent Realty Group</h1><p>Полный спектр услуг по недвижимости в Ташкенте и регионах</p>
+<div class="ahead-stats"><div class="astat"><b>★ 4.8</b><span>Рейтинг</span></div><div class="astat"><b>24</b><span>Агента</span></div><div class="astat"><b>1 248</b><span>Сделок</span></div><div class="astat"><b>8 лет</b><span>На рынке</span></div><div class="astat"><b>$24M</b><span>Объём 2025</span></div></div></div>
+<div class="ahead-btns"><button class="b1">Связаться с агентством</button><a href="refar-catalog.html"><button class="b2">Все объекты</button></a><button class="b2">Сайт агентства</button></div></div>
+<div class="atabs"><span class="atab">Об агентстве</span><span class="atab on">Сотрудники (24)</span><span class="atab">Объекты (87)</span><span class="atab">Сделки</span><span class="atab">Отзывы (256)</span></div>
+<div class="staff-title">Сотрудники агентства</div>
+<div class="staff-grid"><div class="staff"><div class="staff-av"></div><b>Светлана Михайлова</b><div class="role">Senior Agent</div><div class="rt">★ 4.9</div><div class="deals">47 сделок</div><button>Написать</button></div><div class="staff"><div class="staff-av"></div><b>Бекзод Назаров</b><div class="role">Senior Agent</div><div class="rt">★ 4.9</div><div class="deals">64 сделок</div><button>Написать</button></div><div class="staff"><div class="staff-av"></div><b>Нодира Рашидова</b><div class="role">Senior Agent</div><div class="rt">★ 4.9</div><div class="deals">51 сделок</div><button>Написать</button></div><div class="staff"><div class="staff-av"></div><b>Камилла Абдуллаева</b><div class="role">Agent</div><div class="rt">★ 4.6</div><div class="deals">21 сделок</div><button>Написать</button></div><div class="staff"><div class="staff-av"></div><b>Дилшод Юлдашев</b><div class="role">Agent</div><div class="rt">★ 4.7</div><div class="deals">18 сделок</div><button>Написать</button></div><div class="staff"><div class="staff-av"></div><b>Алишер Каримов</b><div class="role">Agent</div><div class="rt">★ 4.8</div><div class="deals">39 сделок</div><button>Написать</button></div><div class="staff"><div class="staff-av"></div><b>Анна Гарсия</b><div class="role">Agent</div><div class="rt">★ 4.8</div><div class="deals">28 сделок</div><button>Написать</button></div><div class="staff"><div class="staff-av"></div><b>Дмитрий Чен</b><div class="role">Junior Agent</div><div class="rt">★ 4.7</div><div class="deals">12 сделок</div><button>Написать</button></div></div>
+</div>
+</div><script>document.querySelectorAll(".atab").forEach(function(t){t.addEventListener("click",function(){document.querySelectorAll(".atab").forEach(function(x){x.classList.remove("on");});t.classList.add("on");});});</script>
+{% endraw %}

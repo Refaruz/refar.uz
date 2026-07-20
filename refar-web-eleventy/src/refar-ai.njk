@@ -1,0 +1,161 @@
+---
+layout: base.njk
+title: "AI-поиск недвижимости · REFAR"
+activeNav: "ai"
+permalink: "/refar-ai.html"
+---
+{% raw %}
+<style>
+:root{--brand:#1B2A4A;--brand-70:#122038;--brand-5:#EEF1F6;--brand-10:#DCE2EC;--brand-20:#C2CBDD;--g90:#0F172A;--g80:#1E293B;--g70:#334155;--g60:#475569;--g50:#64748B;--g40:#94A3B8;--g30:#CBD5E1;--g20:#E2E8F0;--g10:#F1F5F9;--g5:#F8FAFC;--white:#fff;--succ:#16A34A;--succ-10:#DCFCE7;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#fff;color:var(--g90);-webkit-font-smoothing:antialiased;font-size:14px;}
+a{text-decoration:none;color:inherit;}
+.wrap{max-width:1440px;margin:0 auto;}
+.hdr{background:#fff;border-bottom:1px solid var(--g10);position:sticky;top:0;z-index:100;}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:16px 80px;}
+.hdr-left{display:flex;gap:40px;align-items:center;}
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .mark{width:32px;height:32px;background:var(--brand);border-radius:8px;}
+.logo .name{font-weight:800;font-size:20px;}
+.nav{display:flex;gap:28px;}
+.nav a{font-weight:500;font-size:14px;color:var(--g60);}
+.nav a:hover,.nav a.on{color:var(--brand);}
+.hdr-right{display:flex;gap:16px;align-items:center;}
+.lang{font-weight:600;font-size:13px;color:var(--g80);}
+.hbtn{font-weight:600;font-size:13px;padding:10px 16px;border-radius:8px;cursor:pointer;}
+.hbtn.ghost{background:var(--g5);border:1px solid var(--g20);}
+.hbtn.primary{background:var(--brand);color:#fff;}
+.hero{background:linear-gradient(180deg,#EDF0F6,#fff);padding:56px 80px 40px;text-align:center;}
+.hero .ai-tag{display:inline-flex;gap:8px;align-items:center;background:var(--brand);color:#fff;font-size:13px;font-weight:600;padding:6px 14px;border-radius:20px;margin-bottom:20px;}
+.hero h1{font-size:40px;font-weight:800;color:var(--g90);}
+.hero>p{font-size:16px;color:var(--g60);margin-top:12px;}
+.ai-search{max-width:900px;margin:28px auto 0;background:#fff;border:2px solid var(--brand-20);border-radius:20px;padding:20px;box-shadow:0 8px 30px rgba(27,42,74,.1);}
+.ai-search textarea{width:100%;border:none;font-family:inherit;font-size:16px;color:var(--g80);resize:none;min-height:70px;outline:none;}
+.ai-search textarea::placeholder{color:var(--g40);}
+.ai-tools{display:flex;gap:12px;align-items:center;margin-top:16px;border-top:1px solid var(--g10);padding-top:16px;}
+.ai-tool{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--g60);cursor:pointer;padding:8px 12px;border-radius:8px;}
+.ai-tool:hover{background:var(--g5);}
+.ai-city{margin-left:auto;font-size:13px;color:var(--g60);padding:8px 14px;border:1px solid var(--g20);border-radius:8px;}
+.ai-find{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:11px 28px;font-family:inherit;font-weight:600;font-size:15px;cursor:pointer;}
+.examples{max-width:900px;margin:24px auto 0;}
+.examples .et{font-size:14px;font-weight:600;color:var(--g70);margin-bottom:12px;text-align:left;}
+.ex-chips{display:flex;gap:10px;flex-wrap:wrap;}
+.ex-chip{background:var(--g5);border:1px solid var(--g20);border-radius:20px;padding:9px 16px;font-size:13px;color:var(--g60);cursor:pointer;}
+.ex-chip:hover{background:var(--brand-5);border-color:var(--brand-20);color:var(--brand-70);}
+.results{padding:40px 80px 60px;background:var(--g5);}
+.ai-response{max-width:1100px;margin:0 auto;background:#fff;border:1px solid var(--g20);border-radius:16px;padding:24px;}
+.air-head{display:flex;gap:12px;align-items:center;margin-bottom:16px;}
+.air-ic{width:40px;height:40px;background:var(--brand);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;}
+.air-head b{font-size:16px;font-weight:700;color:var(--g90);}
+.air-head span{font-size:13px;color:var(--succ);font-weight:600;}
+.air-text{font-size:14px;line-height:1.7;color:var(--g60);margin-bottom:18px;}
+.air-params{display:flex;gap:8px;flex-wrap:wrap;}
+.air-param{background:var(--brand-5);color:var(--brand-70);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:500;}
+.results-head{max-width:1100px;margin:28px auto 20px;display:flex;align-items:center;}
+.results-head b{font-size:20px;font-weight:700;flex:1;}
+.results-head .sort{font-size:13px;color:var(--g60);border:1px solid var(--g20);background:#fff;border-radius:8px;padding:8px 14px;}
+.ai-cards{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:16px;}
+.ai-card{background:#fff;border:1px solid var(--g20);border-radius:16px;padding:16px;display:flex;gap:20px;transition:all .15s;cursor:pointer;}
+.ai-card:hover{box-shadow:0 8px 20px rgba(0,0,0,.08);border-color:var(--brand-20);}
+.aic-photo{width:240px;height:180px;border-radius:12px;flex-shrink:0;position:relative;}
+.aic-match{position:absolute;top:12px;left:12px;background:var(--succ);color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;}
+.aic-body{flex:1;display:flex;flex-direction:column;}
+.aic-price{font-size:26px;font-weight:800;color:var(--g90);}
+.aic-addr{font-size:14px;color:var(--g50);margin-top:6px;}
+.aic-specs{display:flex;gap:16px;margin-top:12px;}
+.aic-specs span{font-size:14px;color:var(--g70);font-weight:500;}
+.aic-why{background:var(--succ-10);color:#166534;border-radius:8px;padding:10px 14px;font-size:13px;margin-top:14px;}
+.aic-foot{display:flex;gap:12px;margin-top:auto;padding-top:14px;}
+.aic-fav{font-size:14px;color:var(--g60);font-weight:600;cursor:pointer;}
+.aic-more{margin-left:auto;color:var(--brand);font-weight:600;font-size:14px;cursor:pointer;}
+.show-more{max-width:1100px;margin:24px auto 0;text-align:center;}
+.show-more button{background:#fff;border:1px solid var(--brand);color:var(--brand);border-radius:10px;padding:12px 36px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;}
+.refine{max-width:1100px;margin:32px auto 0;background:#fff;border:1px solid var(--g20);border-radius:16px;padding:24px;}
+.refine h3{font-size:18px;font-weight:700;margin-bottom:16px;}
+.refine-chips{display:flex;gap:10px;flex-wrap:wrap;}
+.refine-chip{border:1px solid var(--g20);border-radius:20px;padding:9px 16px;font-size:13px;color:var(--g70);cursor:pointer;}
+.refine-chip:hover{background:var(--brand);color:#fff;border-color:var(--brand);}
+.ft{background:#fff;border-top:1px solid var(--g10);padding:48px 80px 32px;}
+.ft-cols{display:flex;justify-content:space-between;}
+.ft-col{display:flex;flex-direction:column;gap:12px;}
+.ft-col .t{font-weight:700;font-size:13px;color:var(--g80);}
+.ft-col a{font-size:12px;color:var(--g60);}
+.ft-col a:hover{color:var(--brand);}
+.ft-line{height:1px;background:var(--g10);margin:32px 0 20px;}
+.ft-cp{font-size:12px;color:var(--g50);}
+@media(max-width:900px){.hdr-in,.hero,.results,.ft{padding-left:24px;padding-right:24px;}.nav{display:none;}.hero h1{font-size:28px;}.ai-card{flex-direction:column;}.aic-photo{width:100%;}.ft-cols{flex-wrap:wrap;gap:24px;}}
+
+/* ===== REFAR BRAND ===== */
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.ft-logo{display:flex;gap:10px;align-items:center;}
+.ft-logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.ft-logo .logo-mark svg{width:100%;height:100%;display:block;}
+.ft-logo .logo-name{font-weight:800;font-size:22px;color:#1B2A4A;letter-spacing:.5px;}
+a.hbtn.primary,a.hlink.primary,.hbtn.primary,.hlink.primary{background:#E24B4A!important;color:#fff!important;border-color:#E24B4A!important;text-decoration:none;display:inline-flex;align-items:center;}
+a.hbtn.primary:hover,.hbtn.primary:hover,.hlink.primary:hover{background:#C63D3C!important;}
+a.hbtn,a.hlink{text-decoration:none;}
+</style>
+<section class="hero">
+  <span class="ai-tag">✨ AI-помощник REFAR</span>
+  <h1>Опишите словами — найдём недвижимость</h1>
+  <p>Без фильтров и форм. Просто напишите, что ищете — на узбекском или русском.</p>
+  <div class="ai-search">
+    <textarea placeholder="Двухкомнатная квартира в Чиланзаре с евроремонтом до 800 тыс. $, желательно недалеко от метро и с парковкой">Двухкомнатная квартира в Чиланзаре с евроремонтом до 800 тыс. $, желательно недалеко от метро и с парковкой</textarea>
+    <div class="ai-tools">
+      <span class="ai-tool">🎤 Голосом</span>
+      <span class="ai-tool">📎 Прикрепить фото</span>
+      <span class="ai-city">📍 Город: Ташкент</span>
+      <button class="ai-find">Найти</button>
+    </div>
+  </div>
+  <div class="examples">
+    <div class="et">Примеры запросов</div>
+    <div class="ex-chips">
+      <span class="ex-chip">Семейная 3-комн. в новостройке Юнусабада</span>
+      <span class="ex-chip">Студия для студента около ТГТУ</span>
+      <span class="ex-chip">Дом с садом в пригороде Ташкента</span>
+      <span class="ex-chip">Офис на Мирабаде с парковкой</span>
+      <span class="ex-chip">Аренда от собственника без комиссии</span>
+    </div>
+  </div>
+</section>
+
+<section class="results">
+  <div class="ai-response">
+    <div class="air-head"><div class="air-ic">✨</div><div><b>REFAR AI</b> <span>· Подобрал 8 объектов под ваш запрос за 2.4 сек</span></div></div>
+    <div class="air-text">Понял запрос. Ищу 2-комнатные квартиры в Чиланзарском районе Ташкента с евроремонтом, бюджетом до 800 000 $, рядом с метро и наличием парковки. Учёл также метраж от 50 м² для семейного жилья. Вот лучшие варианты, отсортированные по релевантности:</div>
+    <div class="air-params">
+      <span class="air-param">Тип: Купить</span><span class="air-param">Комнат: 2</span><span class="air-param">Район: Чиланзар</span><span class="air-param">Цена: до 800 000 $</span><span class="air-param">Ремонт: евроремонт</span><span class="air-param">Метро: рядом</span><span class="air-param">Парковка: есть</span><span class="air-param">Метраж: 50+ м²</span>
+    </div>
+  </div>
+
+  <div class="results-head"><b>8 подходящих объектов</b><span class="sort">Сортировать: По релевантности AI ▾</span></div>
+  <div class="ai-cards" id="aicards"></div>
+  <div class="show-more"><button>Показать ещё 5 объектов</button></div>
+
+  <div class="refine">
+    <h3>Уточнить поиск</h3>
+    <div class="refine-chips">
+      <span class="refine-chip">Только новостройки</span><span class="refine-chip">Бюджет ниже 650 тыс.</span><span class="refine-chip">Этаж не первый и не последний</span><span class="refine-chip">Балкон обязательно</span><span class="refine-chip">Окна на восток</span><span class="refine-chip">С мебелью</span>
+    </div>
+  </div>
+</section>
+</div>
+<script>
+var cards=[
+  {ph:'linear-gradient(135deg,#dbe4fb,#c9d6f7)',match:'98% совпадение',price:'780 000 $',addr:'ул. Кудратилла, 23, Чиланзарский р-н',r:'2 комн.',m:'58 м²',f:'5/9 эт.',why:'Идеальное совпадение: евроремонт, парковка, метро Чиланзар 3 мин.'},
+  {ph:'linear-gradient(135deg,#dcfce7,#bbf7d0)',match:'94% совпадение',price:'720 000 $',addr:'ул. Беруни, 45, Чиланзарский р-н',r:'2 комн.',m:'54 м²',f:'3/9 эт.',why:'Совпадает по всем параметрам. Метро Чиланзар в 7 минутах ходьбы.'},
+  {ph:'linear-gradient(135deg,#fef3c7,#fde68a)',match:'89% совпадение',price:'690 000 $',addr:'ул. Бунёдкор, 12А, Чиланзарский р-н',r:'2 комн.',m:'62 м²',f:'7/9 эт.',why:'Метраж больше указанного, ремонт свежий. Парковка во дворе.'}
+];
+document.getElementById("aicards").innerHTML=cards.map(function(c){
+  return '<div class="ai-card" onclick="location.href=&#39;refar-object.html&#39;"><div class="aic-photo" style="background:'+c.ph+'"><span class="aic-match">'+c.match+'</span></div>'+
+    '<div class="aic-body"><div class="aic-price">'+c.price+'</div><div class="aic-addr">📍 '+c.addr+'</div>'+
+    '<div class="aic-specs"><span>'+c.r+'</span><span>'+c.m+'</span><span>'+c.f+'</span></div>'+
+    '<div class="aic-why">✨ '+c.why+'</div>'+
+    '<div class="aic-foot"><span class="aic-fav">★ В избранное</span><span class="aic-more">Подробнее →</span></div></div></div>';
+}).join("");
+</script>
+{% endraw %}

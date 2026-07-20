@@ -1,0 +1,129 @@
+---
+layout: base.njk
+title: "Онлайн-оценка недвижимости · REFAR"
+activeNav: "baholash"
+permalink: "/refar-baholash.html"
+---
+{% raw %}
+<style>
+:root{--brand:#1B2A4A;--brand-70:#122038;--brand-5:#EEF1F6;--brand-10:#DCE2EC;--brand-20:#C2CBDD;--g90:#0F172A;--g80:#1E293B;--g70:#334155;--g60:#475569;--g50:#64748B;--g40:#94A3B8;--g30:#CBD5E1;--g20:#E2E8F0;--g10:#F1F5F9;--g5:#F8FAFC;--succ:#16A34A;--succ-10:#DCFCE7;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--g5);color:var(--g90);font-size:14px;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+.wrap{max-width:1440px;margin:0 auto;}
+.hdr{background:#fff;border-bottom:1px solid var(--g10);position:sticky;top:0;z-index:100;}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:16px 80px;}
+.hdr-left{display:flex;gap:40px;align-items:center;}
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .mark{width:32px;height:32px;background:var(--brand);border-radius:8px;}
+.logo .name{font-weight:800;font-size:20px;}
+.nav{display:flex;gap:28px;}
+.nav a{font-weight:500;font-size:14px;color:var(--g60);}
+.nav a:hover,.nav a.on{color:var(--brand);}
+.hdr-right{display:flex;gap:16px;align-items:center;}
+.hbtn{font-weight:600;font-size:13px;padding:10px 16px;border-radius:8px;cursor:pointer;}
+.hbtn.ghost{background:var(--g5);border:1px solid var(--g20);}
+.hbtn.primary{background:var(--brand);color:#fff;}
+.hero{text-align:center;padding:48px 80px 32px;}
+.hero h1{font-size:36px;font-weight:800;color:var(--g90);}
+.hero p{font-size:16px;color:var(--g60);margin-top:12px;}
+.evalbox{max-width:1100px;margin:0 auto 40px;padding:0 80px;}
+.progress{display:flex;gap:8px;margin-bottom:8px;}
+.pstep{flex:1;height:6px;border-radius:3px;background:var(--g20);}
+.pstep.done{background:var(--brand);}
+.pstep.on{background:var(--brand);}
+.pstep-label{font-size:13px;color:var(--g50);margin-bottom:24px;}
+.form-card{background:#fff;border:1px solid var(--g20);border-radius:20px;padding:32px;}
+.form-card h2{font-size:22px;font-weight:700;color:var(--g90);margin-bottom:24px;}
+.field{margin-bottom:22px;}
+.field .fl{font-size:14px;font-weight:600;color:var(--g70);margin-bottom:10px;}
+.type-chips{display:flex;gap:12px;flex-wrap:wrap;}
+.type-chip{flex:1;min-width:120px;border:1.5px solid var(--g20);border-radius:12px;padding:16px;text-align:center;font-size:14px;font-weight:600;color:var(--g70);cursor:pointer;transition:all .15s;}
+.type-chip:hover{border-color:var(--brand-20);}
+.type-chip.on{border-color:var(--brand);background:var(--brand-5);color:var(--brand-70);}
+.frow{display:flex;gap:16px;}
+.frow .field{flex:1;}
+.finput{width:100%;border:1px solid var(--g20);border-radius:10px;padding:12px 14px;font-family:inherit;font-size:14px;color:var(--g80);}
+.fselect{width:100%;border:1px solid var(--g20);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--g80);cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.rooms{display:flex;gap:10px;}
+.room{width:52px;height:44px;border:1.5px solid var(--g20);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:var(--g70);cursor:pointer;}
+.room.on{border-color:var(--brand);background:var(--brand-5);color:var(--brand-70);}
+.form-btns{display:flex;justify-content:space-between;margin-top:12px;}
+.btn-back{background:var(--g5);border:1px solid var(--g20);border-radius:10px;padding:13px 24px;font-family:inherit;font-weight:600;font-size:14px;color:var(--g70);cursor:pointer;}
+.btn-next{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:13px 32px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;}
+.features{max-width:1100px;margin:0 auto 48px;padding:0 80px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.feature{background:#fff;border:1px solid var(--g20);border-radius:16px;padding:24px;text-align:center;}
+.feature .ic{width:48px;height:48px;background:var(--brand-5);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 14px;}
+.feature h3{font-size:15px;font-weight:700;color:var(--g90);margin-bottom:8px;}
+.feature p{font-size:13px;color:var(--g50);line-height:1.5;}
+.ft{background:#fff;border-top:1px solid var(--g10);padding:48px 80px 32px;}
+.ft-cols{display:flex;justify-content:space-between;}
+.ft-col{display:flex;flex-direction:column;gap:12px;}
+.ft-col .t{font-weight:700;font-size:13px;color:var(--g80);}
+.ft-col a{font-size:12px;color:var(--g60);}
+.ft-col a:hover{color:var(--brand);}
+.ft-line{height:1px;background:var(--g10);margin:32px 0 20px;}
+.ft-cp{font-size:12px;color:var(--g50);}
+@media(max-width:1100px){.hdr-in,.hero,.evalbox,.features,.ft{padding-left:24px;padding-right:24px;}.nav{display:none;}.features{grid-template-columns:1fr 1fr;}}
+@media(max-width:700px){.frow{flex-direction:column;gap:0;}.features{grid-template-columns:1fr;}.hero h1{font-size:28px;}.type-chips{flex-direction:column;}.ft-cols{flex-wrap:wrap;gap:24px;}}
+
+/* ===== REFAR BRAND ===== */
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.ft-logo{display:flex;gap:10px;align-items:center;}
+.ft-logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.ft-logo .logo-mark svg{width:100%;height:100%;display:block;}
+.ft-logo .logo-name{font-weight:800;font-size:22px;color:#1B2A4A;letter-spacing:.5px;}
+a.hbtn.primary,a.hlink.primary,.hbtn.primary,.hlink.primary{background:#E24B4A!important;color:#fff!important;border-color:#E24B4A!important;text-decoration:none;display:inline-flex;align-items:center;}
+a.hbtn.primary:hover,.hbtn.primary:hover,.hlink.primary:hover{background:#C63D3C!important;}
+a.hbtn,a.hlink{text-decoration:none;}
+</style>
+<section class="hero">
+  <h1>Онлайн-оценка недвижимости</h1>
+  <p>Узнайте рыночную стоимость вашего объекта за 2 минуты. Бесплатно, без регистрации.</p>
+</section>
+
+<div class="evalbox">
+  <div class="progress"><span class="pstep done"></span><span class="pstep on"></span><span class="pstep"></span><span class="pstep"></span></div>
+  <div class="pstep-label">Шаг 2 из 4 — параметры объекта</div>
+  <div class="form-card">
+    <h2>Расскажите о вашей недвижимости</h2>
+    <div class="field">
+      <div class="fl">Тип недвижимости</div>
+      <div class="type-chips"><span class="type-chip on">🏢 Квартира</span><span class="type-chip">🏠 Дом</span><span class="type-chip">🏬 Коммерческая</span><span class="type-chip">🌳 Участок</span></div>
+    </div>
+    <div class="frow">
+      <div class="field"><div class="fl">Город</div><div class="fselect">Ташкент ▾</div></div>
+      <div class="field"><div class="fl">Район</div><div class="fselect">Мирабадский ▾</div></div>
+    </div>
+    <div class="field"><div class="fl">Улица и дом</div><input class="finput" value="ул. Шахрисабз, 12"></div>
+    <div class="frow">
+      <div class="field"><div class="fl">Этаж</div><input class="finput" value="5 из 9"></div>
+      <div class="field"><div class="fl">Общая площадь, м²</div><input class="finput" value="95"></div>
+    </div>
+    <div class="field">
+      <div class="fl">Количество комнат</div>
+      <div class="rooms"><span class="room">1</span><span class="room">2</span><span class="room on">3</span><span class="room">4</span><span class="room">5+</span></div>
+    </div>
+    <div class="frow">
+      <div class="field"><div class="fl">Тип дома</div><div class="fselect">Кирпичный ▾</div></div>
+      <div class="field"><div class="fl">Состояние ремонта</div><div class="fselect">Евроремонт ▾</div></div>
+    </div>
+    <div class="form-btns"><button class="btn-back">← Назад</button><a href="refar-bahol-natija.html" class="btn-next" style="text-decoration:none;display:inline-block;text-align:center;">Продолжить →</a></div>
+  </div>
+</div>
+
+<div class="features">
+  <div class="feature"><div class="ic">📊</div><h3>Анализ 1 200 объектов</h3><p>Алгоритм сравнивает ваш объект с актуальными предложениями в районе</p></div>
+  <div class="feature"><div class="ic">🎯</div><h3>Точность ±5%</h3><p>Учитываем 24 параметра: от района до материала стен</p></div>
+  <div class="feature"><div class="ic">📈</div><h3>История цен за 12 мес.</h3><p>Видите динамику цен и понимаете тренд рынка</p></div>
+  <div class="feature"><div class="ic">📄</div><h3>PDF-отчёт</h3><p>Скачивайте подробный отчёт с обоснованием оценки</p></div>
+</div>
+</div>
+<script>
+document.querySelectorAll(".type-chip").forEach(function(c){c.addEventListener("click",function(){document.querySelectorAll(".type-chip").forEach(function(x){x.classList.remove("on");});c.classList.add("on");});});
+document.querySelectorAll(".room").forEach(function(c){c.addEventListener("click",function(){document.querySelectorAll(".room").forEach(function(x){x.classList.remove("on");});c.classList.add("on");});});
+</script>
+{% endraw %}

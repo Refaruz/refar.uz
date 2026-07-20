@@ -1,0 +1,87 @@
+---
+layout: base.njk
+title: "Избранное · REFAR"
+activeNav: ""
+permalink: "/refar-izbrannoe.html"
+---
+{% raw %}
+<style>:root{--brand:#1B2A4A;--brand-70:#122038;--brand-5:#EEF1F6;--brand-10:#DCE2EC;--brand-20:#C2CBDD;--g90:#0F172A;--g80:#1E293B;--g70:#334155;--g60:#475569;--g50:#64748B;--g40:#94A3B8;--g30:#CBD5E1;--g20:#E2E8F0;--g10:#F1F5F9;--g5:#F8FAFC;--succ:#16A34A;--succ-10:#DCFCE7;--warn-60:#D97706;--warn-10:#FEF3C7;--red:#E24B4A;--red-10:#FEE2E2;--purple-10:#F3E8FF;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--g5);color:var(--g90);font-size:14px;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+.wrap{max-width:1440px;margin:0 auto;}
+.hdr{background:#fff;border-bottom:1px solid var(--g10);position:sticky;top:0;z-index:100;}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:16px 80px;}
+.hdr-left{display:flex;gap:40px;align-items:center;}
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .mark{width:32px;height:32px;background:var(--brand);border-radius:8px;}
+.logo .name{font-weight:800;font-size:20px;}
+.nav{display:flex;gap:28px;}
+.nav a{font-weight:500;font-size:14px;color:var(--g60);}
+.nav a:hover,.nav a.on{color:var(--brand);}
+.hdr-right{display:flex;gap:16px;align-items:center;}
+.lang{font-weight:600;font-size:13px;color:var(--g80);}
+.hbtn{font-weight:600;font-size:13px;padding:10px 16px;border-radius:8px;cursor:pointer;}
+.hbtn.ghost{background:var(--g5);border:1px solid var(--g20);}
+.hbtn.primary{background:var(--brand);color:#fff;}
+.ft{background:#fff;border-top:1px solid var(--g10);padding:48px 80px 32px;margin-top:48px;}
+.ft-cols{display:flex;justify-content:space-between;max-width:1280px;margin:0 auto;}
+.ft-col{display:flex;flex-direction:column;gap:12px;}
+.ft-col .t{font-weight:700;font-size:13px;color:var(--g80);}
+.ft-col a{font-size:12px;color:var(--g60);}
+.ft-col a:hover{color:var(--brand);}
+.ft-line{height:1px;background:var(--g10);margin:32px auto 20px;max-width:1280px;}
+.ft-cp{font-size:12px;color:var(--g50);max-width:1280px;margin:0 auto;}
+.content{padding:40px 80px;max-width:1200px;margin:0 auto;}
+.pt{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:24px;}
+.pt h1{font-size:34px;font-weight:800;}.pt p{font-size:15px;color:var(--g60);margin-top:8px;}
+.pt-btns{display:flex;gap:10px;}
+.pt-btns .b1{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:12px 20px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;}
+.pt-btns .b2{background:#fff;border:1px solid var(--g20);border-radius:10px;padding:12px 20px;font-family:inherit;font-weight:600;font-size:14px;color:var(--g70);cursor:pointer;}
+.bar{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--g20);border-radius:12px;padding:14px 20px;margin-bottom:20px;flex-wrap:wrap;}
+.tabs{display:flex;gap:8px;}
+.tab{border:1px solid var(--g20);border-radius:20px;padding:7px 16px;font-size:13px;color:var(--g70);cursor:pointer;}
+.tab.on{background:var(--brand);color:#fff;border-color:var(--brand);}
+.bar .sel{font-size:13px;color:var(--g60);}
+.bar .sort{margin-left:auto;font-size:13px;color:var(--g60);border:1px solid var(--g20);border-radius:8px;padding:8px 14px;cursor:pointer;}
+.fav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.fav{background:#fff;border:1px solid var(--g20);border-radius:16px;overflow:hidden;position:relative;}
+.fav-check{position:absolute;top:14px;left:14px;width:22px;height:22px;border-radius:6px;background:#fff;border:2px solid var(--g30);z-index:2;cursor:pointer;}
+.fav.on .fav-check{background:var(--brand);border-color:var(--brand);}
+.fav.on .fav-check::after{content:"✓";color:#fff;font-size:14px;position:absolute;left:4px;top:-2px;}
+.fav-heart{position:absolute;top:14px;right:14px;width:34px;height:34px;background:rgba(255,255,255,.95);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--red);font-size:16px;z-index:2;cursor:pointer;}
+.fav-photo{height:180px;position:relative;}
+.fav-status{position:absolute;bottom:14px;left:14px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;}
+.fav-body{padding:16px;}
+.fav-price{display:flex;align-items:baseline;gap:10px;}
+.fav-price b{font-size:22px;font-weight:800;}
+.fav-price .old{font-size:14px;color:var(--g40);text-decoration:line-through;}
+.fav-addr{font-size:13px;color:var(--g60);margin-top:8px;}
+.fav-spec{display:flex;gap:12px;margin-top:10px;font-size:13px;color:var(--g50);}
+.fav-foot{display:flex;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--g10);}
+.fav-date{font-size:12px;color:var(--g50);}
+.fav-open{margin-left:auto;font-size:13px;font-weight:600;color:var(--brand);cursor:pointer;}
+@media(max-width:1000px){.fav-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:900px){.hdr-in,.content,.ft{padding-left:24px;padding-right:24px;}.nav{display:none;}.fav-grid{grid-template-columns:1fr;}.pt h1{font-size:26px;}.ft-cols{flex-wrap:wrap;gap:24px;}}
+/* ===== REFAR BRAND ===== */
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.ft-logo{display:flex;gap:10px;align-items:center;}
+.ft-logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.ft-logo .logo-mark svg{width:100%;height:100%;display:block;}
+.ft-logo .logo-name{font-weight:800;font-size:22px;color:#1B2A4A;letter-spacing:.5px;}
+a.hbtn.primary,a.hlink.primary,.hbtn.primary,.hlink.primary{background:#E24B4A!important;color:#fff!important;border-color:#E24B4A!important;text-decoration:none;display:inline-flex;align-items:center;}
+a.hbtn.primary:hover,.hbtn.primary:hover,.hlink.primary:hover{background:#C63D3C!important;}
+a.hbtn,a.hlink{text-decoration:none;}
+</style>
+<div class="content">
+<div class="pt"><div><h1>Избранное</h1><p>12 объектов сохранено · Получайте уведомления при изменении цены</p></div>
+<div class="pt-btns"><a href="refar-sravnenie.html"><button class="b1">Сравнить выбранные (3)</button></a><button class="b2">Экспорт списка</button></div></div>
+<div class="bar"><div class="tabs"><span class="tab on">Все · 12</span><span class="tab">Со снижением цены</span></div>
+<span class="sel">☑ Выбрать все · 3 выбрано</span><span class="sort">Сортировка: По дате добавления ▾</span></div>
+<div class="fav-grid"><div class="fav on"><span class="fav-check"></span><span class="fav-heart">♥</span><div class="fav-photo" style="background:linear-gradient(135deg,#dbe4fb,#c9d6f7)"><span class="fav-status" style="background:#DCFCE7;color:#16A34A">Цена снижена</span></div><div class="fav-body"><div class="fav-price"><b>12 500 000 $</b><span class="old">13 000 000 $</span></div><div class="fav-addr">ул. Шахрисабз, 12, Мирабадский р-н</div><div class="fav-spec"><span>3 комн.</span><span>95 м²</span><span>5/9 эт.</span></div><div class="fav-foot"><span class="fav-date">Добавлено 2 дня назад</span><a href="refar-object.html" class="fav-open">Открыть →</a></div></div></div><div class="fav on"><span class="fav-check"></span><span class="fav-heart">♥</span><div class="fav-photo" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0)"><span class="fav-status" style="background:#DCE2EC;color:#122038">Аренда</span></div><div class="fav-body"><div class="fav-price"><b>2 400 $/мес</b></div><div class="fav-addr">Невский пр., 7, Юнусабадский р-н</div><div class="fav-spec"><span>2 комн.</span><span>62 м²</span><span>3/12 эт.</span></div><div class="fav-foot"><span class="fav-date">Добавлено 2 дня назад</span><a href="refar-object.html" class="fav-open">Открыть →</a></div></div></div><div class="fav on"><span class="fav-check"></span><span class="fav-heart">♥</span><div class="fav-photo" style="background:linear-gradient(135deg,#fef3c7,#fde68a)"><span class="fav-status" style="background:#DCFCE7;color:#16A34A">В продаже</span></div><div class="fav-body"><div class="fav-price"><b>9 800 000 $</b></div><div class="fav-addr">ул. Узбекистанская, 8, Чиланзарский р-н</div><div class="fav-spec"><span>2 комн.</span><span>71 м²</span><span>2/6 эт.</span></div><div class="fav-foot"><span class="fav-date">Добавлено 2 дня назад</span><a href="refar-object.html" class="fav-open">Открыть →</a></div></div></div><div class="fav "><span class="fav-check"></span><span class="fav-heart">♥</span><div class="fav-photo" style="background:linear-gradient(135deg,#f3e8ff,#e9d5ff)"><span class="fav-status" style="background:#DCE2EC;color:#122038">Новое</span></div><div class="fav-body"><div class="fav-price"><b>18 200 000 $</b></div><div class="fav-addr">ул. Чимкентская, 145А</div><div class="fav-spec"><span>3 комн.</span><span>108 м²</span><span>11/16 эт.</span></div><div class="fav-foot"><span class="fav-date">Добавлено 2 дня назад</span><a href="refar-object.html" class="fav-open">Открыть →</a></div></div></div><div class="fav "><span class="fav-check"></span><span class="fav-heart">♥</span><div class="fav-photo" style="background:linear-gradient(135deg,#fce7f3,#f9a8d4)"><span class="fav-status" style="background:#DCFCE7;color:#16A34A">В продаже</span></div><div class="fav-body"><div class="fav-price"><b>7 500 000 $</b></div><div class="fav-addr">ул. Тараса Шевченко, 24</div><div class="fav-spec"><span>1 комн.</span><span>42 м²</span><span>3/4 эт.</span></div><div class="fav-foot"><span class="fav-date">Добавлено 2 дня назад</span><a href="refar-object.html" class="fav-open">Открыть →</a></div></div></div><div class="fav "><span class="fav-check"></span><span class="fav-heart">♥</span><div class="fav-photo" style="background:linear-gradient(135deg,#dbeafe,#93c5fd)"><span class="fav-status" style="background:#FEF3C7;color:#D97706">Торг</span></div><div class="fav-body"><div class="fav-price"><b>5 900 000 $</b></div><div class="fav-addr">ул. Лабзак, 7, Шайхантахурский р-н</div><div class="fav-spec"><span>1 комн.</span><span>38 м²</span><span>7/9 эт.</span></div><div class="fav-foot"><span class="fav-date">Добавлено 2 дня назад</span><a href="refar-object.html" class="fav-open">Открыть →</a></div></div></div></div></div>
+</div><script>document.querySelectorAll(".fav-check").forEach(function(c){c.addEventListener("click",function(){c.parentNode.classList.toggle("on");});});
+document.querySelectorAll(".tab").forEach(function(t){t.addEventListener("click",function(){document.querySelectorAll(".tab").forEach(function(x){x.classList.remove("on");});t.classList.add("on");});});</script>
+{% endraw %}

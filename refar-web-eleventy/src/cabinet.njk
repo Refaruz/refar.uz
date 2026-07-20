@@ -1,0 +1,48 @@
+---
+layout: base.njk
+title: "Кабинет · REFAR"
+activeNav: ""
+permalink: "/cabinet.html"
+---
+{% raw %}
+<div class="page">
+<h1 data-i18n="cab.title">Мой кабинет</h1>
+<div class="sub" id="cabWho"></div>
+<div style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap">
+<a href="add-listing.html" class="btn btn-red" style="width:auto;padding:12px 24px;text-decoration:none" data-i18n="cab.add">+ Добавить объявление</a>
+<button class="btn" id="logoutBtn" style="width:auto;padding:12px 24px;background:#F1F5F9;color:#334155" data-i18n="btn.logout">Выйти</button>
+</div>
+<h2 style="font-size:20px;font-weight:700;margin-bottom:16px" data-i18n="cab.my">Мои объявления</h2>
+<div id="myList"><div style="color:#64748B" data-i18n="common.loading">Загрузка…</div></div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', async function(){
+  var u=await REFAR.user();
+  if(!u){location.href='login.html';return;}
+  document.getElementById('cabWho').textContent=u.email;
+  document.getElementById('logoutBtn').addEventListener('click',function(){REFAR.logout();});
+  var box=document.getElementById('myList');
+  if(!window.sb){box.innerHTML='<div style="color:#B42318">Supabase не настроен</div>';return;}
+  var {data,error}=await window.sb.from('web_listings').select('*').eq('user_id',u.id).order('created_at',{ascending:false});
+  if(error){box.innerHTML='<div style="color:#B42318">'+error.message+'</div>';return;}
+  if(!data||!data.length){box.innerHTML='<div class="card" style="text-align:center;color:#64748B" data-i18n="cab.empty">У вас пока нет объявлений.</div>';REFAR.applyI18n();return;}
+  var cur=window.REFAR_getLang();
+  box.innerHTML='<div class="lgrid">'+data.map(function(l){
+    var img=(l.images&&l.images[0])?'style="background-image:url('+l.images[0]+')"':'';
+    var stKey='st.'+l.status; var stTxt=window.REFAR_t(stKey);
+    return '<div class="lcard"><div class="lcard-img" '+img+'><span class="badge '+l.status+'">'+stTxt+'</span></div>'+
+      '<div class="lcard-body"><div class="lcard-price">'+fmtPrice(l)+'</div><div class="lcard-title">'+esc(l.title)+'</div>'+
+      '<div class="lcard-addr">'+esc([l.region,l.district,l.address].filter(Boolean).join(', '))+'</div>'+
+      '<div class="lcard-spec">'+(l.rooms?l.rooms+' комн.':'')+(l.area?' · '+l.area+' м²':'')+(l.floor?' · '+l.floor+'/'+(l.floor_total||'-'):'')+'</div>'+
+      '<button class="mini-btn del" style="margin-top:12px" onclick="delListing('+l.id+')">'+window.REFAR_t('adm.delete')+'</button></div></div>';
+  }).join('')+'</div>';
+});
+function fmtPrice(l){var s=Number(l.price).toLocaleString('ru-RU');return (l.currency==='USD'?'$ ':'')+s+(l.currency==='UZS'?' сум':'')+(l.deal_type==='rent'?' /мес':'');}
+function esc(s){return (s||'').replace(/</g,'&lt;');}
+async function delListing(id){
+  if(!confirm('Удалить?'))return;
+  await window.sb.from('web_listings').delete().eq('id',id);
+  location.reload();
+}
+</script>
+{% endraw %}

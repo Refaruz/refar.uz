@@ -1,0 +1,164 @@
+---
+layout: base.njk
+title: "Карта недвижимости · REFAR"
+activeNav: "map"
+permalink: "/refar-map.html"
+---
+{% raw %}
+<style>
+:root{--brand:#1B2A4A;--brand-70:#122038;--brand-5:#EEF1F6;--brand-10:#DCE2EC;--brand-20:#C2CBDD;--g90:#0F172A;--g80:#1E293B;--g70:#334155;--g60:#475569;--g50:#64748B;--g40:#94A3B8;--g30:#CBD5E1;--g20:#E2E8F0;--g10:#F1F5F9;--g5:#F8FAFC;--succ:#16A34A;--succ-10:#DCFCE7;--warn-60:#D97706;--warn-10:#FEF3C7;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#fff;color:var(--g90);font-size:14px;-webkit-font-smoothing:antialiased;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
+a{text-decoration:none;color:inherit;}
+.hdr{background:#fff;border-bottom:1px solid var(--g10);flex-shrink:0;}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;}
+.hdr-left{display:flex;gap:40px;align-items:center;}
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .mark{width:32px;height:32px;background:var(--brand);border-radius:8px;}
+.logo .name{font-weight:800;font-size:20px;}
+.nav{display:flex;gap:28px;}
+.nav a{font-weight:500;font-size:14px;color:var(--g60);}
+.nav a:hover,.nav a.on{color:var(--brand);}
+.hdr-right{display:flex;gap:16px;align-items:center;}
+.hbtn{font-weight:600;font-size:13px;padding:10px 16px;border-radius:8px;cursor:pointer;}
+.hbtn.ghost{background:var(--g5);border:1px solid var(--g20);}
+.hbtn.primary{background:var(--brand);color:#fff;}
+.filterbar{background:#fff;border-bottom:1px solid var(--g10);padding:12px 40px;display:flex;gap:10px;align-items:center;flex-shrink:0;flex-wrap:wrap;}
+.tabs{display:flex;gap:4px;background:var(--g10);border-radius:10px;padding:4px;}
+.tab{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--g60);cursor:pointer;}
+.tab.on{background:#fff;color:var(--g90);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.fpill{border:1px solid var(--g20);border-radius:8px;padding:9px 14px;font-size:13px;color:var(--g70);cursor:pointer;background:#fff;}
+.fpill.radius{background:var(--brand-5);border-color:var(--brand-20);color:var(--brand-70);}
+.allf{margin-left:auto;font-size:13px;font-weight:600;color:var(--brand);cursor:pointer;padding:9px 14px;}
+.viewtabs{display:flex;border:1px solid var(--g20);border-radius:8px;overflow:hidden;}
+.viewtabs span{padding:9px 14px;font-size:13px;color:var(--g50);cursor:pointer;background:#fff;}
+.viewtabs span.on{background:var(--brand);color:#fff;}
+.body{flex:1;display:flex;min-height:0;}
+.list{width:420px;flex-shrink:0;border-right:1px solid var(--g10);display:flex;flex-direction:column;}
+.list-head{padding:16px 20px;border-bottom:1px solid var(--g10);display:flex;align-items:center;justify-content:space-between;}
+.list-head b{font-size:15px;font-weight:700;}
+.list-head .sort{font-size:12px;color:var(--brand);cursor:pointer;}
+.list-scroll{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;}
+.mcard{border:1px solid var(--g20);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .15s;display:flex;}
+.mcard:hover{box-shadow:0 4px 14px rgba(0,0,0,.08);border-color:var(--brand-20);}
+.mcard-photo{width:120px;height:120px;flex-shrink:0;position:relative;}
+.mcard-photo .cnt{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;padding:3px 7px;border-radius:6px;}
+.mcard-body{padding:12px;flex:1;}
+.mcard-status{display:inline-block;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;margin-bottom:6px;}
+.mcard-price{font-size:18px;font-weight:800;color:var(--g90);}
+.mcard-addr{font-size:12px;color:var(--g50);margin-top:4px;}
+.mcard-spec{font-size:12px;color:var(--g60);margin-top:8px;}
+.list-foot{padding:14px 20px;border-top:1px solid var(--g10);text-align:center;}
+.list-foot button{background:#fff;border:1px solid var(--brand);color:var(--brand);border-radius:8px;padding:10px 20px;font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;width:100%;}
+.map{flex:1;position:relative;background:linear-gradient(135deg,#e8eef5,#dde5f0);overflow:hidden;}
+.map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(148,163,184,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.15) 1px,transparent 1px);background-size:60px 60px;}
+.mpin{position:absolute;background:#fff;border:2px solid var(--brand);color:var(--brand);font-size:13px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15);transform:translate(-50%,-50%);transition:all .15s;white-space:nowrap;}
+.mpin:hover{background:var(--brand);color:#fff;z-index:5;transform:translate(-50%,-50%) scale(1.1);}
+.mpin.active{background:var(--brand);color:#fff;z-index:6;}
+.mcluster{position:absolute;background:var(--brand);color:#fff;font-size:12px;font-weight:700;width:52px;height:52px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(27,42,74,.4);transform:translate(-50%,-50%);border:3px solid #fff;}
+.mcluster small{font-size:9px;font-weight:500;opacity:.9;}
+.map-search-area{position:absolute;top:20px;left:50%;transform:translateX(-50%);background:#fff;border-radius:20px;padding:10px 20px;font-size:13px;font-weight:600;color:var(--brand);box-shadow:0 4px 14px rgba(0,0,0,.12);cursor:pointer;display:flex;gap:8px;align-items:center;}
+.map-layers{position:absolute;top:20px;right:20px;background:#fff;border-radius:12px;padding:14px;box-shadow:0 4px 14px rgba(0,0,0,.12);width:150px;}
+.map-layers .lt{font-size:13px;font-weight:700;margin-bottom:10px;}
+.map-layer{display:flex;gap:8px;align-items:center;padding:5px 0;font-size:13px;color:var(--g60);cursor:pointer;}
+.map-layer .box{width:16px;height:16px;border:1.5px solid var(--g30);border-radius:4px;}
+.map-layer.on .box{background:var(--brand);border-color:var(--brand);position:relative;}
+.map-layer.on .box::after{content:"✓";color:#fff;font-size:11px;position:absolute;left:2px;top:-2px;}
+.map-zoom{position:absolute;bottom:120px;right:20px;background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.12);}
+.map-zoom span{display:block;width:40px;height:40px;text-align:center;line-height:40px;font-size:18px;color:var(--g60);cursor:pointer;}
+.map-zoom span:first-child{border-bottom:1px solid var(--g10);}
+.map-popup{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:#fff;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.2);width:340px;display:flex;overflow:hidden;}
+.mp-photo{width:120px;height:120px;background:linear-gradient(135deg,#dbe4fb,#c9d6f7);flex-shrink:0;}
+.mp-body{padding:14px;flex:1;}
+.mp-price{font-size:20px;font-weight:800;}
+.mp-addr{font-size:12px;color:var(--g50);margin-top:4px;}
+.mp-spec{font-size:12px;color:var(--g60);margin-top:8px;}
+.mp-link{font-size:13px;font-weight:600;color:var(--brand);margin-top:10px;cursor:pointer;}
+@media(max-width:900px){.nav{display:none;}.list{width:100%;position:absolute;bottom:0;height:45%;z-index:10;background:#fff;}.body{flex-direction:column;}}
+
+/* ===== REFAR BRAND ===== */
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.ft-logo{display:flex;gap:10px;align-items:center;}
+.ft-logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.ft-logo .logo-mark svg{width:100%;height:100%;display:block;}
+.ft-logo .logo-name{font-weight:800;font-size:22px;color:#1B2A4A;letter-spacing:.5px;}
+a.hbtn.primary,a.hlink.primary,.hbtn.primary,.hlink.primary{background:#E24B4A!important;color:#fff!important;border-color:#E24B4A!important;text-decoration:none;display:inline-flex;align-items:center;}
+a.hbtn.primary:hover,.hbtn.primary:hover,.hlink.primary:hover{background:#C63D3C!important;}
+a.hbtn,a.hlink{text-decoration:none;}
+</style>
+<header class="hdr"><div class="hdr-in">
+  <div class="hdr-left"><a href="index.html" class="logo"><span class="logo-mark"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M25 85 L25 53 Q25 50 27 48 L47 27 Q50 24 53 27 L73 48 Q75 50 75 53 L75 85" fill="none" stroke="#1B2A4A" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 63 L50 47 L65 63" fill="none" stroke="#E24B4A" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M43 77 L50 68.5 L57 77 Z" fill="#1B2A4A"/></svg></span><span class="logo-name">REFAR</span></a>
+  <nav class="nav"><a href="refar-catalog.html">Купить</a><a href="refar-catalog.html">Снять</a><a href="refar-novostroyka.html">Новостройки</a><a href="refar-rieltorlar.html">Риэлторы</a><a href="refar-baholash.html">Оценка</a><a href="refar-map.html" class="on">Карта</a></nav></div>
+  <div class="hdr-right"><span class="hbtn ghost">Войти</span><a href="add-listing.html" class="hbtn primary">Разместить</a></div>
+</div></header>
+
+<div class="filterbar">
+  <div class="tabs"><span class="tab on">Купить</span><span class="tab">Снять</span><span class="tab">Посуточно</span></div>
+  <span class="fpill">Тип: Квартира ▾</span>
+  <span class="fpill">Комнат: 1–3 ▾</span>
+  <span class="fpill">Цена: до 1.5 млн $ ▾</span>
+  <span class="fpill">Район: Все ▾</span>
+  <span class="fpill radius">Radius: 10 km</span>
+  <span class="allf">Все фильтры</span>
+  <div class="viewtabs"><span>Список</span><span class="on">Карта</span><span>Сетка</span></div>
+</div>
+
+<div class="body">
+  <div class="list">
+    <div class="list-head"><b>342 квартиры в Ташкенте</b><span class="sort">Дешевле ▾</span></div>
+    <div class="list-scroll" id="mlist"></div>
+    <div class="list-foot"><button>Показать ещё 337 объектов</button></div>
+  </div>
+  <div class="map">
+    <div class="map-grid"></div>
+    <div class="map-search-area">🔄 Искать в этой области</div>
+    <div class="map-layers"><div class="lt">Слои</div>
+      <div class="map-layer on"><span class="box"></span>Метро</div>
+      <div class="map-layer"><span class="box"></span>Школы</div>
+      <div class="map-layer"><span class="box"></span>Магазины</div>
+      <div class="map-layer"><span class="box"></span>Парки</div>
+    </div>
+    <div class="map-zoom"><span>+</span><span>−</span></div>
+    <div id="pins"></div>
+    <div class="map-popup">
+      <div class="mp-photo"></div>
+      <div class="mp-body"><div class="mp-price">12 500 000 $</div><div class="mp-addr">📍 ул. Шахрисабз, 12, Мирабадский р-н</div><div class="mp-spec">3 комн. · 95 м² · 5/9 эт.</div><a href="refar-object.html" class="mp-link">Открыть карточку →</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+var items=[
+  {status:'В продаже',sb:'#DCFCE7;color:#16A34A',price:'7 500 000 $',addr:'ул. Тараса Шевченко, 24, Мирабадский р-н',spec:'1 комн. · 42 м² · 3/4',ph:'linear-gradient(135deg,#dbe4fb,#c9d6f7)'},
+  {status:'Торг уместен',sb:'#FEF3C7;color:#D97706',price:'5 900 000 $',addr:'ул. Лабзак, 7, Шайхантахурский р-н',spec:'1 комн. · 38 м² · 7/9',ph:'linear-gradient(135deg,#fef3c7,#fde68a)'},
+  {status:'В продаже',sb:'#DCFCE7;color:#16A34A',price:'9 800 000 $',addr:'ул. Узбекистанская, 8, Чиланзарский р-н',spec:'2 комн. · 71 м² · 2/6',ph:'linear-gradient(135deg,#dcfce7,#bbf7d0)'},
+  {status:'Новое',sb:'#DCE2EC;color:#122038',price:'12 500 000 $',addr:'ул. Шахрисабз, 12, Мирабадский р-н',spec:'3 комн. · 95 м² · 5/9',ph:'linear-gradient(135deg,#dbe4fb,#c9d6f7)'},
+  {status:'В продаже',sb:'#DCFCE7;color:#16A34A',price:'18 200 000 $',addr:'ул. Чимкентская, 145А, Юнусабадский р-н',spec:'3 комн. · 108 м² · 11/16',ph:'linear-gradient(135deg,#f3e8ff,#e9d5ff)'}
+];
+document.getElementById("mlist").innerHTML=items.map(function(m){
+  return '<div class="mcard" onclick="location.href=&#39;refar-object.html&#39;"><div class="mcard-photo" style="background:'+m.ph+'"><span class="cnt">📷 12</span></div>'+
+    '<div class="mcard-body"><span class="mcard-status" style="background:'+m.sb+'">'+m.status+'</span>'+
+    '<div class="mcard-price">'+m.price+'</div><div class="mcard-addr">'+m.addr+'</div><div class="mcard-spec">'+m.spec+'</div></div></div>';
+}).join("");
+// Xarita pinlar va klasterlar
+var pins=[
+  {x:'25%',y:'30%',t:'7.5М'},{x:'42%',y:'22%',t:'5.9М'},{x:'58%',y:'40%',t:'9.8М'},
+  {x:'70%',y:'28%',t:'12.5М'},{x:'38%',y:'55%',t:'18.2М'}
+];
+var clusters=[{x:'50%',y:'62%',n:'24',t:'42М'},{x:'30%',y:'70%',n:'12',t:'6.2М'},{x:'75%',y:'58%',n:'31'}];
+var html=pins.map(function(p){return '<div class="mpin" style="left:'+p.x+';top:'+p.y+'">'+p.t+'</div>';}).join("");
+html+=clusters.map(function(c){return '<div class="mcluster" style="left:'+c.x+';top:'+c.y+'">'+c.n+'<small>объектов</small></div>';}).join("");
+document.getElementById("pins").innerHTML=html;
+document.querySelectorAll(".map-layer,.tab,.viewtabs span").forEach(function(e){e.addEventListener("click",function(){
+  if(e.classList.contains("tab")||e.parentNode.classList.contains("viewtabs")){e.parentNode.querySelectorAll(e.classList.contains("tab")?".tab":"span").forEach(function(x){x.classList.remove("on");});}
+  e.classList.toggle("on");
+});});
+</script>
+<script defer src="assets/config.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script defer src="assets/i18n.js"></script>
+<script defer src="assets/app.js"></script>
+{% endraw %}

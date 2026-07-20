@@ -1,0 +1,896 @@
+---
+layout: base.njk
+title: "3-комнатная квартира, 95 м² · REFAR"
+activeNav: "catalog"
+permalink: "/refar-object.html"
+---
+{% raw %}
+<style>
+:root{
+  --brand:#1B2A4A; --brand-70:#122038; --brand-5:#EEF1F6; --brand-10:#DCE2EC; --brand-20:#C2CBDD;
+  --g90:#0F172A; --g80:#1E293B; --g70:#334155; --g60:#475569; --g50:#64748B; --g40:#94A3B8;
+  --g30:#CBD5E1; --g20:#E2E8F0; --g10:#F1F5F9; --g5:#F8FAFC; --white:#FFFFFF;
+  --succ:#16A34A; --succ-10:#DCFCE7; --warn-10:#FEF3C7; --warn-60:#D97706; --purple-10:#F3E8FF;
+  --red:#E24B4A; --red-10:#FEE2E2;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--g90);-webkit-font-smoothing:antialiased;font-size:14px;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+.wrap{max-width:1440px;margin:0 auto;}
+
+/* ─── HEADER ─── */
+.hdr{background:var(--white);border-bottom:1px solid var(--g10);position:sticky;top:0;z-index:100;}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:18px 80px;}
+.hdr-left{display:flex;gap:40px;align-items:center;}
+.logo{display:flex;gap:8px;align-items:center;}
+.logo .mark{width:28px;height:28px;background:var(--brand);border-radius:8px;}
+.logo .name{font-weight:800;font-size:19px;color:var(--g90);}
+.nav{display:flex;gap:24px;align-items:center;}
+.nav a{font-weight:500;font-size:14px;color:var(--g60);transition:color .15s;}
+.nav a:hover{color:var(--brand);}
+.hdr-right{display:flex;gap:14px;align-items:center;}
+.hlink{font-weight:600;font-size:13px;color:var(--g80);padding:10px 16px;border-radius:8px;cursor:pointer;}
+.hlink.ghost{background:var(--g5);border:1px solid var(--g20);}
+.hlink.cmp{color:var(--brand);}
+.hlink.primary{background:var(--brand);color:#fff;}
+.hlink.primary:hover{background:var(--brand-70);}
+
+/* ─── BREADCRUMBS ─── */
+.crumbs{padding:18px 80px;display:flex;gap:9px;align-items:center;font-size:12px;color:var(--g50);flex-wrap:wrap;}
+.crumbs .sep{color:var(--g30);}
+.crumbs a:hover{color:var(--brand);}
+.crumbs .cur{color:var(--g80);}
+
+/* ─── LAYOUT ─── */
+.px{padding-left:80px;padding-right:80px;}
+.hero{display:flex;gap:24px;padding:24px 80px;align-items:flex-start;}
+
+/* Gallery */
+.gallery{flex:1;min-width:0;background:#fff;border:1px solid var(--g20);border-radius:16px;padding:16px;}
+.media-tabs{display:flex;gap:8px;align-items:center;margin-bottom:14px;flex-wrap:wrap;}
+.mtab{display:flex;gap:8px;align-items:center;padding:8px 14px;border-radius:8px;font-weight:600;font-size:13px;color:var(--g60);cursor:pointer;border:1px solid transparent;}
+.mtab.on{background:var(--g90);color:#fff;}
+.mtab .cnt{background:var(--g10);color:var(--g60);font-size:11px;padding:1px 7px;border-radius:20px;}
+.mtab.on .cnt{background:rgba(255,255,255,.2);color:#fff;}
+.mtab .pend{width:8px;height:8px;border-radius:50%;background:var(--warn-60);}
+.mtab.spacer{flex:1;border:none;cursor:default;}
+.media-area{display:flex;gap:12px;height:420px;}
+.main-photo{width:560px;flex-shrink:0;background:linear-gradient(135deg,#dbe4fb,#c9d6f7);border-radius:12px;position:relative;overflow:hidden;}
+.mp-top{position:absolute;top:14px;left:14px;right:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.chip{background:rgba(255,255,255,.95);border-radius:6px;padding:5px 10px;font-size:11px;font-weight:500;color:var(--g70);display:flex;gap:6px;align-items:center;}
+.chip .dot{width:6px;height:6px;border-radius:50%;}
+.chip.round{margin-left:auto;width:32px;height:32px;justify-content:center;padding:0;border-radius:8px;font-size:15px;}
+.mp-bot{position:absolute;bottom:14px;left:14px;right:14px;display:flex;align-items:center;gap:10px;}
+.mp-count{background:rgba(15,23,42,.75);color:#fff;border-radius:6px;padding:6px 12px;font-size:13px;font-weight:600;display:flex;gap:8px;align-items:center;}
+.mp-nav{margin-left:auto;display:flex;gap:8px;}
+.mp-arrow{width:32px;height:32px;background:rgba(255,255,255,.95);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--g70);}
+.right-stack{flex:1;display:flex;flex-direction:column;gap:12px;}
+.pend-card{flex:1;border-radius:12px;border:1px dashed var(--g30);background:var(--g5);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;position:relative;}
+.pend-badge{position:absolute;top:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;align-items:center;background:var(--warn-10);color:var(--warn-60);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:600;}
+.pend-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--warn-60);}
+.pend-play{width:42px;height:42px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px;}
+.pend-card h4{font-size:14px;font-weight:600;color:var(--g80);margin-bottom:6px;}
+.pend-card p{font-size:11px;color:var(--g50);line-height:1.4;margin-bottom:12px;}
+.pend-notify{font-size:12px;font-weight:600;color:var(--brand);border:1px solid var(--brand-20);border-radius:8px;padding:6px 12px;cursor:pointer;}
+.thumbs{display:flex;gap:10px;margin-top:12px;}
+.thumb{flex:1;height:92px;border-radius:10px;background:linear-gradient(135deg,#e2e8f4,#d3dcef);cursor:pointer;}
+.thumb.more{background:var(--g90);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;}
+
+/* Sidebar */
+.side{width:380px;flex-shrink:0;display:flex;flex-direction:column;gap:12px;position:sticky;top:100px;}
+.price-card{background:#fff;border:1px solid var(--g20);border-radius:16px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,.05);}
+.price-row{display:flex;align-items:center;gap:12px;}
+.price-big{font-weight:800;font-size:32px;color:var(--g90);}
+.price-drop{margin-left:auto;background:var(--succ-10);color:var(--succ);font-size:12px;font-weight:700;padding:5px 10px;border-radius:20px;}
+.price-was{font-size:12px;color:var(--g50);margin-top:10px;}
+.price-sum{font-size:13px;color:var(--g60);margin-top:6px;font-weight:500;}
+.pc-div{height:1px;background:var(--g10);margin:16px 0;}
+.mort-teaser{display:flex;align-items:center;gap:14px;}
+.mort-ic{width:36px;height:32px;background:var(--brand-5);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.mort-info{flex:1;}
+.mort-info .m1{font-size:14px;font-weight:600;color:var(--g80);}
+.mort-info .m2{font-size:12px;color:var(--g50);margin-top:2px;}
+.mort-calc{font-size:13px;font-weight:600;color:var(--brand);cursor:pointer;}
+.btn-lg{width:100%;padding:14px;border-radius:10px;border:none;font-family:inherit;font-weight:600;font-size:15px;cursor:pointer;transition:all .15s;}
+.btn-blue{background:var(--brand);color:#fff;}
+.btn-blue:hover{background:var(--brand-70);}
+.btn-pair{display:flex;gap:8px;margin-top:10px;}
+.btn-pair button{flex:1;padding:12px;border-radius:10px;border:1px solid var(--g20);background:#fff;font-family:inherit;font-weight:600;font-size:13px;color:var(--g70);cursor:pointer;transition:all .15s;}
+.btn-pair button:hover{border-color:var(--brand);color:var(--brand);}
+.btn-trio{display:flex;gap:8px;margin-top:10px;}
+.btn-trio button{flex:1;padding:9px;border-radius:8px;border:none;background:transparent;font-family:inherit;font-weight:500;font-size:12px;color:var(--g60);cursor:pointer;}
+.btn-trio button:hover{background:var(--g5);color:var(--brand);}
+.agent-card{background:#fff;border:1px solid var(--g20);border-radius:16px;padding:18px;}
+.agent-top{display:flex;gap:12px;align-items:center;}
+.agent-av{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--brand),#3A5488);flex-shrink:0;}
+.agent-name{font-size:15px;font-weight:600;color:var(--g90);}
+.agent-meta{font-size:13px;color:var(--g50);margin-top:3px;display:flex;gap:6px;align-items:center;}
+.agent-meta .star{color:var(--warn-60);font-weight:600;}
+.agent-verif{margin-left:auto;background:var(--succ-10);color:var(--succ);font-size:11px;font-weight:600;padding:5px 10px;border-radius:20px;}
+.agent-stats{display:flex;margin-top:16px;border-top:1px solid var(--g10);padding-top:14px;}
+.agent-stat{flex:1;}
+.agent-stat b{font-size:16px;font-weight:700;color:var(--g90);}
+.agent-stat span{font-size:12px;color:var(--g50);display:block;margin-top:2px;}
+
+/* ─── TITLE STRIP ─── */
+.title-strip{padding:28px 80px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;border-top:1px solid var(--g10);}
+.ts-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.tsb{background:var(--g5);border:1px solid var(--g20);border-radius:6px;padding:5px 10px;font-size:11px;font-weight:500;color:var(--g60);display:flex;gap:6px;align-items:center;}
+.tsb .dot{width:6px;height:6px;border-radius:50%;background:var(--succ);}
+.tsb.succ{background:var(--succ-10);color:var(--succ);border-color:transparent;}
+.tsb.brand{background:var(--brand-5);color:var(--brand-70);border-color:transparent;}
+.title-strip h1{font-size:28px;font-weight:700;color:var(--g90);line-height:1.2;}
+.ts-addr{font-size:14px;color:var(--g60);margin-top:12px;display:flex;gap:6px;align-items:center;}
+.ts-stats{display:flex;gap:24px;margin-top:16px;flex-wrap:wrap;}
+.ts-stat{display:flex;gap:8px;align-items:center;}
+.ts-stat .ico{font-size:13px;opacity:.7;}
+.ts-stat b{font-size:14px;font-weight:600;color:var(--g80);}
+.ts-stat span{font-size:12px;color:var(--g50);display:block;}
+.ts-actions{display:flex;gap:8px;flex-shrink:0;}
+.ts-act{border:1px solid var(--g20);border-radius:8px;padding:9px 14px;font-size:13px;font-weight:500;color:var(--g60);cursor:pointer;white-space:nowrap;}
+.ts-act:hover{border-color:var(--brand);color:var(--brand);}
+
+/* ─── STICKY TABS ─── */
+.tabnav{position:sticky;top:73px;z-index:90;background:#fff;border-top:1px solid var(--g10);border-bottom:1px solid var(--g10);padding:0 80px;display:flex;gap:0;overflow-x:auto;}
+.tabnav a{padding:18px;font-size:14px;font-weight:500;color:var(--g60);white-space:nowrap;border-bottom:2px solid transparent;display:flex;gap:6px;align-items:center;}
+.tabnav a.on,.tabnav a:hover{color:var(--brand);border-bottom-color:var(--brand);}
+.tabnav a .dot{width:6px;height:6px;border-radius:50%;background:var(--succ);}
+
+/* ─── MAIN CONTENT ─── */
+.main{display:flex;gap:24px;padding:28px 80px;align-items:flex-start;}
+.article{flex:1;min-width:0;display:flex;flex-direction:column;gap:16px;}
+.sec-card{background:#fff;border:1px solid var(--g20);border-radius:16px;padding:24px;}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+.sec-head h2{font-size:19px;font-weight:700;color:var(--g90);white-space:nowrap;}
+.sec-head .line{flex:1;height:1px;background:var(--g10);}
+.sec-head .tag{background:var(--g5);border:1px solid var(--g20);border-radius:6px;padding:5px 10px;font-size:11px;font-weight:500;color:var(--g60);white-space:nowrap;}
+.sec-head .tag.dot::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--succ);margin-right:6px;vertical-align:middle;}
+
+/* Right anchors */
+.anchors{width:380px;flex-shrink:0;position:sticky;top:145px;background:#fff;border:1px solid var(--g20);border-radius:16px;padding:18px;}
+.anchors .at{font-size:13px;font-weight:600;color:var(--g80);margin-bottom:14px;}
+.anchors a{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--g60);padding:6px 0;}
+.anchors a:hover{color:var(--brand);}
+.anchors a .m{color:var(--g30);}
+.anchors .ndiv{height:1px;background:var(--g10);margin:14px 0;}
+.anchors .note{font-size:13px;color:var(--g60);line-height:1.5;}
+
+/* Locations */
+.loc-map{height:360px;border-radius:12px;background:linear-gradient(135deg,#eef2f8,#e2e8f4);position:relative;overflow:hidden;margin-bottom:24px;}
+.loc-map .pin{position:absolute;width:46px;height:46px;border-radius:50%;background:rgba(27,42,74,.15);display:flex;align-items:center;justify-content:center;}
+.loc-map .pin::after{content:"";width:14px;height:14px;border-radius:50%;background:var(--brand);border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.2);}
+.loc-poi{position:absolute;background:#fff;border-radius:8px;width:32px;height:28px;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.12);}
+.loc-ctrl{position:absolute;bottom:16px;left:16px;display:flex;gap:6px;background:#fff;border-radius:8px;padding:6px;box-shadow:0 2px 8px rgba(0,0,0,.1);}
+.loc-ctrl span{padding:5px 10px;font-size:12px;font-weight:500;color:var(--g60);border-radius:6px;cursor:pointer;}
+.loc-ctrl span.on{background:var(--brand);color:#fff;}
+.subhead{font-size:15px;font-weight:600;color:var(--g80);margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.subhead .line{flex:1;height:1px;background:var(--g10);}
+.subhead .tag{font-size:11px;font-weight:500;color:var(--g50);white-space:nowrap;}
+.poi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+.poi-card{border:1px solid var(--g20);border-radius:10px;padding:14px;}
+.poi-top{display:flex;gap:10px;align-items:flex-start;}
+.poi-ic{font-size:18px;}
+.poi-name{font-size:14px;font-weight:600;color:var(--g90);}
+.poi-desc{font-size:12px;color:var(--g50);margin-top:2px;}
+.poi-dist{display:flex;gap:12px;margin-top:12px;font-size:13px;color:var(--g60);}
+.poi-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.poi-min{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--g60);padding:6px 0;}
+.poi-min b{color:var(--g80);font-weight:500;}
+.poi-min .mdist{margin-left:auto;color:var(--g50);font-size:12px;}
+
+/* Description */
+.desc-text{font-size:14px;line-height:1.7;color:var(--g60);}
+.show-more{margin-top:16px;font-size:14px;font-weight:600;color:var(--brand);cursor:pointer;}
+
+/* Price history */
+.ph-lead{font-size:14px;line-height:1.6;color:var(--g60);margin-bottom:20px;}
+.ph-grid{display:flex;gap:20px;}
+.ph-chart-box{width:360px;flex-shrink:0;border:1px solid var(--g20);border-radius:12px;padding:18px;}
+.ph-cur{display:flex;align-items:flex-end;gap:20px;margin-bottom:16px;}
+.ph-cur .big{font-size:28px;font-weight:800;color:var(--g90);}
+.ph-cur .lbl{font-size:13px;color:var(--g50);}
+.ph-cur .old{font-size:16px;font-weight:600;color:var(--g40);text-decoration:line-through;}
+.ph-chart{height:120px;position:relative;margin:10px 0;}
+.ph-xaxis{display:flex;justify-content:space-between;font-size:11px;color:var(--g40);margin-top:8px;}
+.ph-events{flex:1;display:flex;flex-direction:column;gap:10px;}
+.ph-ev{display:flex;gap:16px;align-items:center;border:1px solid var(--g20);border-radius:10px;padding:14px;}
+.ph-ev .date{width:60px;flex-shrink:0;}
+.ph-ev .date b{font-size:15px;font-weight:600;color:var(--g80);display:block;}
+.ph-ev .date span{font-size:12px;color:var(--g50);}
+.ph-ev .chg{flex:1;}
+.ph-ev .chg .prices{font-size:14px;color:var(--g80);}
+.ph-ev .chg .prices .to{font-weight:600;}
+.ph-ev .chg .sub{font-size:13px;color:var(--succ);margin-top:2px;}
+.ph-ev .last{background:var(--brand-5);color:var(--brand-70);font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;}
+.ph-subscribe{display:flex;gap:14px;align-items:center;border:1px solid var(--g20);border-radius:12px;padding:16px;margin-top:20px;background:var(--g5);}
+.ph-subscribe .txt{flex:1;}
+.ph-subscribe .txt b{font-size:14px;font-weight:600;color:var(--g80);display:block;}
+.ph-subscribe .txt span{font-size:13px;color:var(--g50);}
+.ph-subscribe button{background:var(--brand);color:#fff;border:none;border-radius:8px;padding:10px 16px;font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;}
+
+/* Characteristics */
+.char-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;}
+.char-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--g10);}
+.char-row .k{font-size:14px;color:var(--g60);white-space:nowrap;}
+.char-row .line{flex:1;height:1px;background:var(--g10);min-width:10px;}
+.char-row .v{font-size:14px;font-weight:600;color:var(--g80);white-space:nowrap;}
+.char-row .v .pill{background:var(--brand-5);color:var(--brand-70);font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;margin-left:8px;}
+.char-row .v .pill.succ{background:var(--succ-10);color:var(--succ);}
+
+/* Amenities */
+.amen-group+.amen-group{margin-top:24px;}
+.amen-title{font-size:15px;font-weight:600;color:var(--g80);margin-bottom:16px;}
+.amen-list{display:flex;flex-wrap:wrap;gap:10px 24px;}
+.amen{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--g70);}
+.amen .ic{font-size:14px;}
+
+/* Mortgage calculator */
+.mort-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:20px;}
+.mort-head .ic{width:38px;height:34px;background:var(--brand-5);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.mort-head h2{font-size:19px;font-weight:700;color:var(--g90);}
+.mort-head .sub{font-size:13px;color:var(--g50);margin-top:4px;}
+.mort-head .acc{margin-left:auto;background:var(--succ-10);color:var(--succ);font-size:11px;font-weight:600;padding:6px 12px;border-radius:20px;display:flex;gap:6px;align-items:center;white-space:nowrap;}
+.mort-head .acc .dot{width:6px;height:6px;border-radius:50%;background:var(--succ);}
+.mort-body{display:flex;gap:24px;}
+.mort-left{flex:1;min-width:0;display:flex;flex-direction:column;gap:22px;}
+.slider-row .st{display:flex;justify-content:space-between;font-size:13px;color:var(--g60);margin-bottom:8px;}
+.slider-row .st .hint{font-size:12px;color:var(--g40);}
+.slider-val{display:flex;align-items:center;border:1px solid var(--g20);border-radius:10px;padding:12px 14px;margin-bottom:10px;}
+.slider-val b{font-size:16px;font-weight:700;color:var(--g90);}
+.slider-val .unit{margin-left:auto;font-size:14px;color:var(--g50);font-weight:500;}
+.track{height:6px;background:var(--g10);border-radius:3px;position:relative;}
+.track .fill{height:100%;background:var(--brand);border-radius:3px;}
+.track .fill::after{content:"";position:absolute;top:50%;right:-2px;transform:translate(0,-50%);width:16px;height:16px;background:#fff;border:3px solid var(--brand);border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,.15);}
+.cur-tabs{display:flex;gap:8px;background:var(--g10);border-radius:10px;padding:4px;}
+.cur-tabs span{flex:1;text-align:center;padding:9px;border-radius:8px;font-size:14px;font-weight:600;color:var(--g60);cursor:pointer;}
+.cur-tabs span.on{background:#fff;color:var(--g90);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.mort-btns{display:flex;gap:12px;}
+.mort-btns .calc{flex:1;background:var(--brand);color:#fff;border:none;border-radius:10px;padding:14px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;}
+.mort-btns .reset{background:var(--g5);border:1px solid var(--g20);border-radius:10px;padding:14px 24px;font-family:inherit;font-weight:600;font-size:14px;color:var(--g60);cursor:pointer;}
+.mort-result{width:380px;flex-shrink:0;background:var(--g90);border-radius:16px;padding:22px;color:#fff;}
+.mr-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.mr-head .lbl{font-size:14px;color:var(--g30);}
+.mr-head .line{flex:1;height:1px;background:rgba(255,255,255,.1);}
+.mr-head .tag{background:rgba(255,255,255,.1);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:600;}
+.mr-big{font-size:42px;font-weight:800;margin-bottom:6px;}
+.mr-sum{font-size:14px;color:var(--g40);margin-bottom:18px;}
+.mr-line{height:1px;background:rgba(255,255,255,.1);margin:14px 0;}
+.mr-row{display:flex;align-items:center;gap:12px;padding:5px 0;font-size:14px;}
+.mr-row .k{color:var(--g30);}
+.mr-row .line{flex:1;height:1px;background:rgba(255,255,255,.08);}
+.mr-row .v{font-weight:600;}
+.mr-load{margin-top:16px;}
+.mr-load .lt{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;}
+.mr-load .lt .ok{color:#86EFAC;font-weight:600;}
+.mr-load .track{background:rgba(255,255,255,.15);}
+.mr-load .fill{background:#86EFAC;width:32%;}
+.mr-cta{margin-top:20px;display:flex;flex-direction:column;gap:10px;}
+.mr-cta .primary{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:14px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;}
+.mr-cta .ghost{background:rgba(255,255,255,.08);color:#fff;border:none;border-radius:10px;padding:12px;font-family:inherit;font-weight:500;font-size:13px;cursor:pointer;}
+.banks-head{margin-top:32px;}
+.banks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;}
+.bank{border:1px solid var(--g20);border-radius:12px;padding:16px;}
+.bank-top{display:flex;gap:10px;align-items:center;margin-bottom:14px;}
+.bank-logo{width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--brand),#3A5488);flex-shrink:0;}
+.bank-name{font-size:14px;font-weight:600;color:var(--g80);flex:1;}
+.bank-best{background:var(--warn-10);color:var(--warn-60);font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;}
+.bank-rate{display:flex;align-items:baseline;gap:6px;margin-bottom:12px;}
+.bank-rate b{font-size:24px;font-weight:800;color:var(--g90);}
+.bank-rate span{font-size:13px;color:var(--g50);}
+.bank-pay{font-size:13px;color:var(--g70);margin-bottom:6px;}
+.bank-cond{font-size:12px;color:var(--g50);margin-bottom:14px;}
+.bank-btn{width:100%;background:var(--g5);border:1px solid var(--g20);border-radius:8px;padding:9px;font-family:inherit;font-weight:600;font-size:13px;color:var(--g70);cursor:pointer;}
+.bank-btn:hover{background:var(--brand);color:#fff;border-color:var(--brand);}
+.mort-disc{display:flex;gap:12px;align-items:flex-start;margin-top:20px;font-size:12px;color:var(--g50);line-height:1.5;}
+
+/* REFAR closed materials */
+.refar-sec{border:1px solid var(--brand-20);background:linear-gradient(180deg,#FBFCFE,#fff);}
+.refar-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px;}
+.refar-head .ic{width:38px;height:34px;background:var(--brand-5);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.refar-head h2{font-size:19px;font-weight:700;color:var(--g90);}
+.refar-head .sub{font-size:13px;color:var(--g50);margin-top:4px;}
+.refar-badges{display:flex;flex-direction:column;gap:6px;margin-left:auto;align-items:flex-end;flex-shrink:0;}
+.refar-badges .b1{background:var(--brand);color:#fff;font-size:11px;font-weight:600;padding:5px 12px;border-radius:20px;white-space:nowrap;}
+.refar-badges .b2{background:var(--g5);border:1px solid var(--g20);color:var(--g60);font-size:11px;font-weight:500;padding:5px 12px;border-radius:20px;display:flex;gap:6px;align-items:center;white-space:nowrap;}
+.refar-badges .b2 .dot{width:6px;height:6px;border-radius:50%;background:var(--succ);}
+.refar-warn{display:flex;gap:12px;align-items:flex-start;background:var(--warn-10);border-radius:12px;padding:16px;margin-bottom:24px;}
+.refar-warn .wic{font-size:20px;}
+.refar-warn .wtxt b{font-size:14px;font-weight:600;color:#92400E;display:block;}
+.refar-warn .wtxt span{font-size:13px;color:#B45309;}
+.refar-warn .signed{margin-left:auto;background:var(--succ-10);color:var(--succ);font-size:11px;font-weight:600;padding:6px 12px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+.rmedia-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.rmedia{border:1px solid var(--g20);border-radius:12px;overflow:hidden;}
+.rmedia-thumb{height:160px;background:linear-gradient(135deg,#1e293b,#334155);position:relative;display:flex;align-items:center;justify-content:center;}
+.rmedia-badge{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.15);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;display:flex;gap:6px;align-items:center;}
+.rmedia-badge .dot{width:6px;height:6px;border-radius:50%;background:#86EFAC;}
+.rmedia-play{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.rmedia-dur{position:absolute;bottom:14px;right:14px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;padding:4px 8px;border-radius:6px;}
+.rmedia-prog{position:absolute;bottom:24px;left:60px;right:60px;}
+.rmedia-prog .bar{height:8px;background:rgba(255,255,255,.2);border-radius:4px;overflow:hidden;}
+.rmedia-prog .bar i{display:block;height:100%;background:#86EFAC;}
+.rmedia-prog .pt{color:#fff;font-size:11px;margin-top:6px;text-align:center;}
+.rmedia-body{padding:14px;}
+.rmedia-body .rt{font-size:14px;font-weight:600;color:var(--g80);}
+.rmedia-body .rd{font-size:12px;color:var(--g50);margin-top:4px;}
+.rmedia-act{display:flex;gap:8px;margin-top:12px;}
+.rmedia-act .watch{flex:1;background:var(--g90);color:#fff;border:none;border-radius:8px;padding:9px;font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;}
+.rmedia-act .dl{width:36px;background:var(--g5);border:1px solid var(--g20);border-radius:8px;cursor:pointer;}
+.rmedia-act .notify{flex:1;background:var(--g5);border:1px solid var(--g20);border-radius:8px;padding:9px;font-family:inherit;font-weight:600;font-size:12px;color:var(--g60);cursor:pointer;}
+.rdocs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.rdoc{display:flex;gap:14px;align-items:center;border:1px solid var(--g20);border-radius:12px;padding:16px;}
+.rdoc .dic{width:34px;height:34px;background:var(--brand-5);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.rdoc .dtxt{flex:1;}
+.rdoc .dtxt b{font-size:14px;font-weight:600;color:var(--g80);display:block;}
+.rdoc .dtxt span{font-size:12px;color:var(--g50);}
+.rdoc .open{background:var(--g90);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-family:inherit;font-weight:600;font-size:12px;cursor:pointer;}
+.rlog{display:flex;gap:12px;align-items:center;background:var(--g5);border-radius:12px;padding:14px 16px;}
+.rlog .lic{font-size:15px;}
+.rlog .ltxt{flex:1;font-size:12px;color:var(--g60);line-height:1.5;}
+.rlog .lbtn{background:#fff;border:1px solid var(--g20);border-radius:8px;padding:8px 14px;font-family:inherit;font-weight:600;font-size:12px;color:var(--g70);cursor:pointer;white-space:nowrap;}
+
+/* Similar */
+.sim-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.sim-card{border:1px solid var(--g20);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .15s;}
+.sim-card:hover{box-shadow:0 8px 20px rgba(0,0,0,.08);transform:translateY(-2px);}
+.sim-photo{height:140px;background:linear-gradient(135deg,#dbe4fb,#c9d6f7);position:relative;}
+.sim-match{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.95);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:600;color:var(--g70);display:flex;gap:6px;align-items:center;}
+.sim-match .dot{width:6px;height:6px;border-radius:50%;background:var(--succ);}
+.sim-drop{position:absolute;bottom:10px;left:10px;background:var(--succ-10);color:var(--succ);border-radius:20px;padding:4px 8px;font-size:11px;font-weight:600;}
+.sim-body{padding:14px;}
+.sim-price{display:flex;align-items:baseline;gap:8px;}
+.sim-price b{font-size:18px;font-weight:800;color:var(--g90);}
+.sim-price .old{font-size:13px;color:var(--g40);text-decoration:line-through;}
+.sim-title{font-size:14px;font-weight:600;color:var(--g80);margin-top:8px;}
+.sim-addr{font-size:12px;color:var(--g50);margin-top:4px;}
+.sim-params{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+.sim-params span{background:var(--g5);border-radius:6px;padding:3px 8px;font-size:11px;color:var(--g60);}
+.sim-foot{display:flex;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--g10);}
+.sim-foot .fline{flex:1;}
+.sim-foot .fic{font-size:15px;color:var(--g40);margin-left:12px;cursor:pointer;}
+
+/* ─── FOOTER ─── */
+.ft{background:var(--g5);border-top:1px solid var(--g10);padding:48px 80px 32px;margin-top:24px;}
+.ft-top{display:flex;justify-content:space-between;gap:40px;}
+.ft-brand{width:280px;}
+.ft-logo{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.ft-logo .mark{width:28px;height:28px;background:var(--brand);border-radius:8px;}
+.ft-logo .name{font-weight:800;font-size:20px;color:var(--g90);}
+.ft-brand p{font-size:13px;color:var(--g60);line-height:1.6;margin-bottom:16px;}
+.ft-apps{display:flex;gap:8px;}
+.ft-apps span{background:#fff;border:1px solid var(--g20);border-radius:8px;padding:9px 14px;font-size:13px;font-weight:600;color:var(--g70);cursor:pointer;}
+.ft-col{display:flex;flex-direction:column;gap:12px;}
+.ft-col .t{font-size:14px;font-weight:700;color:var(--g80);margin-bottom:2px;}
+.ft-col a{font-size:13px;color:var(--g60);}
+.ft-col a:hover{color:var(--brand);}
+.ft-line{height:1px;background:var(--g20);margin:32px 0 24px;}
+.ft-bot{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--g50);flex-wrap:wrap;}
+.ft-bot .sep{color:var(--g30);}
+.ft-bot .r{margin-left:auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+
+/* Responsive */
+@media(max-width:1200px){
+  .hero{flex-direction:column;}
+  .side{width:100%;position:static;}
+  .main{flex-direction:column;}
+  .anchors{width:100%;position:static;order:-1;}
+  .media-area{flex-direction:column;height:auto;}
+  .main-photo{width:100%;height:320px;}
+  .right-stack{flex-direction:row;}
+  .pend-card{height:200px;}
+  .mort-body{flex-direction:column;}
+  .mort-result{width:100%;}
+  .banks-grid,.rmedia-grid{grid-template-columns:repeat(2,1fr);}
+  .sim-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:900px){
+  .hdr-in,.crumbs,.hero,.title-strip,.tabnav,.main,.ft{padding-left:24px;padding-right:24px;}
+  .nav,.hdr-right .hlink:not(.primary){display:none;}
+  .char-grid{grid-template-columns:1fr;}
+  .poi-grid{grid-template-columns:1fr 1fr;}
+  .poi-mini{grid-template-columns:1fr 1fr;}
+  .ph-grid{flex-direction:column;}
+  .ph-chart-box{width:100%;}
+  .title-strip{flex-direction:column;}
+  .ft-top{flex-wrap:wrap;}
+}
+@media(max-width:600px){
+  .banks-grid,.rmedia-grid,.sim-grid,.rdocs,.poi-grid,.poi-mini{grid-template-columns:1fr;}
+  .price-big{font-size:26px;}
+  .title-strip h1{font-size:22px;}
+  .right-stack{flex-direction:column;}
+}
+
+/* ===== REFAR BRAND ===== */
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.ft-logo{display:flex;gap:10px;align-items:center;}
+.ft-logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.ft-logo .logo-mark svg{width:100%;height:100%;display:block;}
+.ft-logo .logo-name{font-weight:800;font-size:22px;color:#1B2A4A;letter-spacing:.5px;}
+a.hbtn.primary,a.hlink.primary,.hbtn.primary,.hlink.primary{background:#E24B4A!important;color:#fff!important;border-color:#E24B4A!important;text-decoration:none;display:inline-flex;align-items:center;}
+a.hbtn.primary:hover,.hbtn.primary:hover,.hlink.primary:hover{background:#C63D3C!important;}
+a.hbtn,a.hlink{text-decoration:none;}
+</style>
+  <!-- BREADCRUMBS -->
+  <div class="crumbs">
+    <a href="index.html">Главная</a><span class="sep">/</span>
+    <a href="refar-catalog.html">Продажа квартир</a><span class="sep">/</span>
+    <a href="#">Ташкент</a><span class="sep">/</span>
+    <a href="#">Мирабадский район</a><span class="sep">/</span>
+    <span class="cur">3-комн., 95 м², 5/9</span>
+  </div>
+
+  <!-- HERO: gallery + sidebar -->
+  <section class="hero">
+    <div class="gallery">
+      <div class="media-tabs">
+        <div class="mtab on">📷 Фото <span class="cnt">32</span></div>
+        <div class="mtab">▶ Видео <span class="pend"></span></div>
+        <div class="mtab">◎ 360° тур <span class="pend"></span></div>
+        <div class="mtab spacer"></div>
+        <div class="mtab">⛶ Все 32 фото</div>
+      </div>
+      <div class="media-area">
+        <div class="main-photo">
+          <div class="mp-top">
+            <span class="chip"><span class="dot" style="background:var(--succ)"></span>Проверено REFAR</span>
+            <span class="chip" style="background:var(--succ-10);color:var(--succ)">Цена снижена · -3.8%</span>
+            <span class="chip"><span class="dot" style="background:var(--warn-60)"></span>VR-съёмка готовится</span>
+            <span class="chip round">♡</span>
+            <span class="chip round">⤴</span>
+          </div>
+          <div class="mp-bot">
+            <span class="mp-count">📷 8 / 32</span>
+            <div class="mp-nav"><span class="mp-arrow">‹</span><span class="mp-arrow">›</span></div>
+          </div>
+        </div>
+        <div class="right-stack">
+          <div class="pend-card">
+            <div class="pend-badge"><span class="dot"></span>Pending · видео</div>
+            <div class="pend-play">▶</div>
+            <h4>Видео-обзор готовится</h4>
+            <p>Будет добавлен в течение 24 часов · монтаж в работе</p>
+            <span class="pend-notify">🔔 Уведомить когда готово</span>
+          </div>
+          <div class="pend-card">
+            <div class="pend-badge"><span class="dot"></span>Pending · 360°</div>
+            <div class="pend-play">◎</div>
+            <h4>360° тур — в процессе монтажа</h4>
+            <p>VR-съёмка завершена 02.06 · ожидаемая публикация 03.06</p>
+            <span class="pend-notify">🔔 Уведомить когда готово</span>
+          </div>
+        </div>
+      </div>
+      <div class="thumbs">
+        <div class="thumb"></div><div class="thumb"></div><div class="thumb"></div>
+        <div class="thumb"></div><div class="thumb more">+ Ещё 28</div>
+      </div>
+    </div>
+
+    <aside class="side">
+      <div class="price-card">
+        <div class="price-row">
+          <span class="price-big">$ 125 000</span>
+          <span class="price-drop">↓ 3.8%</span>
+        </div>
+        <div class="price-was">Было $ 130 000 · обновлено 12.05.2026</div>
+        <div class="price-sum">≈ 1 562 500 000 сум · $ 1 316 / м²</div>
+        <div class="pc-div"></div>
+        <div class="mort-teaser">
+          <div class="mort-ic">🏦</div>
+          <div class="mort-info"><div class="m1">Ипотека от $ 985 / мес</div><div class="m2">Расчёт на 15 лет · ставка 19%</div></div>
+          <span class="mort-calc">Рассчитать ↓</span>
+        </div>
+        <div class="pc-div"></div>
+        <button class="btn-lg btn-blue">Связаться с агентом</button>
+        <div class="btn-pair"><button>📅 Записаться на показ</button><button>💬 Чат</button></div>
+        <div class="btn-trio"><button>♡ В избранное</button><button>⇄ Сравнить</button><button>⤴ Поделиться</button></div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-top">
+          <div class="agent-av"></div>
+          <div>
+            <div class="agent-name">Светлана Михайлова</div>
+            <div class="agent-meta"><span class="star">★ 4.9</span> · REFAR Senior</div>
+          </div>
+          <span class="agent-verif">✓ verified</span>
+        </div>
+        <div class="agent-stats">
+          <div class="agent-stat"><b>142</b><span>Сделок</span></div>
+          <div class="agent-stat"><b>38</b><span>Объектов</span></div>
+          <div class="agent-stat"><b>7 лет</b><span>Опыт</span></div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- TITLE STRIP -->
+  <section class="title-strip">
+    <div>
+      <div class="ts-badges">
+        <span class="tsb" style="background:var(--g5)">REFAR ID · RFR-3402</span>
+        <span class="tsb">Вторичный рынок</span>
+        <span class="tsb"><span class="dot"></span>Проверено REFAR</span>
+        <span class="tsb succ">Снижение -3.8% · 12.05</span>
+        <span class="tsb brand">AI-оценка 92% точность</span>
+      </div>
+      <h1>3-комнатная квартира, 95 м², 5 / 9 этаж</h1>
+      <div class="ts-addr">📍 Ташкент, Мирабадский район, ул. Шахрисабз, 12 · м. Айбек 350 м</div>
+      <div class="ts-stats">
+        <div class="ts-stat"><span class="ico">👁</span><div><b>1 248</b><span>просмотров</span></div></div>
+        <div class="ts-stat"><span class="ico">♡</span><div><b>37</b><span>в избранном</span></div></div>
+        <div class="ts-stat"><span class="ico">📅</span><div><b>Опубликовано 12.04.2026</b></div></div>
+        <div class="ts-stat"><span class="ico">⏱</span><div><b>Обновлено 12.05.2026</b></div></div>
+      </div>
+    </div>
+    <div class="ts-actions">
+      <span class="ts-act">📄 PDF-паспорт</span>
+      <span class="ts-act">⚐ Пожаловаться</span>
+    </div>
+  </section>
+
+  <!-- STICKY TABS -->
+  <nav class="tabnav">
+    <a href="#s-desc" class="on">Описание</a>
+    <a href="#s-char">Характеристики</a>
+    <a href="#s-plan">Планировка</a>
+    <a href="#s-price">История цены <span class="dot"></span></a>
+    <a href="#s-loc">Локация</a>
+    <a href="#s-mort">Ипотека</a>
+    <a href="#s-similar">Похожие</a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+    <div class="article">
+
+      <!-- Локация и ориентиры -->
+      <div class="sec-card" id="s-loc">
+        <div class="sec-head"><h2>Локация и ориентиры рядом</h2><span class="line"></span><span class="tag">Мирабадский район, Ташкент</span><span class="tag dot">AI-индекс локации 8.7 / 10</span></div>
+        <div class="loc-map" id="locmap">
+          <div class="pin" style="left:355px;top:135px;"></div>
+          <div class="loc-poi" style="left:180px;top:70px;">Ⓜ</div>
+          <div class="loc-poi" style="left:330px;top:130px;">🎒</div>
+          <div class="loc-poi" style="left:560px;top:220px;">🛍</div>
+          <div class="loc-poi" style="left:280px;top:250px;">🧒</div>
+          <div class="loc-ctrl"><span class="on">Спутник</span><span>Транспорт</span><span>Школы</span><span>Парки</span><span>ТЦ</span></div>
+        </div>
+        <div class="subhead">Что рядом <span class="line"></span><span class="tag">Расчёт: пешком и на машине</span></div>
+        <div class="poi-grid">
+          <div class="poi-card"><div class="poi-top"><span class="poi-ic">Ⓜ</span><div><div class="poi-name">Метро «Айбек»</div><div class="poi-desc">Узбекистанская линия</div></div></div><div class="poi-dist"><span>📍 350 м</span><span>🚶 5 мин</span></div></div>
+          <div class="poi-card"><div class="poi-top"><span class="poi-ic">🎒</span><div><div class="poi-name">Школа №26</div><div class="poi-desc">Общеобразовательная</div></div></div><div class="poi-dist"><span>📍 200 м</span><span>🚶 3 мин</span></div></div>
+          <div class="poi-card"><div class="poi-top"><span class="poi-ic">🛍</span><div><div class="poi-name">ТЦ Mega Planet</div><div class="poi-desc">Гипермаркет, кинотеатр</div></div></div><div class="poi-dist"><span>📍 1.2 км</span><span>🚗 5 мин</span></div></div>
+          <div class="poi-card"><div class="poi-top"><span class="poi-ic">🧒</span><div><div class="poi-name">Детсад «Капля»</div><div class="poi-desc">Государственный</div></div></div><div class="poi-dist"><span>📍 450 м</span><span>🚶 6 мин</span></div></div>
+        </div>
+        <div class="poi-mini">
+          <div class="poi-min">🏥 <b>Клиника MedPlaza</b><span class="mdist">750 м</span></div>
+          <div class="poi-min">☕ <b>Кофейня Bonum</b><span class="mdist">180 м</span></div>
+          <div class="poi-min">🏋 <b>Фитнес OneClub</b><span class="mdist">620 м</span></div>
+          <div class="poi-min">🌳 <b>Парк Бабура</b><span class="mdist">1.1 км</span></div>
+          <div class="poi-min">🛒 <b>Korzinka.uz</b><span class="mdist">320 м</span></div>
+          <div class="poi-min">⛪ <b>Лицей UWED</b><span class="mdist">850 м</span></div>
+          <div class="poi-min">🚍 <b>Остановка автобуса</b><span class="mdist">120 м</span></div>
+        </div>
+      </div>
+
+      <!-- Описание -->
+      <div class="sec-card" id="s-desc">
+        <div class="sec-head"><h2>Описание</h2><span class="line"></span><span class="tag">Авторский ремонт 2024</span></div>
+        <p class="desc-text">Просторная 3-комнатная квартира в самом сердце Мирабадского района. Полностью обновлённый ремонт авторского уровня 2024 года: импортная сантехника, инверторные кондиционеры в каждой комнате, тёплый пол в санузлах. Закрытая огороженная территория с круглосуточной охраной, подземный паркинг (1 место входит в стоимость). До метро Айбек — 5 минут пешком. В шаговой доступности: ТЦ Mega Planet, школа №26, академический лицей.</p>
+        <div class="show-more">Показать полностью ↓</div>
+      </div>
+
+      <!-- История цены -->
+      <div class="sec-card" id="s-price">
+        <div class="sec-head"><h2>История цены</h2><span class="tag dot">Цена снижена</span><span class="line"></span><span class="tag" style="border:none;background:transparent;color:var(--succ);font-weight:600;">За 51 день · -$ 5 000 (-3.8%)</span></div>
+        <p class="ph-lead">С момента публикации стоимость снижена на 3.8%. По данным REFAR — это типичная динамика для квартир этого класса в Мирабадском районе за последние 60 дней.</p>
+        <div class="ph-grid">
+          <div class="ph-chart-box">
+            <div class="ph-cur">
+              <div><div class="big">$ 125 000</div><div class="lbl">текущая цена</div></div>
+              <div><div class="old">$ 130 000</div><div class="lbl">стартовая 12.04</div></div>
+            </div>
+            <div class="ph-chart"><svg width="100%" height="120" viewBox="0 0 320 120" preserveAspectRatio="none">
+              <line x1="0" y1="26" x2="320" y2="26" stroke="#F1F5F9"/><line x1="0" y1="56" x2="320" y2="56" stroke="#F1F5F9"/><line x1="0" y1="86" x2="320" y2="86" stroke="#F1F5F9"/>
+              <polyline points="18,28 106,40 184,58 244,74 304,75" fill="none" stroke="#1B2A4A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="18" cy="28" r="5" fill="#1B2A4A"/><circle cx="106" cy="40" r="5" fill="#1B2A4A"/><circle cx="184" cy="58" r="5" fill="#1B2A4A"/><circle cx="244" cy="74" r="5" fill="#1B2A4A"/><circle cx="304" cy="75" r="7" fill="#1B2A4A" stroke="#fff" stroke-width="2"/>
+            </svg></div>
+            <div class="ph-xaxis"><span>12.04</span><span>26.04</span><span>08.05</span><span>12.05</span><span>сегодня</span></div>
+          </div>
+          <div class="ph-events">
+            <div class="ph-ev"><div class="date"><b>12.05</b><span>2026</span></div><div class="chg"><div class="prices">$ 130 000 → <span class="to">$ 125 000</span></div><div class="sub">Снижение $ 5 000 · -3.8%</div></div><span class="last">Последнее</span></div>
+            <div class="ph-ev"><div class="date"><b>26.04</b><span>2026</span></div><div class="chg"><div class="prices">$ 130 000 → <span class="to">$ 128 500</span></div><div class="sub">Снижение $ 1 500 · -1.2%</div></div></div>
+            <div class="ph-ev"><div class="date"><b>12.04</b><span>2026</span></div><div class="chg"><div class="prices">— → <span class="to">$ 130 000</span></div><div class="sub" style="color:var(--g50)">Стартовая цена · 0%</div></div></div>
+          </div>
+        </div>
+        <div class="ph-subscribe"><span style="font-size:16px;">ℹ️</span><div class="txt"><b>Подписаться на изменение цены</b><span>Пришлём push и письмо, если цена снизится ещё раз</span></div><button>Подписаться</button></div>
+      </div>
+
+      <!-- Характеристики -->
+      <div class="sec-card" id="s-char">
+        <div class="sec-head"><h2>Характеристики объекта</h2><span class="line"></span><span class="tag">26 параметров</span></div>
+        <div class="char-grid">
+          <div class="char-row"><span class="k">Тип объекта</span><span class="line"></span><span class="v">Квартира</span></div>
+          <div class="char-row"><span class="k">Документы</span><span class="line"></span><span class="v">Кадастр готов<span class="pill succ">Проверено</span></span></div>
+          <div class="char-row"><span class="k">Площадь общая</span><span class="line"></span><span class="v">95 м²</span></div>
+          <div class="char-row"><span class="k">Тип сделки</span><span class="line"></span><span class="v">Прямая продажа</span></div>
+          <div class="char-row"><span class="k">Площадь жилая</span><span class="line"></span><span class="v">61 м²</span></div>
+          <div class="char-row"><span class="k">Собственников</span><span class="line"></span><span class="v">1</span></div>
+          <div class="char-row"><span class="k">Площадь кухни</span><span class="line"></span><span class="v">16 м²</span></div>
+          <div class="char-row"><span class="k">Срок собственности</span><span class="line"></span><span class="v">&gt; 3 лет</span></div>
+          <div class="char-row"><span class="k">Этаж</span><span class="line"></span><span class="v">5 / 9</span></div>
+          <div class="char-row"><span class="k">Возможна ипотека</span><span class="line"></span><span class="v">Да, 8 банков<span class="pill">Аккредитован</span></span></div>
+          <div class="char-row"><span class="k">Высота потолков</span><span class="line"></span><span class="v">3.0 м</span></div>
+          <div class="char-row"><span class="k">Возможен торг</span><span class="line"></span><span class="v">Да, в разумных пределах</span></div>
+          <div class="char-row"><span class="k">Год постройки</span><span class="line"></span><span class="v">2018</span></div>
+          <div class="char-row"><span class="k">Лифт</span><span class="line"></span><span class="v">Пассажирский + грузовой</span></div>
+          <div class="char-row"><span class="k">Тип здания</span><span class="line"></span><span class="v">Монолит-кирпич</span></div>
+          <div class="char-row"><span class="k">Отопление</span><span class="line"></span><span class="v">Центральное + котёл</span></div>
+          <div class="char-row"><span class="k">Балкон / лоджия</span><span class="line"></span><span class="v">Лоджия 6 м²</span></div>
+          <div class="char-row"><span class="k">Окна выходят на</span><span class="line"></span><span class="v">Двор + улица</span></div>
+          <div class="char-row"><span class="k">Санузел</span><span class="line"></span><span class="v">Раздельный, 2 шт.</span></div>
+          <div class="char-row"><span class="k">Класс энергоэф.</span><span class="line"></span><span class="v">B+</span></div>
+          <div class="char-row"><span class="k">Ремонт</span><span class="line"></span><span class="v">Авторский 2024<span class="pill">Премиум</span></span></div>
+          <div class="char-row"><span class="k">Закрытая территория</span><span class="line"></span><span class="v">Да</span></div>
+          <div class="char-row"><span class="k">Мебель</span><span class="line"></span><span class="v">Частично</span></div>
+          <div class="char-row"><span class="k">Охрана</span><span class="line"></span><span class="v">Круглосуточная</span></div>
+          <div class="char-row"><span class="k">Парковка</span><span class="line"></span><span class="v">Подземная, 1 место</span></div>
+          <div class="char-row"><span class="k">Детская площадка</span><span class="line"></span><span class="v">Да, 2024</span></div>
+        </div>
+      </div>
+
+      <!-- Удобства -->
+      <div class="sec-card">
+        <div class="sec-head"><h2>Что есть в квартире и доме</h2><span class="line"></span><span class="tag">18 удобств</span></div>
+        <div class="amen-group">
+          <div class="amen-title">В квартире</div>
+          <div class="amen-list">
+            <div class="amen"><span class="ic">❄</span>Кондиционеры (3 шт.)</div>
+            <div class="amen"><span class="ic">🔥</span>Тёплый пол в санузлах</div>
+            <div class="amen"><span class="ic">📡</span>Wi-Fi + оптика</div>
+            <div class="amen"><span class="ic">🚿</span>Импортная сантехника</div>
+            <div class="amen"><span class="ic">🧺</span>Стиральная машина</div>
+            <div class="amen"><span class="ic">🍳</span>Кухонная зона 2024</div>
+            <div class="amen"><span class="ic">🛋</span>Частичная мебель</div>
+            <div class="amen"><span class="ic">🚪</span>Бронированная дверь</div>
+            <div class="amen"><span class="ic">🪟</span>Стеклопакеты Rehau</div>
+          </div>
+        </div>
+        <div class="amen-group">
+          <div class="amen-title">В доме и на территории</div>
+          <div class="amen-list">
+            <div class="amen"><span class="ic">🚗</span>Подземный паркинг</div>
+            <div class="amen"><span class="ic">🔒</span>Закрытая территория</div>
+            <div class="amen"><span class="ic">👮</span>Круглосуточная охрана</div>
+            <div class="amen"><span class="ic">📹</span>Видеонаблюдение</div>
+            <div class="amen"><span class="ic">🛗</span>Пассажирский + грузовой лифт</div>
+            <div class="amen"><span class="ic">🛝</span>Детская площадка</div>
+            <div class="amen"><span class="ic">🌳</span>Озеленённый двор</div>
+            <div class="amen"><span class="ic">🏬</span>Колясочная</div>
+            <div class="amen"><span class="ic">♿</span>Безбарьерная среда</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ипотечный калькулятор -->
+      <div class="sec-card" id="s-mort">
+        <div class="mort-head">
+          <div class="ic">🏦</div>
+          <div><h2>Ипотечный калькулятор</h2><div class="sub">Подберите комфортный платёж · ставки 8 банков-партнёров REFAR</div></div>
+          <div class="acc"><span class="dot"></span>Аккредитованные банки · 8</div>
+        </div>
+        <div class="mort-body">
+          <div class="mort-left">
+            <div class="slider-row">
+              <div class="st"><span>Стоимость объекта</span><span class="hint">из карточки · отредактировать</span></div>
+              <div class="slider-val"><b>$ 125 000</b><span class="unit">USD</span></div>
+              <div class="track"><div class="fill" style="width:96%"></div></div>
+            </div>
+            <div class="slider-row">
+              <div class="st"><span>Первоначальный взнос</span><span class="hint">минимум 15%</span></div>
+              <div class="slider-val"><b>$ 37 500 · 30%</b><span class="unit">USD</span></div>
+              <div class="track"><div class="fill" style="width:58%"></div></div>
+            </div>
+            <div class="slider-row">
+              <div class="st"><span>Срок кредита</span><span class="hint">от 5 до 30 лет</span></div>
+              <div class="slider-val"><b>15 лет</b><span class="unit">лет</span></div>
+              <div class="track"><div class="fill" style="width:50%"></div></div>
+            </div>
+            <div class="slider-row">
+              <div class="st"><span>Процентная ставка</span><span class="hint">средняя по партнёрам</span></div>
+              <div class="slider-val"><b>19.0% / год</b><span class="unit">%</span></div>
+              <div class="track"><div class="fill" style="width:63%"></div></div>
+            </div>
+            <div class="slider-row">
+              <div class="st"><span>Валюта расчёта</span></div>
+              <div class="cur-tabs"><span class="on">USD</span><span>UZS</span><span>EUR</span></div>
+            </div>
+            <div class="mort-btns"><button class="calc">Рассчитать ↻</button><button class="reset">Сбросить</button></div>
+          </div>
+          <div class="mort-result">
+            <div class="mr-head"><span class="lbl">Ежемесячный платёж</span><span class="line"></span><span class="tag">Аннуитет</span></div>
+            <div class="mr-big">$ 985</div>
+            <div class="mr-sum">≈ 12 312 500 сум в месяц</div>
+            <div class="mr-line"></div>
+            <div class="mr-row"><span class="k">Сумма кредита</span><span class="line"></span><span class="v">$ 87 500</span></div>
+            <div class="mr-row"><span class="k">Срок</span><span class="line"></span><span class="v">15 лет · 180 платежей</span></div>
+            <div class="mr-row"><span class="k">Ставка</span><span class="line"></span><span class="v">19.0% год.</span></div>
+            <div class="mr-row"><span class="k">Переплата</span><span class="line"></span><span class="v">$ 89 800</span></div>
+            <div class="mr-row"><span class="k">Общая сумма выплат</span><span class="line"></span><span class="v">$ 177 300</span></div>
+            <div class="mr-load"><div class="lt"><span>Нагрузка на доход</span><span class="ok">32% · комфортно</span></div><div class="track"><div class="fill"></div></div></div>
+            <div class="mr-cta"><button class="primary">Подобрать банк (8 предложений)</button><button class="ghost">📞 Получить консультацию</button></div>
+          </div>
+        </div>
+        <div class="subhead banks-head">Предложения банков-партнёров <span class="line"></span><span class="tag">Обновлено сегодня</span></div>
+        <div class="banks-grid">
+          <div class="bank"><div class="bank-top"><span class="bank-logo"></span><span class="bank-name">Узпромстройбанк</span><span class="bank-best">★ best</span></div><div class="bank-rate"><b>18.5%</b><span>год.</span></div><div class="bank-pay">Платёж · $ 956</div><div class="bank-cond">Взнос от 20% · до 20 лет</div><button class="bank-btn">Подать заявку</button></div>
+          <div class="bank"><div class="bank-top"><span class="bank-logo"></span><span class="bank-name">Ипотека-банк</span></div><div class="bank-rate"><b>19.0%</b><span>год.</span></div><div class="bank-pay">Платёж · $ 985</div><div class="bank-cond">Взнос от 15% · до 25 лет</div><button class="bank-btn">Подать заявку</button></div>
+          <div class="bank"><div class="bank-top"><span class="bank-logo"></span><span class="bank-name">Hamkorbank</span></div><div class="bank-rate"><b>19.5%</b><span>год.</span></div><div class="bank-pay">Платёж · $ 1 012</div><div class="bank-cond">Взнос от 25% · до 15 лет</div><button class="bank-btn">Подать заявку</button></div>
+          <div class="bank"><div class="bank-top"><span class="bank-logo"></span><span class="bank-name">Trustbank</span></div><div class="bank-rate"><b>20.0%</b><span>год.</span></div><div class="bank-pay">Платёж · $ 1 042</div><div class="bank-cond">Взнос от 30% · до 20 лет</div><button class="bank-btn">Подать заявку</button></div>
+          <div class="bank"><div class="bank-top"><span class="bank-logo"></span><span class="bank-name">Kapitalbank</span></div><div class="bank-rate"><b>20.5%</b><span>год.</span></div><div class="bank-pay">Платёж · $ 1 071</div><div class="bank-cond">Взнос от 20% · до 20 лет</div><button class="bank-btn">Подать заявку</button></div>
+          <div class="bank"><div class="bank-top"><span class="bank-logo"></span><span class="bank-name">Asaka Bank</span></div><div class="bank-rate"><b>21.0%</b><span>год.</span></div><div class="bank-pay">Платёж · $ 1 100</div><div class="bank-cond">Взнос от 30% · до 15 лет</div><button class="bank-btn">Подать заявку</button></div>
+        </div>
+        <div class="mort-disc"><span>ℹ️</span><span>Расчёт носит ориентировочный характер. Финальные условия банк определяет после проверки документов. REFAR не является банком и не выдаёт кредиты.</span></div>
+      </div>
+
+      <!-- Закрытые материалы REFAR -->
+      <div class="sec-card refar-sec" id="s-refar">
+        <div class="refar-head">
+          <div class="ic">🔒</div>
+          <div><h2>Материалы для презентации REFAR</h2><div class="sub">Не отображается обычному клиенту · виден только сотруднику REFAR в его кабинете</div></div>
+          <div class="refar-badges"><span class="b1">Только для REFAR</span><span class="b2"><span class="dot"></span>Доступ: Светлана М. · до 18.06.2026</span></div>
+        </div>
+        <div class="refar-warn">
+          <span class="wic">⚠️</span>
+          <div class="wtxt"><b>Материалы доступны только для презентации в офисе REFAR</b><span>После подписания договора с клиентом. Запрещено пересылать, скачивать, делиться через мессенджеры.</span></div>
+          <span class="signed">✓ Соглашение подписано</span>
+        </div>
+        <div class="rmedia-grid">
+          <div class="rmedia">
+            <div class="rmedia-thumb"><span class="rmedia-badge"><span class="dot"></span>Готово · ВНУТРЕННЕЕ</span><div class="rmedia-play">▶</div><span class="rmedia-dur">1:42</span></div>
+            <div class="rmedia-body"><div class="rt">Видео внешнего фасада</div><div class="rd">Съёмка дрон + земля · 30.05.2026 · 4K</div><div class="rmedia-act"><button class="watch">Смотреть</button><button class="dl">⤵</button></div></div>
+          </div>
+          <div class="rmedia">
+            <div class="rmedia-thumb" style="background:linear-gradient(135deg,#334155,#475569)"><span class="rmedia-badge" style="background:var(--warn-10);color:var(--warn-60)"><span class="dot" style="background:var(--warn-60)"></span>В монтаже</span><div class="rmedia-play">✂</div><div class="rmedia-prog"><div class="bar"><i style="width:60%"></i></div><div class="pt">Монтаж · 60%</div></div></div>
+            <div class="rmedia-body"><div class="rt">Видео двора и подъезда</div><div class="rd">Съёмка завершена · публикация 03.06</div><div class="rmedia-act"><button class="notify">🔔 Уведомить когда готово</button></div></div>
+          </div>
+          <div class="rmedia">
+            <div class="rmedia-thumb" style="background:linear-gradient(135deg,#334155,#475569)"><span class="rmedia-badge" style="background:var(--warn-10);color:var(--warn-60)"><span class="dot" style="background:var(--warn-60)"></span>VR-сшивка</span><div class="rmedia-play">◎</div><div class="rmedia-prog"><div class="bar"><i style="width:70%"></i></div><div class="pt">Сшивка панорамы · 70%</div></div></div>
+            <div class="rmedia-body"><div class="rt">360° тур проекта (полный)</div><div class="rd">Съёмка 12 локаций · готово 03.06</div><div class="rmedia-act"><button class="notify">🔔 Уведомить когда готово</button></div></div>
+          </div>
+        </div>
+        <div class="rdocs">
+          <div class="rdoc"><div class="dic">📄</div><div class="dtxt"><b>Презентация PDF (12 слайдов)</b><span>Только для офисной презентации · 8.4 MB</span></div><button class="open">Открыть</button></div>
+          <div class="rdoc"><div class="dic">🗎</div><div class="dtxt"><b>Юр.чек-лист и документы</b><span>Кадастр, выписка, тех.паспорт · 5 файлов</span></div><button class="open">Открыть</button></div>
+        </div>
+        <div class="rlog"><span class="lic">🔍</span><span class="ltxt">Доступ к материалам логируется. Последние 3 просмотра: Светлана М. (01.06 14:22), Дилшод Р. (29.05 09:11), офис REFAR Mirabad (28.05 16:40).</span><button class="lbtn">Журнал →</button></div>
+      </div>
+
+      <!-- Похожие объекты -->
+      <div class="sec-card" id="s-similar">
+        <div class="sec-head"><h2>Похожие объекты в Мирабадском районе</h2><span class="line"></span><span class="tag" style="border:none;background:transparent;color:var(--brand);font-weight:600;">Показать все →</span></div>
+        <div class="sim-grid">
+          <div class="sim-card" onclick="location.href='refar-object.html'">
+            <div class="sim-photo"><span class="sim-match"><span class="dot"></span>96% совпадение</span><span class="sim-drop">↓ 3.2%</span></div>
+            <div class="sim-body"><div class="sim-price"><b>$ 118 000</b><span class="old">$ 122 000</span></div><div class="sim-title">3-к. квартира · 88 м²</div><div class="sim-addr">Мирабад, ул. Хорезм, 14 · 7/9</div><div class="sim-params"><span>88 м²</span><span>3 комн.</span><span>7/9</span><span>2017</span></div><div class="sim-foot"><span class="fline"></span><span class="fic">♡</span><span class="fic">⇄</span></div></div>
+          </div>
+          <div class="sim-card" onclick="location.href='refar-object.html'">
+            <div class="sim-photo" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0)"><span class="sim-match"><span class="dot"></span>92% совпадение</span></div>
+            <div class="sim-body"><div class="sim-price"><b>$ 132 000</b></div><div class="sim-title">3-к. квартира · 102 м²</div><div class="sim-addr">Мирабад, ул. А.Тимура, 8 · 4/12</div><div class="sim-params"><span>102 м²</span><span>3 комн.</span><span>4/12</span><span>2020</span></div><div class="sim-foot"><span class="fline"></span><span class="fic">♡</span><span class="fic">⇄</span></div></div>
+          </div>
+          <div class="sim-card" onclick="location.href='refar-object.html'">
+            <div class="sim-photo" style="background:linear-gradient(135deg,#fef3c7,#fde68a)"><span class="sim-match"><span class="dot"></span>88% совпадение</span><span class="sim-drop">↓ 5.2%</span></div>
+            <div class="sim-body"><div class="sim-price"><b>$ 109 000</b><span class="old">$ 115 000</span></div><div class="sim-title">2-к. квартира · 78 м²</div><div class="sim-addr">Мирабад, пер. Ситора, 3 · 6/9</div><div class="sim-params"><span>78 м²</span><span>2 комн.</span><span>6/9</span><span>2019</span></div><div class="sim-foot"><span class="fline"></span><span class="fic">♡</span><span class="fic">⇄</span></div></div>
+          </div>
+          <div class="sim-card" onclick="location.href='refar-object.html'">
+            <div class="sim-photo" style="background:linear-gradient(135deg,#f3e8ff,#e9d5ff)"><span class="sim-match"><span class="dot"></span>85% совпадение</span></div>
+            <div class="sim-body"><div class="sim-price"><b>$ 142 000</b></div><div class="sim-title">3-к. квартира · 110 м²</div><div class="sim-addr">Мирабад, ул. Шахрисабз, 24 · 9/12</div><div class="sim-params"><span>110 м²</span><span>3 комн.</span><span>9/12</span><span>2022</span></div><div class="sim-foot"><span class="fline"></span><span class="fic">♡</span><span class="fic">⇄</span></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right anchors -->
+    <aside class="anchors">
+      <div class="at">В этом объявлении</div>
+      <a href="#s-desc"><span class="m">—</span>Описание</a>
+      <a href="#s-char"><span class="m">—</span>Характеристики · 26</a>
+      <a href="#s-price"><span style="color:var(--succ)">▼</span>История цены · 3 события</a>
+      <a href="#s-loc"><span class="m">—</span>Локация и ориентиры</a>
+      <a href="#s-mort"><span class="m">—</span>Ипотечный калькулятор</a>
+      <a href="#s-refar">🔒 Закрытые материалы REFAR</a>
+      <a href="#s-similar"><span class="m">—</span>Похожие объекты</a>
+      <div class="ndiv"></div>
+      <div class="note">REFAR сопоставил квартиру с 7 похожими и оценил справедливый диапазон в <b style="color:var(--g80)">$ 121 000 – $ 134 000</b>.</div>
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  
+</div>
+
+<script>
+// Sticky tabs — active holat scroll bo'yicha
+var tabLinks=document.querySelectorAll(".tabnav a");
+tabLinks.forEach(function(a){
+  a.addEventListener("click",function(e){
+    var id=a.getAttribute("href");
+    if(id&&id.length>1&&document.querySelector(id)){
+      e.preventDefault();
+      document.querySelector(id).scrollIntoView({behavior:"smooth",block:"start"});
+      tabLinks.forEach(function(x){x.classList.remove("on");});
+      a.classList.add("on");
+    }
+  });
+});
+// Valyuta / media tab toggle
+document.querySelectorAll(".cur-tabs").forEach(function(g){
+  g.querySelectorAll("span").forEach(function(s){
+    s.addEventListener("click",function(){g.querySelectorAll("span").forEach(function(x){x.classList.remove("on");});s.classList.add("on");});
+  });
+});
+document.querySelectorAll(".media-tabs").forEach(function(g){
+  g.querySelectorAll(".mtab:not(.spacer)").forEach(function(s){
+    s.addEventListener("click",function(){
+      if(s.textContent.indexOf("Все")>-1)return;
+      g.querySelectorAll(".mtab").forEach(function(x){if(!x.classList.contains("spacer"))x.classList.remove("on");});s.classList.add("on");
+    });
+  });
+});
+document.querySelectorAll(".loc-ctrl").forEach(function(g){
+  g.querySelectorAll("span").forEach(function(s){
+    s.addEventListener("click",function(){g.querySelectorAll("span").forEach(function(x){x.classList.remove("on");});s.classList.add("on");});
+  });
+});
+</script>
+<script>
+// REFAR — obyekt sahifasini ?id= bo'yicha Supabase'dan yuklash (id yo'q bo'lsa demo qoladi)
+(function(){
+  var id = new URLSearchParams(location.search).get('id');
+  if(!id) return;
+  function fmtPrice(l){
+    var n = Number(l.price||0).toLocaleString('ru-RU');
+    return l.currency==='UZS' ? n+' сум' : '$ '+n;
+  }
+  function setText(sel,val){ var el=document.querySelector(sel); if(el&&val!=null&&val!=='') el.textContent=val; }
+  async function load(){
+    if(!window.sb){ setTimeout(load,150); return; }
+    try{
+      var r = await window.sb.from('web_listings').select('*').eq('id',id).maybeSingle();
+      var l = r.data;
+      if(!l){ setText('.title-strip h1','Объявление не найдено'); return; }
+      var title = l.title || ((l.rooms?l.rooms+'-комнатная ':'')+'квартира'+(l.area?', '+l.area+' м²':'')+(l.floor?', '+l.floor+(l.floor_total?' / '+l.floor_total:'')+' этаж':''));
+      setText('.title-strip h1', title);
+      document.title = title+' — REFAR';
+      setText('.price-big', fmtPrice(l));
+      if(l.area&&l.price){ var perM=Math.round(Number(l.price)/Number(l.area)); setText('.price-sum',(l.currency==='UZS'?perM.toLocaleString('ru-RU')+' сум':'$ '+perM.toLocaleString('ru-RU'))+' / м²'); }
+      var addr=[l.region,l.district,l.address].filter(Boolean).join(', ');
+      if(addr) setText('.ts-addr','📍 '+addr);
+      if(l.description) setText('.desc-text', l.description);
+      document.querySelectorAll('.ts-badges .tsb').forEach(function(b){ if(/REFAR ID/i.test(b.textContent)&&l.ref_code) b.textContent='REFAR ID · '+l.ref_code; });
+      var imgs = Array.isArray(l.images)?l.images:[];
+      if(imgs.length){
+        var mp=document.querySelector('.main-photo');
+        if(mp){ mp.style.backgroundImage='url('+imgs[0]+')'; mp.style.backgroundSize='cover'; mp.style.backgroundPosition='center'; }
+        var th=document.querySelector('.thumbs');
+        if(th){ th.innerHTML=imgs.slice(0,5).map(function(u){ return '<div class="thumb" style="background:url('+u+') center/cover"></div>'; }).join(''); }
+        var cnt=document.querySelector('.mp-count'); if(cnt) cnt.textContent='📷 1 / '+imgs.length;
+        document.querySelectorAll('.media-tabs .cnt').forEach(function(c){ c.textContent=imgs.length; });
+      }
+      document.querySelectorAll('#s-char .char-row').forEach(function(row){
+        var k=row.querySelector('.k'), v=row.querySelector('.v'); if(!k||!v) return;
+        var key=k.textContent.trim();
+        if(/Площадь общая/.test(key)&&l.area) v.textContent=l.area+' м²';
+        else if(/^Этаж/.test(key)&&l.floor) v.textContent=l.floor+(l.floor_total?' / '+l.floor_total:'');
+        else if(/Год постройки/.test(key)&&l.year_built) v.textContent=l.year_built;
+      });
+    }catch(e){ console.warn('object load',e); }
+  }
+  document.addEventListener('DOMContentLoaded', load);
+})();
+</script>
+{% endraw %}

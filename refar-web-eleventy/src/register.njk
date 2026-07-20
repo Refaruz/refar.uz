@@ -1,0 +1,37 @@
+---
+layout: base.njk
+title: "Рўйхатдан ўтиш · REFAR"
+activeNav: ""
+permalink: "/register.html"
+---
+{% raw %}
+<div class="auth-wrap"><div class="auth-card">
+<h1 data-i18n="auth.register_title">Регистрация</h1>
+<div class="sub">REFAR</div>
+<div id="msg" class="msg"></div>
+<div class="field"><label data-i18n="auth.name">Полное имя</label><input id="name" type="text" placeholder="Ismingiz"></div>
+<div class="field"><label data-i18n="auth.phone">Телефон</label><input id="phone" type="tel" placeholder="+998 __ ___ __ __"></div>
+<div class="field"><label data-i18n="auth.email">Email</label><input id="email" type="email" placeholder="email@refar.uz"></div>
+<div class="field"><label data-i18n="auth.password">Пароль</label><input id="password" type="password" placeholder="Kamida 6 belgi"></div>
+<button class="btn btn-red" id="regBtn" data-i18n="auth.reg_btn">Зарегистрироваться</button>
+<div class="auth-alt"><span data-i18n="auth.have">Есть аккаунт?</span> <a href="login.html" data-i18n="btn.login">Войти</a></div>
+</div></div>
+<script>
+document.getElementById('regBtn').addEventListener('click', async function(){
+  var msg=document.getElementById('msg'); msg.className='msg';
+  var name=document.getElementById('name').value.trim();
+  var phone=document.getElementById('phone').value.trim();
+  var email=document.getElementById('email').value.trim();
+  var pass=document.getElementById('password').value;
+  if(!name||!email||!pass){msg.className='msg err';msg.textContent='Заполните имя, email и пароль';return;}
+  if(pass.length<6){msg.className='msg err';msg.textContent='Пароль минимум 6 символов';return;}
+  if(!window.sb){msg.className='msg err';msg.textContent='Supabase не настроен (assets/config.js)';return;}
+  this.disabled=true; this.textContent='...';
+  var {data,error}=await window.sb.auth.signUp({email:email,password:pass,options:{data:{full_name:name,phone:phone}}});
+  this.disabled=false; this.textContent=window.REFAR_t('auth.reg_btn');
+  if(error){msg.className='msg err';msg.textContent=error.message;return;}
+  msg.className='msg ok';msg.textContent=window.REFAR_t('auth.reg_ok');
+  if(data.session){setTimeout(function(){location.href='cabinet.html';},1200);}
+});
+</script>
+{% endraw %}

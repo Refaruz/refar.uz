@@ -1,0 +1,32 @@
+---
+layout: base.njk
+title: "Кириш · REFAR"
+activeNav: ""
+permalink: "/login.html"
+---
+{% raw %}
+<div class="auth-wrap"><div class="auth-card">
+<h1 data-i18n="auth.login_title">Вход в аккаунт</h1>
+<div class="sub">REFAR</div>
+<div id="msg" class="msg"></div>
+<div class="field"><label data-i18n="auth.email">Email</label><input id="email" type="email" placeholder="email@refar.uz"></div>
+<div class="field"><label data-i18n="auth.password">Пароль</label><input id="password" type="password" placeholder="••••••••"></div>
+<button class="btn btn-brand" id="loginBtn" data-i18n="auth.login_btn">Войти</button>
+<div class="auth-alt"><span data-i18n="auth.no">Нет аккаунта?</span> <a href="register.html" data-i18n="btn.register">Регистрация</a></div>
+</div></div>
+<script>
+document.getElementById('loginBtn').addEventListener('click', async function(){
+  var msg=document.getElementById('msg'); msg.className='msg';
+  var email=document.getElementById('email').value.trim();
+  var pass=document.getElementById('password').value;
+  if(!email||!pass){msg.className='msg err';msg.textContent='Заполните все поля';return;}
+  if(!window.sb){msg.className='msg err';msg.textContent='Supabase не настроен (assets/config.js)';return;}
+  this.disabled=true; this.textContent='...';
+  var {data,error}=await window.sb.auth.signInWithPassword({email:email,password:pass});
+  this.disabled=false; this.textContent=window.REFAR_t('auth.login_btn');
+  if(error){msg.className='msg err';msg.textContent=error.message;return;}
+  location.href='cabinet.html';
+});
+document.getElementById('password').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('loginBtn').click();});
+</script>
+{% endraw %}

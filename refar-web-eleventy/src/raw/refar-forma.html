@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>REFAR — Uy tanlash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{
+  --navy:#1B2A4A; --navy2:#243656; --red:#E24B4A; --red2:#C9141F;
+  --bg:#F4F6FA; --card:#FFFFFF; --line:#E4E9F2; --text:#1E293B; --muted:#7A8699;
+  --green:#15803D; --lgreen:#E7F7EE;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;}
+.top{background:var(--navy);padding:16px 20px;display:flex;align-items:center;gap:10px;}
+.logo{color:#fff;font-family:'Montserrat';font-weight:800;font-size:20px;letter-spacing:.5px;}
+.logo span{color:var(--red);}
+.top small{color:rgba(255,255,255,.6);font-size:11px;margin-left:auto;}
+.wrap{flex:1;display:flex;flex-direction:column;max-width:520px;width:100%;margin:0 auto;padding:0 18px;}
+.prog{height:5px;background:var(--line);border-radius:20px;margin:18px 0 4px;overflow:hidden;}
+.prog-b{height:100%;background:linear-gradient(90deg,var(--red),var(--red2));border-radius:20px;transition:width .35s cubic-bezier(.4,0,.2,1);width:0;}
+.step-lbl{font-size:12px;color:var(--muted);margin-bottom:20px;font-weight:500;}
+.step{display:none;animation:fade .3s ease;}
+.step.on{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.q{font-family:'Montserrat';font-weight:700;font-size:22px;line-height:1.3;color:var(--navy);margin-bottom:6px;}
+.q-sub{font-size:13px;color:var(--muted);margin-bottom:22px;}
+.opts{display:flex;flex-direction:column;gap:11px;}
+.opt{background:var(--card);border:2px solid var(--line);border-radius:15px;padding:17px 19px;font-size:16px;font-weight:600;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:13px;transition:all .15s;text-align:left;width:100%;font-family:inherit;}
+.opt:active{transform:scale(.98);}
+.opt.sel{border-color:var(--red);background:#FFF5F5;}
+.opt .ic{font-size:22px;width:30px;text-align:center;flex-shrink:0;}
+.opt .sub{font-size:12px;color:var(--muted);font-weight:400;display:block;margin-top:1px;}
+.opt .txt{flex:1;}
+.opts.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.opts.grid .opt{justify-content:center;text-align:center;padding:20px 12px;font-size:17px;}
+input.fld{width:100%;background:var(--card);border:2px solid var(--line);border-radius:15px;padding:17px 19px;font-size:17px;font-family:inherit;color:var(--text);outline:none;transition:border .15s;}
+input.fld:focus{border-color:var(--red);}
+.hint{font-size:12px;color:var(--muted);margin-top:8px;padding-left:4px;}
+.nav{display:flex;gap:10px;margin:24px 0 30px;}
+.btn{flex:1;border:none;border-radius:15px;padding:16px;font-size:16px;font-weight:700;font-family:'Montserrat';cursor:pointer;transition:all .15s;}
+.btn:active{transform:scale(.98);}
+.btn-back{flex:0 0 54px;background:var(--card);border:2px solid var(--line);color:var(--muted);font-size:20px;}
+.btn-next{background:var(--red);color:#fff;box-shadow:0 4px 14px rgba(226,75,74,.3);}
+.btn-next:disabled{background:#CBD5E1;box-shadow:none;cursor:not-allowed;}
+.trust{display:flex;justify-content:center;gap:20px;padding:16px;color:var(--muted);font-size:11px;flex-wrap:wrap;}
+.trust span{display:flex;align-items:center;gap:4px;}
+/* Final */
+.done{text-align:center;padding:30px 0;}
+.done .circle{width:88px;height:88px;border-radius:50%;background:var(--lgreen);display:flex;align-items:center;justify-content:center;font-size:44px;margin:0 auto 22px;animation:pop .4s ease;}
+@keyframes pop{0%{transform:scale(0);}60%{transform:scale(1.15);}100%{transform:scale(1);}}
+.done h2{font-family:'Montserrat';font-size:24px;color:var(--navy);margin-bottom:10px;}
+.done p{color:var(--muted);font-size:15px;line-height:1.5;margin-bottom:24px;}
+.done .call{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;padding:15px 26px;border-radius:14px;text-decoration:none;font-weight:700;font-family:'Montserrat';font-size:16px;}
+.summary{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:16px 18px;text-align:left;margin-bottom:24px;}
+.summary .row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13px;}
+.summary .row:last-child{border:none;}
+.summary .row b{color:var(--navy);}
+.summary .row span{color:var(--muted);}
+
+/* ===== REFAR BRAND ===== */
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.ft-logo{display:flex;gap:10px;align-items:center;}
+.ft-logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.ft-logo .logo-mark svg{width:100%;height:100%;display:block;}
+.ft-logo .logo-name{font-weight:800;font-size:22px;color:#1B2A4A;letter-spacing:.5px;}
+a.hbtn.primary,a.hlink.primary,.hbtn.primary,.hlink.primary{background:#E24B4A!important;color:#fff!important;border-color:#E24B4A!important;text-decoration:none;display:inline-flex;align-items:center;}
+a.hbtn.primary:hover,.hbtn.primary:hover,.hlink.primary:hover{background:#C63D3C!important;}
+a.hbtn,a.hlink{text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="top"><span class="logo-mark" style="width:34px;height:34px;flex-shrink:0;display:inline-block;vertical-align:middle;"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M25 85 L25 53 Q25 50 27 48 L47 27 Q50 24 53 27 L73 48 Q75 50 75 53 L75 85" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 63 L50 47 L65 63" fill="none" stroke="#E24B4A" stroke-width="10.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M43 77 L50 68.5 L57 77 Z" fill="#fff"/></svg></span><div class="logo">RE<span>F</span>AR</div><small>Rieltorlik xizmatlari</small></div>
+
+<div class="wrap">
+  <div class="prog"><div class="prog-b" id="prog"></div></div>
+  <div class="step-lbl" id="steplbl">1-qadam</div>
+
+  <!-- 1: HUDUD -->
+  <div class="step on" data-step="hudud">
+    <div class="q">Qaysi shaharni tanlaysiz?</div>
+    <div class="q-sub">Xizmat ko'rsatadigan hududimiz</div>
+    <div class="opts grid">
+      <button class="opt" onclick="pick('hudud','Toshkent',this)"><span class="txt">🏙 Toshkent</span></button>
+      <button class="opt" onclick="pick('hudud','Fargona',this)"><span class="txt">🌆 Farg'ona</span></button>
+    </div>
+  </div>
+
+  <!-- 2: MAQSAD -->
+  <div class="step" data-step="maqsad">
+    <div class="q">Nima qilmoqchisiz?</div>
+    <div class="opts">
+      <button class="opt" onclick="pick('maqsad','sotib_olish',this)"><span class="ic">🔑</span><span class="txt">Uy sotib olmoqchiman<span class="sub">Sizga mos uy topamiz</span></span></button>
+      <button class="opt" onclick="pick('maqsad','sotish',this)"><span class="ic">🏷</span><span class="txt">Uyimni sotmoqchiman<span class="sub">Video + 360° bilan tez sotamiz</span></span></button>
+    </div>
+  </div>
+
+  <!-- ═══ SOTIB OLISH TARMOG'I ═══ -->
+  <!-- 3a: XONA -->
+  <div class="step" data-step="b_xona">
+    <div class="q">Necha xonali uy kerak?</div>
+    <div class="opts grid">
+      <button class="opt" onclick="pick('xona','1 xona',this)">1 xona</button>
+      <button class="opt" onclick="pick('xona','2 xona',this)">2 xona</button>
+      <button class="opt" onclick="pick('xona','3 xona',this)">3 xona</button>
+      <button class="opt" onclick="pick('xona','4+ xona',this)">4+ xona</button>
+    </div>
+  </div>
+
+  <!-- 4a: BYUDJET -->
+  <div class="step" data-step="b_byudjet">
+    <div class="q">Byudjetingiz qancha?</div>
+    <div class="q-sub">Taxminiy summa — aniq bo'lishi shart emas</div>
+    <div class="opts">
+      <button class="opt" onclick="pick('byudjet','30-50 ming $',this)"><span class="txt">$30 000 – $50 000</span></button>
+      <button class="opt" onclick="pick('byudjet','50-70 ming $',this)"><span class="txt">$50 000 – $70 000</span></button>
+      <button class="opt" onclick="pick('byudjet','70-100 ming $',this)"><span class="txt">$70 000 – $100 000</span></button>
+      <button class="opt" onclick="pick('byudjet','100 ming $ dan yuqori',this)"><span class="txt">$100 000 dan yuqori</span></button>
+    </div>
+  </div>
+
+  <!-- 5a: TO'LOV -->
+  <div class="step" data-step="b_tolov">
+    <div class="q">To'lov qanday bo'ladi?</div>
+    <div class="opts">
+      <button class="opt" onclick="pickTolov('Naqd',this)"><span class="ic">💵</span><span class="txt">Naqd pul<span class="sub">To'liq summa tayyor</span></span></button>
+      <button class="opt" onclick="pickTolov('Ipoteka',this)"><span class="ic">🏦</span><span class="txt">Ipoteka (kredit)<span class="sub">Bank orqali</span></span></button>
+    </div>
+  </div>
+
+  <!-- 6a: IPOTEKA — BOSHLANG'ICH (faqat ipoteka tanlansa) -->
+  <div class="step" data-step="b_boshlangich">
+    <div class="q">Boshlang'ich to'lov uchun qancha mablag'ingiz bor?</div>
+    <div class="q-sub">💡 Masalan $70 000 uy uchun kamida ~$18 000 boshlang'ich kerak (26%)</div>
+    <div class="opts" id="boshlangich-opts"></div>
+  </div>
+
+  <!-- 7a: RASMIY ISH HAQI (faqat ipoteka) -->
+  <div class="step" data-step="b_ish">
+    <div class="q">Rasmiy ish haqingiz bormi?</div>
+    <div class="q-sub">Ipoteka uchun bank shuni so'raydi</div>
+    <div class="opts">
+      <button class="opt" onclick="pick('rasmiy_ish','Ha, rasmiy',this)"><span class="ic">✅</span><span class="txt">Ha, rasmiy ish haqim bor</span></button>
+      <button class="opt" onclick="pick('rasmiy_ish','Yo’q',this)"><span class="ic">➖</span><span class="txt">Yo'q / norasmiy</span></button>
+    </div>
+  </div>
+
+  <!-- 8a: OYLIK TO'LOV IMKONIYATI (faqat ipoteka) -->
+  <div class="step" data-step="b_oylik">
+    <div class="q">Oyiga qancha to'lay olasiz?</div>
+    <div class="q-sub">Ipoteka oylik to'lovi uchun</div>
+    <div class="opts" id="oylik-opts"></div>
+  </div>
+
+  <!-- ═══ SOTISH TARMOG'I ═══ -->
+  <!-- 3b: SOTISH XONA -->
+  <div class="step" data-step="s_xona">
+    <div class="q">Sotayotgan uyingiz necha xonali?</div>
+    <div class="opts grid">
+      <button class="opt" onclick="pick('xona','1 xona',this)">1 xona</button>
+      <button class="opt" onclick="pick('xona','2 xona',this)">2 xona</button>
+      <button class="opt" onclick="pick('xona','3 xona',this)">3 xona</button>
+      <button class="opt" onclick="pick('xona','4+ xona',this)">4+ xona</button>
+    </div>
+  </div>
+
+  <!-- 4b: SOTISH QAVAT -->
+  <div class="step" data-step="s_qavat">
+    <div class="q">Nechanchi qavatda?</div>
+    <div class="opts grid">
+      <button class="opt" onclick="pick('qavat','1-3 qavat',this)">1 – 3</button>
+      <button class="opt" onclick="pick('qavat','4-6 qavat',this)">4 – 6</button>
+      <button class="opt" onclick="pick('qavat','7-9 qavat',this)">7 – 9</button>
+      <button class="opt" onclick="pick('qavat','9 dan yuqori',this)">9+</button>
+    </div>
+  </div>
+
+  <!-- 5b: SOTISH NARX -->
+  <div class="step" data-step="s_narx">
+    <div class="q">Taxminiy narxi qancha?</div>
+    <div class="q-sub">O'zingiz kutgan summa</div>
+    <div class="opts">
+      <button class="opt" onclick="pick('narx','50 ming $ gacha',this)"><span class="txt">$50 000 gacha</span></button>
+      <button class="opt" onclick="pick('narx','50-70 ming $',this)"><span class="txt">$50 000 – $70 000</span></button>
+      <button class="opt" onclick="pick('narx','70-100 ming $',this)"><span class="txt">$70 000 – $100 000</span></button>
+      <button class="opt" onclick="pick('narx','100 ming $ dan yuqori',this)"><span class="txt">$100 000 dan yuqori</span></button>
+    </div>
+  </div>
+
+  <!-- ═══ YAKUNIY: ISM + TELEFON ═══ -->
+  <div class="step" data-step="kontakt">
+    <div class="q">Ajoyib! Endi siz bilan bog'lanaylik</div>
+    <div class="q-sub">Mutaxassisimiz eng mos variantlarni tayyorlab qo'ng'iroq qiladi</div>
+    <div class="opts">
+      <input class="fld" id="f-ism" placeholder="Ismingiz" autocomplete="name" oninput="chkKontakt()">
+      <input class="fld" id="f-tel" type="tel" placeholder="+998 __ ___ __ __" autocomplete="tel" inputmode="tel" oninput="telFmt(this);chkKontakt()">
+    </div>
+    <div class="hint">🔒 Ma'lumotlaringiz maxfiy. Faqat siz bilan bog'lanish uchun.</div>
+    <div class="nav">
+      <button class="btn btn-back" onclick="orqaga()">←</button>
+      <button class="btn btn-next" id="yubor" onclick="yubor()" disabled>Yuborish</button>
+    </div>
+  </div>
+
+  <!-- YAKUN -->
+  <div class="step" data-step="done">
+    <div class="done">
+      <div class="circle">✓</div>
+      <h2>Rahmat, <span id="done-ism">do'st</span>!</h2>
+      <p>Arizangiz qabul qilindi. Mutaxassisimiz <b>ish vaqtida tez orada</b> siz bilan bog'lanadi va mos variantlarni ko'rsatadi.</p>
+      <div class="summary" id="summary"></div>
+      <a class="call" id="calllink" href="tel:+998880555111">📞 O'zingiz qo'ng'iroq qilasizmi?</a>
+    </div>
+  </div>
+
+  <!-- Umumiy navigatsiya (kontakt va done'dan tashqari qadamlar uchun) -->
+  <div class="nav" id="mainnav">
+    <button class="btn btn-back" onclick="orqaga()" id="backbtn" style="display:none;">←</button>
+    <button class="btn btn-next" id="nextbtn" onclick="oldinga()" disabled>Davom etish</button>
+  </div>
+</div>
+
+<div class="trust">
+  <span>🎬 100% video</span>
+  <span>🔄 360° tur</span>
+  <span>⭐ Ishonchli agentlik</span>
+</div>
+
+<script>
+// ═══ Meta Pixel (ID ni o'zingiznikiga almashtiring) ═══
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+var FB_PIXEL_ID="YOUR_PIXEL_ID"; // <-- Meta Pixel ID
+if(FB_PIXEL_ID!=="YOUR_PIXEL_ID"){fbq('init',FB_PIXEL_ID);fbq('track','PageView');}
+
+// ═══ Yandex Metrika (ID ni almashtiring) ═══
+var YM_ID=null; // <-- Yandex Metrika ID (raqam)
+
+// ═══ Supabase ═══
+var SURL="https://hxqhtwasvfrwzhpprpgp.supabase.co";
+var SKEY="sb_publishable_m3aeAuF4pzimhb9DC2rgBg_l7iUCNpq";
+var TG_TOKEN="7580145312:AAEDQivhNNhJ5sIFOSTapdiNE_H8rqIUdMw";
+var db=null; try{db=supabase.createClient(SURL,SKEY);}catch(e){}
+
+var D={}; // yig'ilgan javoblar
+var HIST=["hudud"]; // qadamlar tarixi
+
+// UTM va manba (reklamadan qaysi kampaniya kelgani)
+var UP=new URLSearchParams(location.search);
+D.utm_source=UP.get("utm_source")||"";
+D.utm_campaign=UP.get("utm_campaign")||"";
+D.utm_medium=UP.get("utm_medium")||"";
+
+function cur(){return HIST[HIST.length-1];}
+function show(step){
+  document.querySelectorAll(".step").forEach(function(s){s.classList.remove("on");});
+  var el=document.querySelector('.step[data-step="'+step+'"]');
+  if(el)el.classList.add("on");
+  if(step==="b_boshlangich")buildBoshlangich();
+  if(step==="b_oylik")buildOylik();
+  // Navigatsiya ko'rinishi
+  var mainnav=document.getElementById("mainnav");
+  var kontaktStep=(step==="kontakt"||step==="done");
+  mainnav.style.display=kontaktStep?"none":"flex";
+  document.getElementById("backbtn").style.display=HIST.length>1?"block":"none";
+  // "Davom etish" tugmasi: shu qadamда javob tanlanganmi?
+  syncNext();
+  // Progress
+  progress(step);
+  window.scrollTo(0,0);
+}
+function progress(step){
+  // Taxminiy bosqichlar soni maqsadga qarab
+  var jami=D.maqsad==="sotib_olish"?(D.tolov==="Ipoteka"?9:6):(D.maqsad==="sotish"?6:2);
+  var idx=HIST.length;
+  var pct=Math.min(100,Math.round(idx/jami*100));
+  document.getElementById("prog").style.width=pct+"%";
+  document.getElementById("steplbl").textContent=idx+"-qadam"+(step==="done"?" · tayyor ✓":"");
+}
+function syncNext(){
+  // Tanlovли qadamларда "Davom etish" avtomat o'tadi, shuning uchun tugma kamдан-kam kerak.
+  // Kontaktда alohida tugma bor. Bu yerда faqat progress uchun.
+  document.getElementById("nextbtn").style.display="none"; // tanlov avtomat o'tkazadi
+}
+
+// Tanlov: qiymatни saqlab, avtomat keyingi qadamга
+// Hudud bo'yicha dinamik boshlang'ich to'lov (summada)
+function buildBoshlangich(){
+  var fer=D.hudud==="Fargona";
+  var opts=fer
+    ?[["$7 000 – $12 000","7-12 ming $"],["$12 000 – $20 000","12-20 ming $"],["$20 000 – $30 000","20-30 ming $"],["$30 000 dan yuqori","30 ming $ dan yuqori"]]
+    :[["$10 000 – $15 000","10-15 ming $"],["$15 000 – $25 000","15-25 ming $"],["$25 000 – $40 000","25-40 ming $"],["$40 000 dan yuqori","40 ming $ dan yuqori"]];
+  document.getElementById("boshlangich-opts").innerHTML=opts.map(function(o){
+    return '<button class="opt" onclick="pick(\'boshlangich\',\''+o[1]+'\',this)"><span class="txt">'+o[0]+'</span></button>';
+  }).join("");
+}
+// Hudud bo'yicha dinamik oylik to'lov
+function buildOylik(){
+  var fer=D.hudud==="Fargona";
+  var opts=fer
+    ?[["5 – 7 mln so'm","5-7 mln"],["7 – 10 mln so'm","7-10 mln"],["10 – 15 mln so'm","10-15 mln"],["15 mln so'm dan yuqori","15 mln dan yuqori"]]
+    :[["6 – 8 mln so'm","6-8 mln"],["8 – 12 mln so'm","8-12 mln"],["12 – 18 mln so'm","12-18 mln"],["18 mln so'm dan yuqori","18 mln dan yuqori"]];
+  document.getElementById("oylik-opts").innerHTML=opts.map(function(o){
+    return '<button class="opt" onclick="pick(\'oylik\',\''+o[1]+'\',this)"><span class="txt">'+o[0]+'</span></button>';
+  }).join("");
+}
+function pick(key,val,el){
+  D[key]=val;
+  var p=el.parentNode; p.querySelectorAll(".opt").forEach(function(o){o.classList.remove("sel");});
+  el.classList.add("sel");
+  setTimeout(oldinga,180); // silliq o'tish
+}
+function pickTolov(val,el){
+  D.tolov=val;
+  var p=el.parentNode; p.querySelectorAll(".opt").forEach(function(o){o.classList.remove("sel");});
+  el.classList.add("sel");
+  setTimeout(oldinga,180);
+}
+
+// Keyingi qadamni maqsad/javoblarga qarab aniqlash (shart bo'yicha marshrut)
+function keyingiStep(){
+  var c=cur();
+  if(c==="hudud")return "maqsad";
+  if(c==="maqsad")return D.maqsad==="sotish"?"s_xona":"b_xona";
+  // Sotib olish tarmog'i
+  if(c==="b_xona")return "b_byudjet";
+  if(c==="b_byudjet")return "b_tolov";
+  if(c==="b_tolov")return D.tolov==="Ipoteka"?"b_boshlangich":"kontakt";
+  if(c==="b_boshlangich")return "b_ish";
+  if(c==="b_ish")return "b_oylik";
+  if(c==="b_oylik")return "kontakt";
+  // Sotish tarmog'i
+  if(c==="s_xona")return "s_qavat";
+  if(c==="s_qavat")return "s_narx";
+  if(c==="s_narx")return "kontakt";
+  return "kontakt";
+}
+function oldinga(){
+  var nxt=keyingiStep();
+  HIST.push(nxt);
+  show(nxt);
+  if(nxt==="kontakt")setTimeout(function(){var t=document.getElementById("f-ism");if(t)t.focus();},300);
+}
+function orqaga(){
+  if(HIST.length<=1)return;
+  HIST.pop();
+  show(cur());
+}
+
+// Telefon formati
+function telFmt(el){
+  var v=el.value.replace(/\D/g,"");
+  if(v.indexOf("998")===0)v=v.slice(3);
+  v=v.slice(0,9);
+  var out="+998";
+  if(v.length>0)out+=" "+v.slice(0,2);
+  if(v.length>2)out+=" "+v.slice(2,5);
+  if(v.length>5)out+=" "+v.slice(5,7);
+  if(v.length>7)out+=" "+v.slice(7,9);
+  el.value=out;
+}
+function chkKontakt(){
+  var ism=document.getElementById("f-ism").value.trim();
+  var tel=document.getElementById("f-tel").value.replace(/\D/g,"");
+  document.getElementById("yubor").disabled=!(ism.length>=2&&tel.length>=12);
+}
+
+// Yakuniy yuborish
+async function yubor(){
+  var btn=document.getElementById("yubor");
+  btn.disabled=true; btn.textContent="Yuborilmoqda...";
+  D.ism=document.getElementById("f-ism").value.trim();
+  D.telefon=document.getElementById("f-tel").value.trim();
+
+  // Talab matnini yig'amiz (izoh sifatida)
+  var talab=[];
+  if(D.maqsad==="sotish"){
+    talab.push("SOTADI");
+    if(D.xona)talab.push(D.xona); if(D.qavat)talab.push(D.qavat); if(D.narx)talab.push("narx: "+D.narx);
+  }else{
+    talab.push("SOTIB OLADI");
+    if(D.xona)talab.push(D.xona); if(D.byudjet)talab.push("byudjet: "+D.byudjet);
+    if(D.tolov)talab.push(D.tolov);
+    if(D.tolov==="Ipoteka"){
+      if(D.boshlangich)talab.push("boshlang'ich: "+D.boshlangich);
+      if(D.rasmiy_ish)talab.push("rasmiy ish: "+D.rasmiy_ish);
+      if(D.oylik)talab.push("oylik: "+D.oylik);
+    }
+  }
+  var izoh="🌐 REKLAMA ARIZASI ["+(D.utm_campaign||D.utm_source||"forma")+"] · "+talab.join(" · ");
+
+  // Supabase: bot_lidlar jadvaliga (arizalar bo'limida ko'rinadi)
+  var yozildi=false;
+  try{
+    if(db){
+      var rec={
+        ism:D.ism, tel:D.telefon,
+        viloyat:D.hudud||"Toshkent",
+        holat:"yangi",
+        manba:"Reklama formasi",
+        izoh:izoh,
+        talab:JSON.stringify(D)
+      };
+      var r=await db.from("bot_lidlar").insert([rec]);
+      // ustun yo'q bo'lsa — soddaroq yozamiz
+      if(r.error){
+        var r2=await db.from("bot_lidlar").insert([{ism:D.ism,tel:D.telefon,viloyat:D.hudud||"Toshkent",holat:"yangi",izoh:izoh}]);
+        if(!r2.error)yozildi=true;
+      }else yozildi=true;
+    }
+  }catch(e){}
+
+  // Telegram xabar (ixtiyoriy — ADMIN_CHAT ga)
+  try{
+    var ADMIN_CHAT=null; // <-- admin/guruh chat_id (raqam), qo'ysangiz Telegram'ga xabar keladi
+    if(ADMIN_CHAT){
+      var txt="🔔 YANGI REKLAMA ARIZASI\n\n👤 "+D.ism+"\n📞 "+D.telefon+"\n📍 "+(D.hudud==="Fargona"?"Farg'ona":"Toshkent")+"\n\n"+talab.join("\n");
+      fetch("https://api.telegram.org/bot"+TG_TOKEN+"/sendMessage",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:ADMIN_CHAT,text:txt})});
+    }
+  }catch(e){}
+
+  // Meta Pixel: Lead sodir bo'ldi
+  try{if(FB_PIXEL_ID!=="YOUR_PIXEL_ID")fbq('track','Lead',{content_category:D.maqsad});}catch(e){}
+  try{if(YM_ID&&window.ym)ym(YM_ID,'reachGoal','LEAD');}catch(e){}
+
+  // Yakuniy ekran
+  document.getElementById("done-ism").textContent=D.ism;
+  var tel=D.hudud==="Fargona"?"+998974155111":"+998880555111";
+  document.getElementById("calllink").href="tel:"+tel;
+  // Xulosa
+  var rows=[["Shahar",D.hudud==="Fargona"?"Farg'ona":"Toshkent"],["Maqsad",D.maqsad==="sotish"?"Uy sotish":"Uy sotib olish"]];
+  if(D.xona)rows.push(["Xona",D.xona]);
+  if(D.byudjet)rows.push(["Byudjet",D.byudjet]);
+  if(D.narx)rows.push(["Narx",D.narx]);
+  if(D.tolov)rows.push(["To'lov",D.tolov]);
+  document.getElementById("summary").innerHTML=rows.map(function(r){return '<div class="row"><span>'+r[0]+'</span><b>'+r[1]+'</b></div>';}).join("");
+
+  HIST.push("done"); show("done");
+}
+
+// Boshlash
+show("hudud");
+</script>
+<script defer src="assets/config.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script defer src="assets/i18n.js"></script>
+<script defer src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+---
+layout: base.njk
+title: "REFAR — Найдите дом своей мечты"
+activeNav: ""
+permalink: "/index.html"
+---
+{% raw %}
+<style>
+:root{
+  --brand:#1B2A4A; --brand-70:#122038; --brand-5:#EEF1F6; --brand-10:#DCE2EC; --brand-20:#C2CBDD;
+  --g90:#0F172A; --g80:#1E293B; --g70:#334155; --g60:#475569; --g50:#64748B; --g40:#94A3B8;
+  --g30:#CBD5E1; --g20:#E2E8F0; --g10:#F1F5F9; --g5:#F8FAFC; --white:#FFFFFF;
+  --succ:#16A34A; --succ-10:#DCFCE7; --warn-10:#FEF3C7; --warn-60:#D97706; --purple-10:#F3E8FF;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--g90);-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+.wrap{max-width:1440px;margin:0 auto;}
+.px{padding-left:80px;padding-right:80px;}
+
+/* ─── HEADER ─── */
+.hdr{background:var(--white);border-bottom:1px solid var(--g10);}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:16px 80px;}
+.hdr-left{display:flex;gap:40px;align-items:center;}
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .mark{width:32px;height:32px;background:var(--brand);border-radius:8px;}
+.logo .name{font-weight:800;font-size:20px;color:var(--g90);}
+.nav{display:flex;gap:28px;align-items:center;}
+.nav a{font-weight:500;font-size:14px;color:var(--g60);transition:color .15s;}
+.nav a:hover{color:var(--brand);}
+.hdr-right{display:flex;gap:16px;align-items:center;}
+.lang{display:flex;gap:6px;align-items:center;font-weight:600;font-size:13px;color:var(--g80);cursor:pointer;}
+.lang .arr{width:8px;height:5px;background:var(--g40);clip-path:polygon(0 0,100% 0,50% 100%);}
+.btn{font-family:inherit;font-weight:600;font-size:13px;border:none;cursor:pointer;border-radius:8px;transition:all .15s;}
+.btn-ghost{background:var(--g5);border:1px solid var(--g20);color:var(--g80);padding:10px 16px;}
+.btn-ghost:hover{background:var(--g10);}
+.btn-primary{background:var(--brand);color:#fff;padding:10px 18px;display:flex;gap:8px;align-items:center;justify-content:center;}
+.btn-primary:hover{background:var(--brand-70);}
+.btn-primary .ico{width:10px;height:10px;background:#fff;border-radius:2px;}
+
+/* ─── HERO ─── */
+.hero{background:var(--g5);padding:80px;display:flex;flex-direction:column;gap:32px;align-items:center;justify-content:center;}
+.hero-head{text-align:center;display:flex;flex-direction:column;gap:12px;width:100%;}
+.hero-head h1{font-weight:800;font-size:48px;color:var(--g90);line-height:1.1;}
+.hero-head p{font-weight:400;font-size:16px;color:var(--g60);}
+.tabs{background:#fff;border:1px solid var(--g20);border-radius:10px;padding:4px;display:flex;gap:4px;}
+.tab{padding:10px 20px;border-radius:8px;font-weight:600;font-size:13px;color:var(--g60);cursor:pointer;border:none;background:transparent;font-family:inherit;transition:all .15s;}
+.tab.on{background:var(--g90);color:#fff;}
+.searchbar{background:#fff;border:1px solid var(--g20);border-radius:12px;padding:6px;display:flex;align-items:center;width:960px;max-width:100%;box-shadow:0 4px 16px rgba(0,0,0,.06);}
+.sf{display:flex;gap:10px;align-items:center;padding:12px 18px;border-radius:8px;cursor:pointer;transition:background .15s;}
+.sf:hover{background:var(--g5);}
+.sf .dot{width:11px;height:14px;background:var(--g40);border-radius:5px;flex-shrink:0;}
+.sf-txt{display:flex;flex-direction:column;gap:2px;}
+.sf-txt .lbl{font-weight:500;font-size:10px;color:var(--g40);}
+.sf-txt .val{font-weight:600;font-size:14px;color:var(--g80);white-space:nowrap;}
+.sf-div{width:1px;height:40px;background:var(--g20);}
+.sf-btn{background:var(--brand);color:#fff;padding:13px 24px;border-radius:8px;display:flex;gap:8px;align-items:center;font-weight:600;font-size:14px;border:none;cursor:pointer;margin-left:auto;font-family:inherit;transition:background .15s;white-space:nowrap;}
+.sf-btn:hover{background:var(--brand-70);}
+.sf-btn .cir{width:12px;height:12px;background:#fff;border-radius:50%;}
+.ai-hint{background:var(--brand-5);border:1px solid var(--brand-20);border-radius:9999px;padding:10px 18px;display:flex;gap:8px;align-items:center;}
+.ai-hint .sq{width:14px;height:14px;background:var(--brand);border-radius:3px;flex-shrink:0;}
+.ai-hint p{font-weight:500;font-size:13px;color:var(--brand-70);}
+
+/* ─── SECTIONS ─── */
+.sec{background:#fff;padding:64px 80px 24px;display:flex;flex-direction:column;gap:24px;}
+.sec-h2{font-weight:700;font-size:24px;color:var(--g90);}
+.sec-head{display:flex;align-items:center;justify-content:space-between;}
+.sec-head .sub{font-weight:400;font-size:13px;color:var(--g50);margin-top:4px;}
+.link-all{display:flex;gap:6px;align-items:center;color:var(--brand);font-weight:600;font-size:13px;cursor:pointer;}
+
+/* Categories */
+.cats{display:flex;gap:16px;}
+.cat{flex:1;background:var(--g5);border:1px solid var(--g20);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:20px;transition:all .15s;cursor:pointer;}
+.cat:hover{border-color:var(--brand-20);box-shadow:0 4px 14px rgba(27,42,74,.08);}
+.cat-ic{width:56px;height:56px;background:var(--brand-10);border-radius:12px;display:flex;align-items:center;justify-content:center;}
+.cat-ic .r{width:28px;height:22px;background:var(--brand);border-radius:3px;}
+.cat h3{font-weight:600;font-size:16px;color:var(--g90);}
+.cat p{font-weight:400;font-size:12px;color:var(--g50);margin-top:4px;}
+
+/* Listings */
+.cards{display:flex;gap:16px;}
+.card{flex:1;background:#fff;border:1px solid var(--g20);border-radius:12px;overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,.06);transition:transform .15s,box-shadow .15s;cursor:pointer;}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.1);}
+.card-photo{height:180px;position:relative;}
+.badge{position:absolute;left:12px;top:12px;background:#fff;border:1px solid var(--g20);border-radius:4px;padding:4px 8px;display:flex;gap:5px;align-items:center;}
+.badge .dot{width:6px;height:6px;border-radius:50%;}
+.badge span{font-weight:500;font-size:10px;color:var(--g70);}
+.card-body{padding:16px;display:flex;flex-direction:column;gap:10px;}
+.card-price{font-weight:700;font-size:18px;color:var(--g90);}
+.card-addr{font-weight:400;font-size:12px;color:var(--g50);}
+.card-params{display:flex;gap:8px;align-items:center;}
+.card-params span{font-weight:500;font-size:11px;color:var(--g60);}
+.card-params .d{width:1px;height:10px;background:var(--g20);}
+.card-line{height:1px;background:var(--g10);}
+.card-foot{display:flex;align-items:center;justify-content:space-between;}
+.card-more{display:flex;gap:8px;align-items:center;}
+.card-more .av{width:24px;height:24px;border-radius:50%;background:var(--brand-10);}
+.card-more span{font-weight:600;font-size:12px;color:var(--brand);}
+.card-foot .arr{color:var(--brand);font-size:13px;}
+
+/* Cities map */
+.geo{display:flex;gap:24px;}
+.geo-map{flex:1;background:var(--g10);height:400px;border-radius:12px;position:relative;overflow:hidden;}
+.geo-map .cap{position:absolute;left:20px;top:20px;font-weight:500;font-size:11px;color:var(--g50);}
+.geo-map .mk{position:absolute;width:10px;height:10px;background:var(--brand);border-radius:50%;box-shadow:0 0 0 4px rgba(27,42,74,.15);}
+.geo-list{width:280px;display:flex;flex-direction:column;gap:8px;}
+.geo-row{background:var(--g5);border:1px solid var(--g20);border-radius:6px;padding:10px 14px;display:flex;align-items:center;justify-content:between;justify-content:space-between;cursor:pointer;transition:all .15s;}
+.geo-row:hover{background:var(--brand-5);border-color:var(--brand-20);}
+.geo-row .c{font-weight:600;font-size:13px;color:var(--g80);}
+.geo-row .n{font-weight:400;font-size:11px;color:var(--g50);}
+
+/* Why */
+.why{background:var(--g5);padding:64px 80px;display:flex;flex-direction:column;gap:24px;}
+.why h2{font-weight:700;font-size:28px;color:var(--g90);text-align:center;}
+.why-grid{display:flex;gap:20px;}
+.why-card{flex:1;background:#fff;border:1px solid var(--g20);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px;}
+.why-ic{width:48px;height:48px;background:var(--brand-5);border-radius:12px;display:flex;align-items:center;justify-content:center;}
+.why-ic .r{width:22px;height:22px;background:var(--brand);border-radius:4px;}
+.why-card h3{font-weight:600;font-size:16px;color:var(--g90);}
+.why-card p{font-weight:400;font-size:12px;color:var(--g50);line-height:1.5;}
+.cta{background:var(--g90);border-radius:16px;padding:40px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.cta h3{font-weight:700;font-size:22px;color:#fff;}
+.cta p{font-weight:400;font-size:13px;color:var(--g30);margin-top:8px;}
+.cta-btn{background:var(--brand);color:#fff;padding:14px 24px;border-radius:8px;display:flex;gap:8px;align-items:center;font-weight:600;font-size:14px;border:none;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .15s;}
+.cta-btn:hover{background:var(--brand-70);}
+
+/* Footer */
+.ft{background:#fff;border-top:1px solid var(--g10);padding:48px 80px 32px;display:flex;flex-direction:column;gap:32px;}
+.ft-cols{display:flex;justify-content:space-between;}
+.ft-col{display:flex;flex-direction:column;gap:12px;}
+.ft-col .t{font-weight:700;font-size:13px;color:var(--g80);}
+.ft-col a{font-weight:400;font-size:12px;color:var(--g60);transition:color .15s;}
+.ft-col a:hover{color:var(--brand);}
+.ft-line{height:1px;background:var(--g10);}
+.ft-bottom{display:flex;align-items:center;justify-content:space-between;}
+.ft-bottom .cp{font-weight:400;font-size:12px;color:var(--g50);}
+.ft-soc{display:flex;gap:12px;}
+.ft-soc .s{width:28px;height:28px;background:var(--g10);border-radius:6px;cursor:pointer;transition:background .15s;}
+.ft-soc .s:hover{background:var(--brand-10);}
+
+/* Responsive */
+@media(max-width:1100px){
+  .px,.hero,.sec,.why,.ft,.hdr-in{padding-left:32px;padding-right:32px;}
+  .hero{padding-top:56px;padding-bottom:56px;}
+  .nav{display:none;}
+  .cats,.cards,.why-grid{flex-wrap:wrap;}
+  .cat,.card{min-width:calc(50% - 8px);}
+  .why-card{min-width:calc(50% - 10px);}
+  .geo{flex-direction:column;}
+  .geo-list{width:100%;}
+  .searchbar{flex-wrap:wrap;width:100%;}
+  .sf-div{display:none;}
+  .sf-btn{width:100%;justify-content:center;margin-left:0;}
+}
+@media(max-width:640px){
+  .hero-head h1{font-size:32px;}
+  .cat,.card,.why-card{min-width:100%;}
+  .cta{flex-direction:column;align-items:flex-start;}
+  .ft-cols{flex-wrap:wrap;gap:24px;}
+  .ft-col{min-width:calc(50% - 12px);}
+}
+
+/* ===== REFAR BRAND ===== */
+.logo{display:flex;gap:10px;align-items:center;}
+.logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.logo .logo-mark svg{width:100%;height:100%;display:block;}
+.logo .logo-name{font-weight:800;font-size:20px;color:#1B2A4A;letter-spacing:.5px;line-height:1;}
+.ft-logo{display:flex;gap:10px;align-items:center;}
+.ft-logo .logo-mark{width:36px;height:36px;flex-shrink:0;display:block;}
+.ft-logo .logo-mark svg{width:100%;height:100%;display:block;}
+.ft-logo .logo-name{font-weight:800;font-size:22px;color:#1B2A4A;letter-spacing:.5px;}
+a.hbtn.primary,a.hlink.primary,.hbtn.primary,.hlink.primary{background:#E24B4A!important;color:#fff!important;border-color:#E24B4A!important;text-decoration:none;display:inline-flex;align-items:center;}
+a.hbtn.primary:hover,.hbtn.primary:hover,.hlink.primary:hover{background:#C63D3C!important;}
+a.hbtn,a.hlink{text-decoration:none;}
+</style>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-head">
+      <h1>Найдите дом своей мечты</h1>
+      <p>Более 12 000 проверенных объектов в Ташкенте и регионах Узбекистана</p>
+    </div>
+    <div class="tabs">
+      <button class="tab on">Купить</button>
+      <button class="tab">Снять</button>
+      <button class="tab">Новостройки</button>
+      <button class="tab">Посуточно</button>
+    </div>
+    <div class="searchbar">
+      <div class="sf" style="width:240px;"><span class="dot"></span><div class="sf-txt"><span class="lbl">Локация</span><span class="val">Ташкент</span></div></div>
+      <div class="sf-div"></div>
+      <div class="sf" style="width:180px;"><span class="dot"></span><div class="sf-txt"><span class="lbl">Тип</span><span class="val">Квартира</span></div></div>
+      <div class="sf-div"></div>
+      <div class="sf" style="width:140px;"><span class="dot"></span><div class="sf-txt"><span class="lbl">Комнат</span><span class="val">2-3</span></div></div>
+      <div class="sf-div"></div>
+      <div class="sf" style="width:230px;"><span class="dot"></span><div class="sf-txt"><span class="lbl">Цена</span><span class="val">500 тыс. — 1.5 млн $</span></div></div>
+      <button class="sf-btn"><span class="cir"></span>Найти 1 248 объектов</button>
+    </div>
+    <div class="ai-hint"><span class="sq"></span><p>Попробуйте AI-поиск: «Двухкомнатная в Чиланзаре с ремонтом до 800 тыс.»</p></div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="sec">
+    <h2 class="sec-h2">Категории недвижимости</h2>
+    <div class="cats">
+      <div class="cat"><div class="cat-ic"><span class="r"></span></div><div><h3>Квартиры</h3><p>8 432 объекта</p></div></div>
+      <div class="cat"><div class="cat-ic"><span class="r"></span></div><div><h3>Новостройки</h3><p>142 ЖК</p></div></div>
+      <div class="cat"><div class="cat-ic"><span class="r"></span></div><div><h3>Нежилая недвижимость</h3><p>687 объектов</p></div></div>
+    </div>
+  </section>
+
+  <!-- PREMIUM LISTINGS -->
+  <section class="sec">
+    <div class="sec-head">
+      <div><h2 class="sec-h2">Премиум объявления</h2><div class="sub">Проверенные объекты от риэлторов и владельцев</div></div>
+      <div class="link-all">Все объявления <span>→</span></div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-photo" style="background:var(--brand-10);"><div class="badge"><span class="dot" style="background:var(--succ);"></span><span>В продаже</span></div></div>
+        <div class="card-body">
+          <div class="card-price">12 500 000 $</div>
+          <div class="card-addr">ул. Ленина, 12, Ташкент</div>
+          <div class="card-params"><span>3 комн.</span><span class="d"></span><span>95 м²</span><span class="d"></span><span>5/9 эт.</span></div>
+          <div class="card-line"></div>
+          <div class="card-foot"><div class="card-more"><span class="av"></span><span>Подробнее</span></div><span class="arr">→</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-photo" style="background:var(--succ-10);"><div class="badge"><span class="dot" style="background:var(--warn-60);"></span><span>Аренда</span></div></div>
+        <div class="card-body">
+          <div class="card-price">85 000 $/мес</div>
+          <div class="card-addr">пр. Амира Темура, 7, Ташкент</div>
+          <div class="card-params"><span>2 комн.</span><span class="d"></span><span>62 м²</span><span class="d"></span><span>3/12 эт.</span></div>
+          <div class="card-line"></div>
+          <div class="card-foot"><div class="card-more"><span class="av"></span><span>Подробнее</span></div><span class="arr">→</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-photo" style="background:var(--warn-10);"><div class="badge"><span class="dot" style="background:var(--succ);"></span><span>Новое</span></div></div>
+        <div class="card-body">
+          <div class="card-price">27 900 000 $</div>
+          <div class="card-addr">ЖК «Nest One», Ташкент</div>
+          <div class="card-params"><span>4 комн.</span><span class="d"></span><span>142 м²</span><span class="d"></span><span>12/20 эт.</span></div>
+          <div class="card-line"></div>
+          <div class="card-foot"><div class="card-more"><span class="av"></span><span>Подробнее</span></div><span class="arr">→</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-photo" style="background:var(--purple-10);"><div class="badge"><span class="dot" style="background:var(--brand);"></span><span>Торг уместен</span></div></div>
+        <div class="card-body">
+          <div class="card-price">9 800 000 $</div>
+          <div class="card-addr">Чиланзар, 8 квартал, Ташкент</div>
+          <div class="card-params"><span>2 комн.</span><span class="d"></span><span>71 м²</span><span class="d"></span><span>2/6 эт.</span></div>
+          <div class="card-line"></div>
+          <div class="card-foot"><div class="card-more"><span class="av"></span><span>Подробнее</span></div><span class="arr">→</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CITIES MAP -->
+  <section class="sec">
+    <h2 class="sec-h2">Недвижимость по городам Узбекистана</h2>
+    <div class="geo">
+      <div class="geo-map" id="geomap"><span class="cap">Карта Узбекистана с маркерами объектов</span></div>
+      <div class="geo-list">
+        <div class="geo-row"><span class="c">Ташкент</span><span class="n">8 432 объекта</span></div>
+        <div class="geo-row"><span class="c">Самарканд</span><span class="n">1 245 объектов</span></div>
+        <div class="geo-row"><span class="c">Бухара</span><span class="n">587 объектов</span></div>
+        <div class="geo-row"><span class="c">Наманган</span><span class="n">432 объекта</span></div>
+        <div class="geo-row"><span class="c">Андижан</span><span class="n">389 объектов</span></div>
+        <div class="geo-row"><span class="c">Фергана</span><span class="n">356 объектов</span></div>
+        <div class="geo-row"><span class="c">Нукус</span><span class="n">218 объектов</span></div>
+        <div class="geo-row"><span class="c">Карши</span><span class="n">184 объекта</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY REFAR -->
+  <section class="why">
+    <h2>Почему 50 000+ пользователей выбирают REFAR</h2>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-ic"><span class="r"></span></div><h3>Все объекты проверены</h3><p>Документы собственников и риэлторов проходят проверку модераторов</p></div>
+      <div class="why-card"><div class="why-ic"><span class="r"></span></div><h3>AI-помощник в подборе</h3><p>Опишите параметры словами — алгоритм подберёт подходящие объекты</p></div>
+      <div class="why-card"><div class="why-ic"><span class="r"></span></div><h3>Прозрачные цены</h3><p>История изменений цены каждого объекта. Без скрытых комиссий</p></div>
+      <div class="why-card"><div class="why-ic"><span class="r"></span></div><h3>Поддержка 24/7</h3><p>Команда помощи на русском и узбекском. Связь через чат, телефон, Telegram</p></div>
+    </div>
+    <div class="cta">
+      <div><h3>Есть недвижимость для продажи?</h3><p>Разместите объявление за 5 минут — первая публикация бесплатно.</p></div>
+      <button class="cta-btn">Разместить объявление <span>→</span></button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  
+</div>
+
+<script>
+// Xarita markerlari (dizayndagidek 4×3 to'r)
+(function(){
+  var map=document.getElementById("geomap");
+  if(!map)return;
+  var xs=[80,260,440,620], ys=[80,180,280];
+  ys.forEach(function(y){xs.forEach(function(x){
+    var m=document.createElement("span");m.className="mk";m.style.left=x+"px";m.style.top=y+"px";map.appendChild(m);
+  });});
+})();
+// Tab almashuvi
+document.querySelectorAll(".tab").forEach(function(t){
+  t.addEventListener("click",function(){
+    document.querySelectorAll(".tab").forEach(function(x){x.classList.remove("on");});
+    t.classList.add("on");
+  });
+});
+</script>
+{% endraw %}
