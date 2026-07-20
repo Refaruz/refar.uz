@@ -1,0 +1,12 @@
+<footer class="ft">
+  <div class="ft-cols">
+    {%- for col in site.footer %}
+    <div class="ft-col"><span class="t">{{ col.title }}</span>{%- for link in col.links %}<a href="{{ link.url }}">{{ link.label }}</a>{%- endfor %}</div>
+    {%- endfor %}
+  </div>
+  <div class="ft-line"></div>
+  <div class="ft-bottom">
+    <span class="cp">© 2026 REFAR. Все права защищены.</span>
+    <div class="ft-soc"><span class="s"></span><span class="s"></span><span class="s"></span><span class="s"></span></div>
+  </div>
+</footer>
